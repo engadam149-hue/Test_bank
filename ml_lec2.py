@@ -1,401 +1,594 @@
-"""
-Quiz on K-Nearest Neighbors (k-NN) Algorithm
-Based on Machine Learning Lecture by Dr. Sara Sweidan
-50 Questions: 35 Multiple Choice + 15 True/False
-"""
+# ════════════════════════════════════════════════════════════
+# 📖 ml_lec2.py
+# Machine Learning - Lecture 2: K-Nearest Neighbors (k-NN)
+# Dr. Sara Sweidan
+# 35 MCQ + 15 True/False = 50 Questions
+# ════════════════════════════════════════════════════════════
 
-import random
+QUESTIONS = [
 
-# =============================================
-# 35 Multiple Choice Questions
-# =============================================
-multiple_choice = [
+    # ══════════════════════════════════════════════
+    # ✅ MCQ Questions (1–35)
+    # ══════════════════════════════════════════════
+
     {
-        "q": "1. What does k-NN stand for?",
-        "options": ["a) Key-Node Network", "b) k-Nearest Neighbors", "c) k-Null Nodes", "d) Key-Nearest Nodes"],
-        "answer": "b"
-    },
-    {
-        "q": "2. Why is k-NN considered a 'lazy learner'?",
+        "q": "What does k-NN stand for?",
+        "type": "mcq",
         "options": [
-            "a) It uses a simple algorithm",
-            "b) It does not build a model during training, deferring computation to test time",
-            "c) It is slow at everything",
-            "d) It ignores irrelevant features"
+            "Key-Node Network",
+            "k-Nearest Neighbors",
+            "k-Null Nodes",
+            "Key-Nearest Nodes"
         ],
-        "answer": "b"
+        "ans": "k-Nearest Neighbors",
+        "explain_correct": "✅ صح! k-NN اختصار لـ k-Nearest Neighbors.",
+        "explain_wrong": "❌ غلط! الاختصار الصحيح هو k-Nearest Neighbors."
     },
     {
-        "q": "3. In k-NN classification, how is the class of a new data point determined?",
+        "q": "Why is k-NN considered a 'lazy learner'?",
+        "type": "mcq",
         "options": [
-            "a) By the class of the single nearest neighbor",
-            "b) By the majority class among the k nearest neighbors",
-            "c) By the average distance of all training points",
-            "d) By a learned decision boundary"
+            "It uses a simple algorithm",
+            "It does not build a model during training, deferring computation to test time",
+            "It is slow at everything",
+            "It ignores irrelevant features"
         ],
-        "answer": "b"
+        "ans": "It does not build a model during training, deferring computation to test time",
+        "explain_correct": "✅ صح! الـ Lazy learner مش بيبني model وقت التدريب وبيأجل الحسابات لوقت الاختبار.",
+        "explain_wrong": "❌ غلط! السبب إنه مش بيبني model وقت الـ training."
     },
     {
-        "q": "4. What is the Euclidean distance between A(0,1) and B(2,3)?",
-        "options": ["a) 1", "b) 2√2", "c) 4", "d) 8"],
-        "answer": "b"
-    },
-    {
-        "q": "5. Which formula is used for min-max normalization?",
+        "q": "In k-NN classification, how is the class of a new data point determined?",
+        "type": "mcq",
         "options": [
-            "a) x = (x + MIN) / MAX",
-            "b) x = (x - MIN) / (MAX - MIN)",
-            "c) x = x / MAX",
-            "d) x = (x - MAX) / MIN"
+            "By the class of the single nearest neighbor",
+            "By the majority class among the k nearest neighbors",
+            "By the average distance of all training points",
+            "By a learned decision boundary"
         ],
-        "answer": "b"
+        "ans": "By the majority class among the k nearest neighbors",
+        "explain_correct": "✅ صح! الكلاس بيتحدد بتصويت الأغلبية (Majority class) لأقرب k جيران.",
+        "explain_wrong": "❌ غلط! الكلاس بيتحدد بأغلبية أقرب k جيران."
     },
     {
-        "q": "6. What happens when k is very large in k-NN?",
+        "q": "What is the Euclidean distance between A(0,1) and B(2,3)?",
+        "type": "mcq",
         "options": [
-            "a) The model underfits and may include points from other classes",
-            "b) The model becomes more accurate",
-            "c) The algorithm runs faster",
-            "d) Noise has more effect"
+            "1",
+            "2√2",
+            "4",
+            "8"
         ],
-        "answer": "a"
+        "ans": "2√2",
+        "explain_correct": "✅ صح! بحساب قانون المسافة الإقليدية: جذر((2-0)^2 + (3-1)^2) = 2√2.",
+        "explain_wrong": "❌ غلط! الإجابة الصحيحة هي 2√2."
     },
     {
-        "q": "7. What happens when k is very small (e.g., k=1)?",
+        "q": "Which formula is used for min-max normalization?",
+        "type": "mcq",
         "options": [
-            "a) The model underfits",
-            "b) The algorithm is very sensitive to noise",
-            "c) The model generalizes well",
-            "d) Training time increases"
+            "x = (x + MIN) / MAX",
+            "x = (x - MIN) / (MAX - MIN)",
+            "x = x / MAX",
+            "x = (x - MAX) / MIN"
         ],
-        "answer": "b"
+        "ans": "x = (x - MIN) / (MAX - MIN)",
+        "explain_correct": "✅ صح! ده قانون الـ min-max normalization لتحويل الداتا.",
+        "explain_wrong": "❌ غلط! القانون هو: (x - MIN) / (MAX - MIN)."
     },
     {
-        "q": "8. Which of the following is a weakness of k-NN?",
+        "q": "What happens when k is very large in k-NN?",
+        "type": "mcq",
         "options": [
-            "a) Simple and effective",
-            "b) Fast training phase",
-            "c) Slow classification phase",
-            "d) Makes no assumptions about data distribution"
+            "The model underfits and may include points from other classes",
+            "The model becomes more accurate",
+            "The algorithm runs faster",
+            "Noise has more effect"
         ],
-        "answer": "c"
+        "ans": "The model underfits and may include points from other classes",
+        "explain_correct": "✅ صح! الـ k الكبيرة بتعمل underfitting وبتدخل كلاسات تانية في الحساب.",
+        "explain_wrong": "❌ غلط! الـ k الكبيرة بتؤدي للـ underfitting."
     },
     {
-        "q": "9. Which of the following is a strength of k-NN?",
+        "q": "What happens when k is very small (e.g., k=1)?",
+        "type": "mcq",
         "options": [
-            "a) Produces a model for interpretation",
-            "b) Fast classification phase",
-            "c) Makes no assumptions about data distribution",
-            "d) Works well with missing data"
+            "The model underfits",
+            "The algorithm is very sensitive to noise",
+            "The model generalizes well",
+            "Training time increases"
         ],
-        "answer": "c"
+        "ans": "The algorithm is very sensitive to noise",
+        "explain_correct": "✅ صح! الـ k الصغيرة بتخلي الخوارزمية حساسة جداً للـ noise (Overfitting).",
+        "explain_wrong": "❌ غلط! الـ k الصغيرة بتخلي الموديل حساس جداً للـ noise."
     },
     {
-        "q": "10. What does normalization achieve in k-NN?",
+        "q": "Which of the following is a weakness of k-NN?",
+        "type": "mcq",
         "options": [
-            "a) Removes noisy data",
-            "b) Prevents one attribute from dominating distance calculations",
-            "c) Speeds up training",
-            "d) Selects the best k automatically"
+            "Simple and effective",
+            "Fast training phase",
+            "Slow classification phase",
+            "Makes no assumptions about data distribution"
         ],
-        "answer": "b"
+        "ans": "Slow classification phase",
+        "explain_correct": "✅ صح! الـ k-NN بطيء جداً وقت الـ classification لأنه بيحسب المسافة مع كل الداتا.",
+        "explain_wrong": "❌ غلط! العيب الرئيسي هو بُطء الـ classification phase."
     },
     {
-        "q": "11. In the Euclidean distance formula dist(p,q), what is computed?",
+        "q": "Which of the following is a strength of k-NN?",
+        "type": "mcq",
         "options": [
-            "a) Sum of absolute differences",
-            "b) Square root of the sum of squared differences",
-            "c) Product of feature values",
-            "d) Average of feature values"
+            "Produces a model for interpretation",
+            "Fast classification phase",
+            "Makes no assumptions about data distribution",
+            "Works well with missing data"
         ],
-        "answer": "b"
+        "ans": "Makes no assumptions about data distribution",
+        "explain_correct": "✅ صح! من مميزاته إنه non-parametric ومش بيفترض أي توزيع للداتا.",
+        "explain_wrong": "❌ غلط! الميزة الأهم إنه لا يفترض شكل معين لتوزيع البيانات."
     },
     {
-        "q": "12. What is a Tomek Link?",
+        "q": "What does normalization achieve in k-NN?",
+        "type": "mcq",
         "options": [
-            "a) A method to increase training data",
-            "b) A pair of examples from different classes that are each other's nearest neighbor",
-            "c) A technique for selecting the best k",
-            "d) A distance metric"
+            "Removes noisy data",
+            "Prevents one attribute from dominating distance calculations",
+            "Speeds up training",
+            "Selects the best k automatically"
         ],
-        "answer": "b"
+        "ans": "Prevents one attribute from dominating distance calculations",
+        "explain_correct": "✅ صح! الـ normalization بيمنع الخصائص ذات الأرقام الكبيرة إنها تسيطر على الحسابات.",
+        "explain_wrong": "❌ غلط! بيُستخدم لمنع attribute واحد من السيطرة على حساب المسافة."
     },
     {
-        "q": "13. Why are Tomek Links removed from training data?",
+        "q": "In the Euclidean distance formula dist(p,q), what is computed?",
+        "type": "mcq",
         "options": [
-            "a) To speed up the algorithm",
-            "b) To remove borderline/noisy examples that can harm classification",
-            "c) To reduce the number of features",
-            "d) To normalize the data"
+            "Sum of absolute differences",
+            "Square root of the sum of squared differences",
+            "Product of feature values",
+            "Average of feature values"
         ],
-        "answer": "b"
+        "ans": "Square root of the sum of squared differences",
+        "explain_correct": "✅ صح! المسافة الإقليدية هي الجذر التربيعي لمجموع الفروق المربعة.",
+        "explain_wrong": "❌ غلط! هي الجذر التربيعي لمجموع الفروق المربعة."
     },
     {
-        "q": "14. In weighted k-NN, what weight is given to the farthest neighbor (d_k)?",
-        "options": ["a) 1", "b) 0.5", "c) 0", "d) It depends on k"],
-        "answer": "c"
-    },
-    {
-        "q": "15. In weighted k-NN, what weight is given to the nearest neighbor (d_1)?",
-        "options": ["a) 0", "b) 0.5", "c) 1", "d) k"],
-        "answer": "c"
-    },
-    {
-        "q": "16. What is the main benefit of using k neighbors instead of just 1?",
+        "q": "What is a Tomek Link?",
+        "type": "mcq",
         "options": [
-            "a) Faster computation",
-            "b) Voting among neighbors overcomes noise",
-            "c) Eliminates the need for normalization",
-            "d) Reduces memory usage"
+            "A method to increase training data",
+            "A pair of examples from different classes that are each other's nearest neighbor",
+            "A technique for selecting the best k",
+            "A distance metric"
         ],
-        "answer": "b"
+        "ans": "A pair of examples from different classes that are each other's nearest neighbor",
+        "explain_correct": "✅ صح! الـ Tomek Link هو نقطتين من كلاسين مختلفين وهما أقرب جيران لبعض.",
+        "explain_wrong": "❌ غلط! هو النقطتين اللي من فئات مختلفة وأقرب حاجة لبعض."
     },
     {
-        "q": "17. What is class-label noise in k-NN?",
+        "q": "Why are Tomek Links removed from training data?",
+        "type": "mcq",
         "options": [
-            "a) An attribute value is incorrect",
-            "b) The class provided for an example is incorrect",
-            "c) Too many features in the dataset",
-            "d) Missing values in features"
+            "To speed up the algorithm",
+            "To remove borderline/noisy examples that can harm classification",
+            "To reduce the number of features",
+            "To normalize the data"
         ],
-        "answer": "b"
+        "ans": "To remove borderline/noisy examples that can harm classification",
+        "explain_correct": "✅ صح! بنشيلهم عشان ننضف الداتا من الأمثلة الحدودية المزعجة (noisy).",
+        "explain_wrong": "❌ غلط! إزالتهم بتساعد في التخلص من الـ borderline examples."
     },
     {
-        "q": "18. What is attribute noise in k-NN?",
+        "q": "In weighted k-NN, what weight is given to the farthest neighbor (d_k)?",
+        "type": "mcq",
         "options": [
-            "a) The class label is wrong",
-            "b) An attribute's value is incorrect",
-            "c) Too many neighbors are selected",
-            "d) Normalization is not applied"
+            "1",
+            "0.5",
+            "0",
+            "It depends on k"
         ],
-        "answer": "b"
+        "ans": "0",
+        "explain_correct": "✅ صح! في الـ weighted k-NN، الجار الأبعد بياخد وزن صفر.",
+        "explain_wrong": "❌ غلط! الجار الأبعد بيأخد وزن 0."
     },
     {
-        "q": "19. Which distance axiom states d(x,x) = 0?",
+        "q": "In weighted k-NN, what weight is given to the nearest neighbor (d_1)?",
+        "type": "mcq",
         "options": [
-            "a) Triangle inequality",
-            "b) Symmetry",
-            "c) Identity",
-            "d) Non-negativity"
+            "0",
+            "0.5",
+            "1",
+            "k"
         ],
-        "answer": "c"
+        "ans": "1",
+        "explain_correct": "✅ صح! الجار الأقرب بياخد أعلى وزن وهو 1.",
+        "explain_wrong": "❌ غلط! الجار الأقرب بياخد وزن 1."
     },
     {
-        "q": "20. Which distance axiom is represented by d(x,y) = d(y,x)?",
+        "q": "What is the main benefit of using k neighbors instead of just 1?",
+        "type": "mcq",
         "options": [
-            "a) Non-negativity",
-            "b) Identity",
-            "c) Symmetry",
-            "d) Triangle inequality"
+            "Faster computation",
+            "Voting among neighbors overcomes noise",
+            "Eliminates the need for normalization",
+            "Reduces memory usage"
         ],
-        "answer": "c"
+        "ans": "Voting among neighbors overcomes noise",
+        "explain_correct": "✅ صح! التصويت بين كذا جار بيساعد في التغلب على تأثير الـ noise.",
+        "explain_wrong": "❌ غلط! استخدام k جيران بيساعدنا نتغلب على الـ noise من خلال التصويت."
     },
     {
-        "q": "21. The triangle inequality for distance metrics states:",
+        "q": "What is class-label noise in k-NN?",
+        "type": "mcq",
         "options": [
-            "a) d(x,y) = d(y,x)",
-            "b) d(x,y) + d(y,z) >= d(x,z)",
-            "c) d(x,x) = 0",
-            "d) d(x,y) >= 0"
+            "An attribute value is incorrect",
+            "The class provided for an example is incorrect",
+            "Too many features in the dataset",
+            "Missing values in features"
         ],
-        "answer": "b"
+        "ans": "The class provided for an example is incorrect",
+        "explain_correct": "✅ صح! لما الكلاس (الـ label) بتاع الداتا يكون متسجل غلط.",
+        "explain_wrong": "❌ غلط! الـ class-label noise هو وجود تصنيف غلط للداتا."
     },
     {
-        "q": "22. A k-NN model gets 100% training accuracy but fails on new data. What is the most likely problem?",
+        "q": "What is attribute noise in k-NN?",
+        "type": "mcq",
         "options": [
-            "a) Underfitting",
-            "b) Overfitting",
-            "c) Incorrect normalization",
-            "d) Too large k"
+            "The class label is wrong",
+            "An attribute's value is incorrect",
+            "Too many neighbors are selected",
+            "Normalization is not applied"
         ],
-        "answer": "b"
+        "ans": "An attribute's value is incorrect",
+        "explain_correct": "✅ صح! لما الخصائص (attributes) نفسها تكون قيمتها غلط.",
+        "explain_wrong": "❌ غلط! هو لما تكون قيمة الـ attribute غير صحيحة."
     },
     {
-        "q": "23. Which statement about k-NN is TRUE regarding all three?",
+        "q": "Which distance axiom states d(x,x) = 0?",
+        "type": "mcq",
         "options": [
-            "a) k-NN performs better with same-scale data, struggles with many features, and makes no functional form assumptions",
-            "b) k-NN is a parametric model",
-            "c) k-NN requires data to be normalized only for large k",
-            "d) k-NN works best with many irrelevant features"
+            "Triangle inequality",
+            "Symmetry",
+            "Identity",
+            "Non-negativity"
         ],
-        "answer": "a"
+        "ans": "Identity",
+        "explain_correct": "✅ صح! قاعدة الـ Identity بتنص على أن المسافة بين النقطة ونفسها صفر.",
+        "explain_wrong": "❌ غلط! دي قاعدة الـ Identity."
     },
     {
-        "q": "24. k-NN does more computation at which phase?",
-        "options": ["a) Training phase", "b) Test/classification phase", "c) Both equally", "d) Neither"],
-        "answer": "b"
-    },
-    {
-        "q": "25. Given values 7, 4, 25, -5, 10 with MIN=-5, MAX=25, what is the normalized value of 7?",
-        "options": ["a) 0.3", "b) 0.4", "c) 0.5", "d) 0.6"],
-        "answer": "b"
-    },
-    {
-        "q": "26. In the weighted 5-NN example with distances d1=1, d2=3, d3=4, d4=5, d5=8, what is w2?",
-        "options": ["a) 4/7", "b) 5/7", "c) 3/7", "d) 1"],
-        "answer": "b"
-    },
-    {
-        "q": "27. Which step in k-NN involves finding the majority class among neighbors?",
-        "options": ["a) Step 2", "b) Step 3", "c) Step 5", "d) Step 6"],
-        "answer": "c"
-    },
-    {
-        "q": "28. What type of variable is used to label categories in k-NN training data?",
-        "options": ["a) Continuous", "b) Nominal", "c) Ordinal", "d) Binary only"],
-        "answer": "b"
-    },
-    {
-        "q": "29. Irrelevant attributes in k-NN cause problems because:",
+        "q": "Which distance axiom is represented by d(x,y) = d(y,x)?",
+        "type": "mcq",
         "options": [
-            "a) They slow down training",
-            "b) They affect example-to-example distances without affecting the class",
-            "c) They prevent normalization",
-            "d) They increase k"
+            "Non-negativity",
+            "Identity",
+            "Symmetry",
+            "Triangle inequality"
         ],
-        "answer": "b"
+        "ans": "Symmetry",
+        "explain_correct": "✅ صح! قاعدة الـ Symmetry (التماثل).",
+        "explain_wrong": "❌ غلط! دي خاصية الـ Symmetry."
     },
     {
-        "q": "30. In removing redundant examples, the algorithm starts with set S containing:",
+        "q": "The triangle inequality for distance metrics states:",
+        "type": "mcq",
         "options": [
-            "a) All training examples",
-            "b) One positive and one negative example",
-            "c) Only positive examples",
-            "d) k random examples"
+            "d(x,y) = d(y,x)",
+            "d(x,y) + d(y,z) >= d(x,z)",
+            "d(x,x) = 0",
+            "d(x,y) >= 0"
         ],
-        "answer": "b"
+        "ans": "d(x,y) + d(y,z) >= d(x,z)",
+        "explain_correct": "✅ صح! مجموع أي مسافتين بيكون أكبر من أو يساوي المسافة التالتة.",
+        "explain_wrong": "❌ غلط! المعادلة الصحيحة هي d(x,y) + d(y,z) >= d(x,z)."
     },
     {
-        "q": "31. The k-NN algorithm is best suited for problems where:",
+        "q": "A k-NN model gets 100% training accuracy but fails on new data. What is the most likely problem?",
+        "type": "mcq",
         "options": [
-            "a) Data is linear and separable",
-            "b) Relationships are complex but similar classes are fairly homogeneous",
-            "c) The dataset is very small",
-            "d) Feature importance is known"
+            "Underfitting",
+            "Overfitting",
+            "Incorrect normalization",
+            "Too large k"
         ],
-        "answer": "b"
+        "ans": "Overfitting",
+        "explain_correct": "✅ صح! دي الحالة المثالية لتعريف الـ Overfitting (حفظ مش فهم).",
+        "explain_wrong": "❌ غلط! الفشل على بيانات جديدة معناه Overfitting."
     },
     {
-        "q": "32. Which graph shape best describes error rate vs. k in k-NN?",
+        "q": "Which statement about k-NN is TRUE regarding all three?",
+        "type": "mcq",
         "options": [
-            "a) Linear increase",
-            "b) U-shaped curve (high at both extremes, low in middle)",
-            "c) Linear decrease",
-            "d) Flat line"
+            "k-NN performs better with same-scale data, struggles with many features, and makes no functional form assumptions",
+            "k-NN is a parametric model",
+            "k-NN requires data to be normalized only for large k",
+            "k-NN works best with many irrelevant features"
         ],
-        "answer": "b"
+        "ans": "k-NN performs better with same-scale data, struggles with many features, and makes no functional form assumptions",
+        "explain_correct": "✅ صح! بيحتاج داتا scaled، بيتأثر بالـ features الكتير (curse of dimensionality)، وهو non-parametric.",
+        "explain_wrong": "❌ غلط! k-NN بيتأثر سلباً بالخصائص الكتيرة، وبيحتاج normalization."
     },
     {
-        "q": "33. In weighted k-NN, x is classified as positive when:",
+        "q": "k-NN does more computation at which phase?",
+        "type": "mcq",
         "options": [
-            "a) More than half the neighbors are positive",
-            "b) Sum of positive weights > sum of negative weights",
-            "c) d1 belongs to a positive class",
-            "d) k is odd"
+            "Training phase",
+            "Test/classification phase",
+            "Both equally",
+            "Neither"
         ],
-        "answer": "b"
+        "ans": "Test/classification phase",
+        "explain_correct": "✅ صح! العمليات الحسابية كلها بتحصل وقت الاختبار.",
+        "explain_wrong": "❌ غلط! الحسابات الأكبر بتكون في الـ Test phase."
     },
     {
-        "q": "34. What scaling problem can occur in k-NN?",
+        "q": "Given values 7, 4, 25, -5, 10 with MIN=-5, MAX=25, what is the normalized value of 7?",
+        "type": "mcq",
         "options": [
-            "a) Nominal features dominate numeric features",
-            "b) An attribute with large range can overwhelm others in distance calculation",
-            "c) Too many classes reduce accuracy",
-            "d) Normalization increases bias"
+            "0.3",
+            "0.4",
+            "0.5",
+            "0.6"
         ],
-        "answer": "b"
+        "ans": "0.4",
+        "explain_correct": "✅ صح! القانون: (7 - (-5)) / (25 - (-5)) = 12 / 30 = 0.4.",
+        "explain_wrong": "❌ غلط! النتيجة هي 0.4."
     },
     {
-        "q": "35. In the redundant example removal algorithm, examples are added to S when they:",
+        "q": "In the weighted 5-NN example with distances d1=1, d2=3, d3=4, d4=5, d5=8, what is w2?",
+        "type": "mcq",
         "options": [
-            "a) Are correctly classified by 1-NN using S",
-            "b) Are incorrectly classified by 1-NN using S",
-            "c) Are positive examples",
-            "d) Have the smallest distance"
+            "4/7",
+            "5/7",
+            "3/7",
+            "1"
         ],
-        "answer": "b"
+        "ans": "5/7",
+        "explain_correct": "✅ صح! باستخدام قانون الوزن (w) للجار التاني.",
+        "explain_wrong": "❌ غلط! الإجابة الصحيحة هي 5/7."
     },
+    {
+        "q": "Which step in k-NN involves finding the majority class among neighbors?",
+        "type": "mcq",
+        "options": [
+            "Step 2",
+            "Step 3",
+            "Step 5",
+            "Step 6"
+        ],
+        "ans": "Step 5",
+        "explain_correct": "✅ صح! في الخطوة الخامسة بنحسب الأغلبية.",
+        "explain_wrong": "❌ غلط! الأغلبية بتتحسب في الخطوة رقم 5."
+    },
+    {
+        "q": "What type of variable is used to label categories in k-NN training data?",
+        "type": "mcq",
+        "options": [
+            "Continuous",
+            "Nominal",
+            "Ordinal",
+            "Binary only"
+        ],
+        "ans": "Nominal",
+        "explain_correct": "✅ صح! الفئات في التصنيف بتبقى Nominal.",
+        "explain_wrong": "❌ غلط! بنستخدم متغيرات Nominal للفئات."
+    },
+    {
+        "q": "Irrelevant attributes in k-NN cause problems because:",
+        "type": "mcq",
+        "options": [
+            "They slow down training",
+            "They affect example-to-example distances without affecting the class",
+            "They prevent normalization",
+            "They increase k"
+        ],
+        "ans": "They affect example-to-example distances without affecting the class",
+        "explain_correct": "✅ صح! الخصائص الغير مهمة بتبوظ حساب المسافة من غير ما تفيد في التصنيف.",
+        "explain_wrong": "❌ غلط! لأنهم بيغيروا حسابات المسافة بلا داعٍ."
+    },
+    {
+        "q": "In removing redundant examples, the algorithm starts with set S containing:",
+        "type": "mcq",
+        "options": [
+            "All training examples",
+            "One positive and one negative example",
+            "Only positive examples",
+            "k random examples"
+        ],
+        "ans": "One positive and one negative example",
+        "explain_correct": "✅ صح! الخوارزمية بتبدأ بمثال واحد من كل نوع.",
+        "explain_wrong": "❌ غلط! بتبدأ بـ one positive and one negative example."
+    },
+    {
+        "q": "The k-NN algorithm is best suited for problems where:",
+        "type": "mcq",
+        "options": [
+            "Data is linear and separable",
+            "Relationships are complex but similar classes are fairly homogeneous",
+            "The dataset is very small",
+            "Feature importance is known"
+        ],
+        "ans": "Relationships are complex but similar classes are fairly homogeneous",
+        "explain_correct": "✅ صح! بيبدع في البيانات المعقدة اللي فيها الكلاسات متجمعة (homogeneous).",
+        "explain_wrong": "❌ غلط! هو الأفضل لما تكون العلاقات معقدة والفئات متجانسة."
+    },
+    {
+        "q": "Which graph shape best describes error rate vs. k in k-NN?",
+        "type": "mcq",
+        "options": [
+            "Linear increase",
+            "U-shaped curve (high at both extremes, low in middle)",
+            "Linear decrease",
+            "Flat line"
+        ],
+        "ans": "U-shaped curve (high at both extremes, low in middle)",
+        "explain_correct": "✅ صح! معدل الخطأ بيبقى عالي جداً مع k الصغيرة (overfitting) والـ k الكبيرة (underfitting) وبيقل في النص.",
+        "explain_wrong": "❌ غلط! بياخد شكل الـ U-curve."
+    },
+    {
+        "q": "In weighted k-NN, x is classified as positive when:",
+        "type": "mcq",
+        "options": [
+            "More than half the neighbors are positive",
+            "Sum of positive weights > sum of negative weights",
+            "d1 belongs to a positive class",
+            "k is odd"
+        ],
+        "ans": "Sum of positive weights > sum of negative weights",
+        "explain_correct": "✅ صح! في الـ weighted k-NN بنجمع الأوزان مش بنعد الأصوات.",
+        "explain_wrong": "❌ غلط! الكلاس بيتحدد لما مجموع الأوزان الإيجابية يكون أكبر."
+    },
+    {
+        "q": "What scaling problem can occur in k-NN?",
+        "type": "mcq",
+        "options": [
+            "Nominal features dominate numeric features",
+            "An attribute with large range can overwhelm others in distance calculation",
+            "Too many classes reduce accuracy",
+            "Normalization increases bias"
+        ],
+        "ans": "An attribute with large range can overwhelm others in distance calculation",
+        "explain_correct": "✅ صح! الأرقام الكبيرة بتبلع الأرقام الصغيرة في حساب المسافة، عشان كده بنحتاج normalization.",
+        "explain_wrong": "❌ غلط! المشكلة بتحصل لما attribute مداه كبير يسيطر على حسابات المسافة."
+    },
+    {
+        "q": "In the redundant example removal algorithm, examples are added to S when they:",
+        "type": "mcq",
+        "options": [
+            "Are correctly classified by 1-NN using S",
+            "Are incorrectly classified by 1-NN using S",
+            "Are positive examples",
+            "Have the smallest distance"
+        ],
+        "ans": "Are incorrectly classified by 1-NN using S",
+        "explain_correct": "✅ صح! بنضيف الأمثلة للمجموعة S لما الخوارزمية تغلط في تصنيفهم.",
+        "explain_wrong": "❌ غلط! بيتم إضافتهم لما يتصنفوا بشكل خاطئ."
+    },
+
+    # ══════════════════════════════════════════════
+    # ✅ True / False Questions (36–50)
+    # ══════════════════════════════════════════════
+
+    {
+        "q": "k-NN does more computation at test time rather than train time.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! كونه Lazy learner بيخليه يعمل كل العمليات الحسابية وقت الاختبار.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة تماماً."
+    },
+    {
+        "q": "k-NN produces a model that helps understand how features relate to the class.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! k-NN مش بيطلع model نقدر نفهم منه العلاقات بسهولة زي الـ Decision Trees.",
+        "explain_wrong": "❌ غلط! k-NN لا ينتج نموذج تفسيري."
+    },
+    {
+        "q": "Normalization ensures each attribute falls into the interval [0,1].",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! دي وظيفة الـ Min-Max Normalization الأساسية.",
+        "explain_wrong": "❌ غلط! الـ Normalization فعلاً بتخلي القيم بين 0 و 1."
+    },
+    {
+        "q": "When k is too small, k-NN becomes very sensitive to noise.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! k الصغيرة جداً بتسبب Overfitting وبتتأثر بالـ Noise.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة تماماً."
+    },
+    {
+        "q": "In k-NN, a Tomek Link connects two examples from the SAME class.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الـ Tomek Link بيربط بين نقطتين من كلاسين مختلفين.",
+        "explain_wrong": "❌ غلط! بيربط أمثلة من فئات مختلفة (Different class)."
+    },
+    {
+        "q": "Irrelevant attributes do NOT affect distance calculations in k-NN.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الخصائص غير المهمة بتأثر جداً وتبوظ الحسابات.",
+        "explain_wrong": "❌ غلط! الخصائص غير المهمة بتأثر سلبياً على حساب المسافة."
+    },
+    {
+        "q": "k-NN makes assumptions about the underlying data distribution.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! هو Non-parametric يعني مش بيفترض أي توزيع.",
+        "explain_wrong": "❌ غلط! k-NN لا يضع افتراضات عن التوزيع."
+    },
+    {
+        "q": "In weighted k-NN, closer neighbors get higher weights than farther ones.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! عشان كده بنستخدمه، لإعطاء أهمية أكبر للجار القريب.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة تماماً."
+    },
+    {
+        "q": "A k-NN model with 100% training accuracy but poor test accuracy is overfitted.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! دي سمات الـ Overfitting بالظبط.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة 100%."
+    },
+    {
+        "q": "The Euclidean distance satisfies d(x,y) = d(y,x).",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! دي خاصية التماثل (Symmetry).",
+        "explain_wrong": "❌ غلط! العبارة صحيحة."
+    },
+    {
+        "q": "Noisy data causes no problems for the k-NN algorithm.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الـ Noise بتسبب مشاكل كبيرة في k-NN خصوصاً لو k صغيرة.",
+        "explain_wrong": "❌ غلط! الـ Noise بتعمل مشكلة كبيرة للـ k-NN."
+    },
+    {
+        "q": "Using k neighbors instead of 1 helps overcome noise through voting.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! التصويت بيقلل تأثير الـ Outliers والـ Noise.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة."
+    },
+    {
+        "q": "The training phase of k-NN is slower than its classification phase.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الـ Classification هو اللي أبطأ بكتير لأن التدريب تقريباً مفيش.",
+        "explain_wrong": "❌ غلط! مرحلة الـ Classification هي الأبطأ."
+    },
+    {
+        "q": "k-NN works well when similar class items tend to be homogeneous in feature space.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! لما الكلاسات المتشابهة تكون قريبة من بعضها في المسافة.",
+        "explain_wrong": "❌ غلط! العبارة صحيحة."
+    },
+    {
+        "q": "In the normalization formula, MAX refers to the maximum value in the test set.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الـ MAX هو أقصى قيمة في الـ Training set مش الـ Test set.",
+        "explain_wrong": "❌ غلط! تشير إلى القيمة العظمى في بيانات التدريب (Training set)."
+    }
 ]
-
-# =============================================
-# 15 True/False Questions
-# =============================================
-true_false = [
-    {"q": "1. k-NN does more computation at test time rather than train time.", "answer": "True"},
-    {"q": "2. k-NN produces a model that helps understand how features relate to the class.", "answer": "False"},
-    {"q": "3. Normalization ensures each attribute falls into the interval [0,1].", "answer": "True"},
-    {"q": "4. When k is too small, k-NN becomes very sensitive to noise.", "answer": "True"},
-    {"q": "5. In k-NN, a Tomek Link connects two examples from the SAME class.", "answer": "False"},
-    {"q": "6. Irrelevant attributes do NOT affect distance calculations in k-NN.", "answer": "False"},
-    {"q": "7. k-NN makes assumptions about the underlying data distribution.", "answer": "False"},
-    {"q": "8. In weighted k-NN, closer neighbors get higher weights than farther ones.", "answer": "True"},
-    {"q": "9. A k-NN model with 100% training accuracy but poor test accuracy is overfitted.", "answer": "True"},
-    {"q": "10. The Euclidean distance satisfies d(x,y) = d(y,x).", "answer": "True"},
-    {"q": "11. Noisy data causes no problems for the k-NN algorithm.", "answer": "False"},
-    {"q": "12. Using k neighbors instead of 1 helps overcome noise through voting.", "answer": "True"},
-    {"q": "13. The training phase of k-NN is slower than its classification phase.", "answer": "False"},
-    {"q": "14. k-NN works well when similar class items tend to be homogeneous in feature space.", "answer": "True"},
-    {"q": "15. In the normalization formula, MAX refers to the maximum value in the test set.", "answer": "False"},
-]
-
-
-def run_quiz():
-    print("=" * 60)
-    print("   K-Nearest Neighbors (k-NN) Quiz")
-    print("   Based on Dr. Sara Sweidan's Machine Learning Lecture")
-    print("=" * 60)
-    print(f"\nTotal Questions: 50 (35 MCQ + 15 True/False)\n")
-
-    score = 0
-    total = 0
-
-    # --- Multiple Choice ---
-    print("\n" + "=" * 60)
-    print("  PART 1: Multiple Choice Questions (35 Questions)")
-    print("=" * 60)
-
-    for i, q in enumerate(multiple_choice, 1):
-        print(f"\n{q['q']}")
-        for opt in q['options']:
-            print(f"   {opt}")
-        user = input("Your answer (a/b/c/d): ").strip().lower()
-        total += 1
-        if user == q['answer']:
-            print("✅ Correct!")
-            score += 1
-        else:
-            print(f"❌ Wrong! Correct answer: {q['answer']}")
-
-    # --- True/False ---
-    print("\n" + "=" * 60)
-    print("  PART 2: True / False Questions (15 Questions)")
-    print("=" * 60)
-
-    for i, q in enumerate(true_false, 1):
-        print(f"\n{q['q']}")
-        user = input("Your answer (True/False): ").strip().capitalize()
-        total += 1
-        if user == q['answer']:
-            print("✅ Correct!")
-            score += 1
-        else:
-            print(f"❌ Wrong! Correct answer: {q['answer']}")
-
-    # --- Final Score ---
-    print("\n" + "=" * 60)
-    print(f"  FINAL SCORE: {score} / {total}")
-    percentage = (score / total) * 100
-    print(f"  Percentage: {percentage:.1f}%")
-    if percentage >= 90:
-        print("  Grade: Excellent! 🌟")
-    elif percentage >= 75:
-        print("  Grade: Very Good! 👍")
-    elif percentage >= 60:
-        print("  Grade: Good 😊")
-    else:
-        print("  Grade: Needs More Study 📚")
-    print("=" * 60)
-
-
-if __name__ == "__main__":
-    run_quiz()
