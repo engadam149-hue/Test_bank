@@ -286,7 +286,7 @@ div[data-testid="stButton"][aria-label*="back"] button {
 """, unsafe_allow_html=True)
 
 # ════════════════════════════════════════════════════════════
-# 🔧 Session State & Routing (تم تطبيق تحسيناتك هنا ✅)
+# 🔧 Session State & Routing 
 # ════════════════════════════════════════════════════════════
 for k, v in [("page", "subjects"), ("sel_subj", None), ("sel_lec", None), ("answers", {}), ("seed", 42)]:
     if k not in st.session_state:
@@ -295,18 +295,15 @@ for k, v in [("page", "subjects"), ("sel_subj", None), ("sel_lec", None), ("answ
 def go_to_page(page_name, subj=None, lec=None):
     st.session_state.page = page_name
     
-    # 👈 إصلاح الـ State عند الرجوع للصفحة الرئيسية
     if page_name == "subjects":
         st.session_state.sel_subj = None
         st.session_state.sel_lec = None
         
-    # 👈 إصلاح الـ State عند اختيار مادة أو الرجوع للمحاضرات
     elif page_name == "lectures":
         if subj: 
             st.session_state.sel_subj = subj
         st.session_state.sel_lec = None
         
-    # فتح الاختبار
     elif page_name == "quiz":
         if lec:  
             st.session_state.sel_lec = lec
@@ -320,7 +317,6 @@ def retry_quiz():
     st.session_state.answers = {}
     st.session_state.seed = random.randint(1, 10000)
 
-# Helper for Headers
 def section_header(label):
     st.markdown(f"""
     <div class="section-hdr">
@@ -341,7 +337,7 @@ if st.session_state.page == "subjects":
     <div class="hero">
         <div class="hero-inner">
             <div class="hero-badge">🎓 جامعة المنصورة الجديدة · NMU</div>
-            <div class="hero-title">بنك <em>أسئلة</em> الدفعة</div>
+            <div class="hero-title" style="color: #a78bfa;">Question Bank</div>
             <div class="hero-sub">اختر المادة والمحاضرة وابدأ المذاكرة — مع تصحيح وشرح فوري لكل إجابة</div>
             <div class="hero-stats">
                 <div class="stat"><div class="stat-num">{len(SUBJECTS)}</div><div class="stat-lbl">مادة</div></div>
@@ -354,7 +350,6 @@ if st.session_state.page == "subjects":
 
     section_header("اختر المادة")
     
-    # أعمدة المواد (Dynamic)
     subj_count = max(1, min(len(SUBJECTS), 3))
     cols = st.columns(subj_count)
     for idx, subj in enumerate(SUBJECTS):
@@ -381,7 +376,6 @@ elif st.session_state.page == "lectures":
         st.markdown('</div>', unsafe_allow_html=True)
     with col1: section_header(f"محاضرات · {cur_subj['name']}")
 
-    # 👈 جعل الأعمدة ديناميكية بناءً على عدد المحاضرات الفعلي (بحد أقصى 3)
     num_lecs = len(cur_subj["lectures"])
     col_count = max(1, min(num_lecs, 3)) 
     lec_cols = st.columns(col_count)
