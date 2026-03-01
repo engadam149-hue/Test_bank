@@ -7,7 +7,8 @@ import ml_lec1
 import ml_lec2
 import arc_lec1
 import arc_lec2
-import arc_lec3  # 👈 ضفنا المحاضرة التالتة هنا
+import arc_lec3
+import dm_lec1  # 👈 استدعاء المحاضرة الأولى من الديسكريت
 
 # 2. إعدادات المواد
 SUBJECTS = [
@@ -31,7 +32,18 @@ SUBJECTS = [
         "lectures": [
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "43 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
-            {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, # 👈 فتحنا الزرار بتاعها أهو
+            {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, 
+        ]
+    },
+    {
+        "icon": "🧮",  # أيقونة جديدة عشان تليق بالرياضيات
+        "name": "Discrete Mathematics", 
+        "code": "CSE315",
+        "desc": "Logic, Proofs, Sets, Functions...", 
+        "key": "dm",
+        "lectures": [
+            {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True}, # 👈 فتحنا المحاضرة الأولى
+            {"num": "02", "title": "Lecture 2", "count": "قريباً", "key": "dm_lec2", "available": False},
         ]
     }
 ]
@@ -45,5 +57,8 @@ QUESTIONS_DB = {
     # 💻 الأركتكتشر
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
-    "arc_lec3": arc_lec3.QUESTIONS, # 👈 ربطناها بالأسئلة بتاعتها هنا
+    "arc_lec3": arc_lec3.QUESTIONS, 
+    
+    # 🧮 الديسكريت
+    "dm_lec1": dm_lec1.QUESTIONS, # 👈 ربطنا أسئلة الديسكريت
 }
