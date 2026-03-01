@@ -8,7 +8,8 @@ import ml_lec2
 import arc_lec1
 import arc_lec2
 import arc_lec3
-import dm_lec1  # 👈 استدعاء المحاضرة الأولى من الديسكريت
+import dm_lec1  
+import dm_lec2  # 👈 استدعاء المحاضرة التانية من الديسكريت
 
 # 2. إعدادات المواد
 SUBJECTS = [
@@ -36,14 +37,14 @@ SUBJECTS = [
         ]
     },
     {
-        "icon": "🧮",  # أيقونة جديدة عشان تليق بالرياضيات
+        "icon": "🧮", 
         "name": "Discrete Mathematics", 
         "code": "CSE315",
         "desc": "Logic, Proofs, Sets, Functions...", 
         "key": "dm",
         "lectures": [
-            {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True}, # 👈 فتحنا المحاضرة الأولى
-            {"num": "02", "title": "Lecture 2", "count": "قريباً", "key": "dm_lec2", "available": False},
+            {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True},
+            {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True}, # 👈 فتحنا المحاضرة التانية أهو
         ]
     }
 ]
@@ -60,5 +61,6 @@ QUESTIONS_DB = {
     "arc_lec3": arc_lec3.QUESTIONS, 
     
     # 🧮 الديسكريت
-    "dm_lec1": dm_lec1.QUESTIONS, # 👈 ربطنا أسئلة الديسكريت
+    "dm_lec1": dm_lec1.QUESTIONS,
+    "dm_lec2": dm_lec2.QUESTIONS, # 👈 ربطنا أسئلتها هنا
 }
