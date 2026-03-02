@@ -1,618 +1,616 @@
 # ════════════════════════════════════════════════════════════
 # 📖 dm_lec3.py
 # Discrete Mathematics - Lecture 3
-# Bit Strings, Translating English, Logic Circuits & Equivalences
+# Logical Equivalences, Quantifiers, and Proof Techniques
 # 50 Questions (45 MCQ + 5 TF)
 # ════════════════════════════════════════════════════════════
 
 QUESTIONS = [
 
     # ══════════════════════════════════════════════
-    # 🔹 SECTION 1: Bit Strings 
+    # 🔹 SECTION 1: Logical Equivalences
     # ══════════════════════════════════════════════
     {
-        "q": "A bit string is defined as:",
+        "q": "According to the Identity laws, p ∧ T is logically equivalent to:",
         "type": "mcq",
-        "options": [
-            "A sequence of alphabetical characters",
-            "A sequence of zero or more bits",
-            "A sequence of real numbers",
-            "A sequence of integers only"
-        ],
-        "ans": "A sequence of zero or more bits",
-        "explain_correct": "✅ صح! تعريف الـ bit string هو سلسلة تتكون من صفر أو أكثر من الـ bits (اللي هما 0 أو 1 بس).",
-        "explain_wrong": "❌ غلط! الـ bit string بيتكون من 0 أو 1 فقط، مش أرقام حقيقية ولا حروف."
+        "options": ["p", "T", "F", "¬p"],
+        "ans": "p",
+        "explain_correct": "✅ صح! قانون الـ Identity بيقول إن (p ∧ T ≡ p) لأن النتيجة بتعتمد على قيمة p.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي p. الـ T مبيأثرش في عملية الـ AND."
     },
     {
-        "q": "What is the length of the bit string 101010011?",
+        "q": "According to the Domination laws, p ∨ T is logically equivalent to:",
         "type": "mcq",
-        "options": ["7", "8", "9", "10"],
-        "ans": "9",
-        "explain_correct": "✅ صح! طول السلسلة بيساوي عدد الـ bits اللي فيها، لو عديت (1-0-1-0-1-0-0-1-1) هتلاقيهم 9.",
-        "explain_wrong": "❌ غلط! عد الخانات في السلسلة هتلاقيهم 9 bits."
-    },
-    {
-        "q": "What is the bitwise OR of 01 1011 0110 and 11 0001 1101?",
-        "type": "mcq",
-        "options": [
-            "10 1010 1011",
-            "01 0001 0100",
-            "11 1011 1111",
-            "00 0001 0000"
-        ],
-        "ans": "11 1011 1111",
-        "explain_correct": "✅ صح! في الـ OR، الناتج بيكون 1 لو على الأقل واحد من الـ bits المتقابلة بـ 1.",
-        "explain_wrong": "❌ غلط! في الـ OR لو أي واحد فيهم بـ 1 الناتج بيكون 1. الإجابة هي 11 1011 1111."
-    },
-    {
-        "q": "What is the bitwise AND of 01 1011 0110 and 11 0001 1101?",
-        "type": "mcq",
-        "options": [
-            "11 1011 1111",
-            "10 1010 1011",
-            "11 0001 1101",
-            "01 0001 0100"
-        ],
-        "ans": "01 0001 0100",
-        "explain_correct": "✅ صح! في الـ AND، الناتج بيكون 1 فقط لو التو bits المتقابلين بـ 1.",
-        "explain_wrong": "❌ غلط! الـ AND بيطلع 1 بس لو الاتنين بـ 1. الإجابة هي 01 0001 0100."
-    },
-    {
-        "q": "What is the bitwise XOR of 01 1011 0110 and 11 0001 1101?",
-        "type": "mcq",
-        "options": [
-            "11 1011 1111",
-            "01 0001 0100",
-            "01 1011 0110",
-            "10 1010 1011"
-        ],
-        "ans": "10 1010 1011",
-        "explain_correct": "✅ صح! في الـ XOR، الناتج بيكون 1 فقط لو الـ bits مختلفة عن بعض.",
-        "explain_wrong": "❌ غلط! الـ XOR بيطلع 1 لما يكونوا مختلفين عن بعض. الإجابة هي 10 1010 1011."
-    },
-    {
-        "q": "Bitwise OR of bits 0 and 0 equals:",
-        "type": "mcq",
-        "options": ["1", "0", "Undefined", "Depends on context"],
-        "ans": "0",
-        "explain_correct": "✅ صح! الـ OR بيحتاج على الأقل واحد يكون 1 عشان يطلع 1. هنا الاتنين بـ 0 فالناتج 0.",
-        "explain_wrong": "❌ غلط! الاتنين بـ 0 فمفيش حاجة تطلع 1، النتيجة 0."
-    },
-    {
-        "q": "Bitwise AND of bits 1 and 0 equals:",
-        "type": "mcq",
-        "options": ["1", "Undefined", "0", "2"],
-        "ans": "0",
-        "explain_correct": "✅ صح! الـ AND بيحتاج الاتنين يكونوا 1. هنا واحد فيهم بـ 0 فالناتج 0.",
-        "explain_wrong": "❌ غلط! الـ AND بيشترط إن الاتنين يبقوا 1، النتيجة 0."
-    },
-    {
-        "q": "Bitwise XOR of bits 1 and 1 equals:",
-        "type": "mcq",
-        "options": ["1", "2", "0", "Undefined"],
-        "ans": "0",
-        "explain_correct": "✅ صح! الـ XOR بيطلع 0 لما يكونوا متشابهين (1 و 1 زي بعض).",
-        "explain_wrong": "❌ غلط! الـ XOR بيطلع 1 بس لما يكونوا مختلفين، إذن النتيجة 0."
-    },
-    {
-        "q": "Which bitwise operation corresponds to logical disjunction (OR)?",
-        "type": "mcq",
-        "options": [
-            "Bitwise AND",
-            "Bitwise XOR",
-            "Bitwise NOT",
-            "Bitwise OR"
-        ],
-        "ans": "Bitwise OR",
-        "explain_correct": "✅ صح! الـ logical disjunction (OR) بيقابله الـ Bitwise OR مباشرة.",
-        "explain_wrong": "❌ غلط! الـ disjunction هو الـ OR، فبيقابله Bitwise OR."
-    },
-    {
-        "q": "If a bit string has length zero, it contains:",
-        "type": "mcq",
-        "options": [
-            "One bit equal to 0",
-            "One bit equal to 1",
-            "No bits at all",
-            "Two bits"
-        ],
-        "ans": "No bits at all",
-        "explain_correct": "✅ صح! طول صفر معناه إن السلسلة مفيهاش أي bits خالص.",
-        "explain_wrong": "❌ غلط! السلسلة اللي طولها 0 يعني فاضية تماماً (No bits at all)."
-    },
-
-    # ══════════════════════════════════════════════
-    # 🔹 SECTION 2: Translating English Sentences 
-    # ══════════════════════════════════════════════
-    {
-        "q": "The main reason for translating English sentences into propositional logic is:",
-        "type": "mcq",
-        "options": [
-            "To make sentences shorter",
-            "To add more ambiguity",
-            "To remove the ambiguity present in natural language",
-            "To convert sentences into code"
-        ],
-        "ans": "To remove the ambiguity present in natural language",
-        "explain_correct": "✅ صح! اللغة الإنجليزية أحياناً بتكون غامضة (ambiguous)، المنطق بيشيل الغموض ده.",
-        "explain_wrong": "❌ غلط! الهدف الأساسي هو إزالة الغموض (remove ambiguity) من اللغة."
-    },
-    {
-        "q": "In Example 1, proposition p represents:",
-        "type": "mcq",
-        "options": [
-            "You are a CS major",
-            "You are a student",
-            "You can access the Internet from campus",
-            "You are not a student"
-        ],
-        "ans": "You can access the Internet from campus",
-        "explain_correct": "✅ صح! حسب مثال المحاضرة، p بترمز لجملة 'You can access the Internet from campus'.",
-        "explain_wrong": "❌ غلط! الـ p كانت بترمز لـ You can access the Internet from campus."
-    },
-    {
-        "q": "In Example 1, proposition q represents:",
-        "type": "mcq",
-        "options": [
-            "You can access the Internet",
-            "You are a computer science major",
-            "You are a student",
-            "You are not a student"
-        ],
-        "ans": "You are a computer science major",
-        "explain_correct": "✅ صح! حسب المحاضرة، q بترمز لجملة 'You are a computer science major'.",
-        "explain_wrong": "❌ غلط! الـ q كانت بترمز لـ You are a computer science major."
-    },
-    {
-        "q": "In Example 1, proposition r represents:",
-        "type": "mcq",
-        "options": [
-            "You can access the Internet",
-            "You are a CS major",
-            "You are a student",
-            "You are not a CS major"
-        ],
-        "ans": "You are a student",
-        "explain_correct": "✅ صح! حسب المحاضرة، r بترمز لـ 'You are a student'.",
-        "explain_wrong": "❌ غلط! الـ r كانت بترمز لـ You are a student."
-    },
-    {
-        "q": "'You can access the Internet only if you are a CS major or not a student' translates to:",
-        "type": "mcq",
-        "options": [
-            "(q or neg-r) -> p",
-            "p and (q or neg-r)",
-            "p <-> (q or neg-r)",
-            "p -> (q or neg-r)"
-        ],
-        "ans": "p -> (q or neg-r)",
-        "explain_correct": "✅ صح! صيغة 'p only if q' بتترجم لـ p -> q. وهنا الـ q عبارة عن (q or neg-r).",
-        "explain_wrong": "❌ غلط! الترجمة الصحيحة هي p -> (q or neg-r)."
-    },
-    {
-        "q": "The phrase 'p only if q' translates to:",
-        "type": "mcq",
-        "options": [
-            "q -> p",
-            "p <-> q",
-            "p -> q",
-            "neg-p -> q"
-        ],
-        "ans": "p -> q",
-        "explain_correct": "✅ صح! جملة 'p only if q' معناها إن p مش هتحصل غير لو q حصلت، فبتترجم لـ p -> q.",
-        "explain_wrong": "❌ غلط! جملة 'p only if q' ديما بتترجم لـ p -> q."
-    },
-    {
-        "q": "In Example 2, proposition p is defined as:",
-        "type": "mcq",
-        "options": [
-            "The file system is full",
-            "The automated reply cannot be sent",
-            "The file system is not full",
-            "The automated reply can be sent"
-        ],
-        "ans": "The automated reply can be sent",
-        "explain_correct": "✅ صح! حسب المحاضرة، p هي الإثبات 'can be sent'.",
-        "explain_wrong": "❌ غلط! الـ p بتعبر عن حالة الإثبات: The automated reply can be sent."
-    },
-    {
-        "q": "In Example 2, proposition q is defined as:",
-        "type": "mcq",
-        "options": [
-            "The automated reply can be sent",
-            "The automated reply cannot be sent",
-            "The file system is full",
-            "The file system is not full"
-        ],
-        "ans": "The file system is full",
-        "explain_correct": "✅ صح! الـ q بتعبر عن 'The file system is full'.",
-        "explain_wrong": "❌ غلط! الـ q بتعبر عن The file system is full."
-    },
-    {
-        "q": "'The automated reply cannot be sent when the file system is full' translates to:",
-        "type": "mcq",
-        "options": [
-            "p -> q",
-            "p -> neg-q",
-            "neg-p -> q",
-            "q -> neg-p"
-        ],
-        "ans": "q -> neg-p",
-        "explain_correct": "✅ صح! الشرط هنا 'when the file system is full' (q)، والنتيجة 'cannot be sent' (neg-p)، إذن q -> neg-p.",
-        "explain_wrong": "❌ غلط! الترجمة الصحيحة هي q -> neg-p."
-    },
-    {
-        "q": "The phrase 'q when p' translates to:",
-        "type": "mcq",
-        "options": [
-            "q and p",
-            "q <-> p",
-            "p -> q",
-            "q -> p"
-        ],
-        "ans": "p -> q",
-        "explain_correct": "✅ صح! جملة 'q when p' معناها 'لما p تحصل، q هتحصل'، يعني p تؤدي إلى q (p -> q).",
-        "explain_wrong": "❌ غلط! دي بتترجم لـ p -> q."
-    },
-    {
-        "q": "Which is NOT listed as an application of propositional logic in the lecture?",
-        "type": "mcq",
-        "options": [
-            "Boolean Searches",
-            "Logic Circuits",
-            "Database Design",
-            "System Specifications"
-        ],
-        "ans": "Database Design",
-        "explain_correct": "✅ صح! تصميم قواعد البيانات (Database Design) مش من ضمن التطبيقات اللي اتذكرت.",
-        "explain_wrong": "❌ غلط! Database Design مش من التطبيقات المذكورة في المحاضرة."
-    },
-    {
-        "q": "How many applications of propositional logic does the lecture list?",
-        "type": "mcq",
-        "options": ["3", "4", "5", "6"],
-        "ans": "5",
-        "explain_correct": "✅ صح! المحاضرة ذكرت 5 تطبيقات بالظبط.",
-        "explain_wrong": "❌ غلط! هما 5 تطبيقات."
-    },
-
-    # ══════════════════════════════════════════════
-    # 🔹 SECTION 3: Logic Circuits 
-    # ══════════════════════════════════════════════
-    {
-        "q": "How many basic gates are sufficient to build any complicated digital circuit?",
-        "type": "mcq",
-        "options": ["2", "3", "4", "5"],
-        "ans": "3",
-        "explain_correct": "✅ صح! بنحتاج 3 بوابات أساسية بس عشان نبني أي دايرة معقدة: OR, AND, Inverter.",
-        "explain_wrong": "❌ غلط! هما 3 بوابات بس."
-    },
-    {
-        "q": "The three basic gates presented in the lecture are:",
-        "type": "mcq",
-        "options": [
-            "OR, AND, XOR",
-            "NAND, NOR, NOT",
-            "OR, AND, Inverter (NOT)",
-            "OR, XOR, Inverter"
-        ],
-        "ans": "OR, AND, Inverter (NOT)",
-        "explain_correct": "✅ صح! البوابات الأساسية اللي اتشرحت هي OR و AND و Inverter.",
-        "explain_wrong": "❌ غلط! البوابات هما OR, AND, Inverter (NOT)."
-    },
-    {
-        "q": "What output does the Inverter (NOT gate) produce for input p?",
-        "type": "mcq",
-        "options": [
-            "p unchanged",
-            "p and 1",
-            "neg-p",
-            "p or 0"
-        ],
-        "ans": "neg-p",
-        "explain_correct": "✅ صح! الـ Inverter بيعكس الإشارة، فبيدخل p بيطلع neg-p.",
-        "explain_wrong": "❌ غلط! الـ Inverter بيطلع neg-p."
-    },
-    {
-        "q": "What output does an OR gate with inputs p and q produce?",
-        "type": "mcq",
-        "options": [
-            "p and q",
-            "neg-p",
-            "p xor q",
-            "p or q"
-        ],
-        "ans": "p or q",
-        "explain_correct": "✅ صح! الـ OR gate بتنفذ عملية الـ logical disjunction (p or q).",
-        "explain_wrong": "❌ غلط! بتطلع p or q."
-    },
-    {
-        "q": "What output does an AND gate with inputs p and q produce?",
-        "type": "mcq",
-        "options": [
-            "p or q",
-            "p and q",
-            "neg-p",
-            "neg(p or q)"
-        ],
-        "ans": "p and q",
-        "explain_correct": "✅ صح! الـ AND gate بتنفذ عملية الـ logical conjunction (p and q).",
-        "explain_wrong": "❌ غلط! بتطلع p and q."
-    },
-    {
-        "q": "In Example 1 circuit, input q passes through an Inverter. The output is:",
-        "type": "mcq",
-        "options": ["q", "neg-p", "neg-q", "neg-r"],
-        "ans": "neg-q",
-        "explain_correct": "✅ صح! الـ Inverter بيعكس الـ q وبيطلعها neg-q.",
-        "explain_wrong": "❌ غلط! المخرج هيكون neg-q."
-    },
-    {
-        "q": "In Example 1 circuit, the AND gate receives p and neg-q. Its output is:",
-        "type": "mcq",
-        "options": [
-            "p or neg-q",
-            "p and q",
-            "neg-p and q",
-            "p and neg-q"
-        ],
-        "ans": "p and neg-q",
-        "explain_correct": "✅ صح! الـ AND gate بتاخد المدخلات وتعملهم AND مع بعض (p and neg-q).",
-        "explain_wrong": "❌ غلط! الإجابة هي p and neg-q."
-    },
-    {
-        "q": "In Example 1 circuit, the FINAL output after the last OR gate is:",
-        "type": "mcq",
-        "options": [
-            "(p or neg-q) and neg-r",
-            "p and (neg-q or neg-r)",
-            "(p and neg-q) or r",
-            "(p and neg-q) or neg-r"
-        ],
-        "ans": "(p and neg-q) or neg-r",
-        "explain_correct": "✅ صح! الخرج الأخير من بوابة الـ OR بيجمع (p and neg-q) مع neg-r.",
-        "explain_wrong": "❌ غلط! الإجابة الصح هي (p and neg-q) or neg-r."
-    },
-    {
-        "q": "In Example 2, the first OR gate receives p and neg-r. Its output is:",
-        "type": "mcq",
-        "options": [
-            "p and neg-r",
-            "neg-p or r",
-            "p or r",
-            "p or neg-r"
-        ],
-        "ans": "p or neg-r",
-        "explain_correct": "✅ صح! بوابة الـ OR بتعمل OR بين الـ p والـ neg-r فبيطلع p or neg-r.",
-        "explain_wrong": "❌ غلط! الناتج p or neg-r."
-    },
-    {
-        "q": "The full Boolean expression to implement in Example 2 is:",
-        "type": "mcq",
-        "options": [
-            "(p and neg-r) or (neg-p and (q and neg-r))",
-            "(p or r) and (p or (q or r))",
-            "(p or neg-r) and (neg-p or (q or neg-r))",
-            "(p and r) or (neg-p and (q and r))"
-        ],
-        "ans": "(p or neg-r) and (neg-p or (q or neg-r))",
-        "explain_correct": "✅ صح! دي المعادلة المطلوبة في المثال التاني بالظبط زي ما موجودة في المحاضرة.",
-        "explain_wrong": "❌ غلط! الإجابة هي (p or neg-r) and (neg-p or (q or neg-r))."
-    },
-    {
-        "q": "Each input/output signal in a logic circuit is:",
-        "type": "mcq",
-        "options": [
-            "A real number between 0 and 1",
-            "An alphabetical character",
-            "An integer from 0 to 9",
-            "A bit: either 0 (off) or 1 (on)"
-        ],
-        "ans": "A bit: either 0 (off) or 1 (on)",
-        "explain_correct": "✅ صح! الإشارات في الـ logic circuits بتتعامل مع bits، يا 0 (off) يا 1 (on).",
-        "explain_wrong": "❌ غلط! الدوائر المنطقية بتتعامل مع bits بس (0 أو 1)."
-    },
-
-    # ══════════════════════════════════════════════
-    # 🔹 SECTION 4: Compound Propositions 
-    # ══════════════════════════════════════════════
-    {
-        "q": "A compound proposition that is ALWAYS TRUE is called:",
-        "type": "mcq",
-        "options": [
-            "Contradiction",
-            "Contingency",
-            "Tautology",
-            "Equivalence"
-        ],
-        "ans": "Tautology",
-        "explain_correct": "✅ صح! الجملة اللي دايماً بتطلع True في أي حالة اسمها Tautology.",
-        "explain_wrong": "❌ غلط! اسمها Tautology."
-    },
-    {
-        "q": "A compound proposition that is ALWAYS FALSE is called:",
-        "type": "mcq",
-        "options": [
-            "Tautology",
-            "Contingency",
-            "Implication",
-            "Contradiction"
-        ],
-        "ans": "Contradiction",
-        "explain_correct": "✅ صح! الجملة اللي دايماً بتطلع False في كل الحالات اسمها Contradiction.",
-        "explain_wrong": "❌ غلط! اسمها Contradiction (تناقض)."
-    },
-    {
-        "q": "A compound proposition that is SOMETIMES TRUE and SOMETIMES FALSE is called:",
-        "type": "mcq",
-        "options": [
-            "Tautology",
-            "Contradiction",
-            "Contingency",
-            "Biconditional"
-        ],
-        "ans": "Contingency",
-        "explain_correct": "✅ صح! الجملة اللي بتعتمد على المدخلات (ممكن True أو False) اسمها Contingency.",
-        "explain_wrong": "❌ غلط! اسمها Contingency."
-    },
-    {
-        "q": "In the truth table for (p and q)->p, when p=T and q=T, the result is:",
-        "type": "mcq",
-        "options": ["F", "T", "Undefined", "Depends on q"],
+        "options": ["T", "F", "p", "¬p"],
         "ans": "T",
-        "explain_correct": "✅ صح! بما إن p and q = T، إذن T -> T نتيجتها دايماً T.",
-        "explain_wrong": "❌ غلط! التعبير T -> T نتيجته T."
+        "explain_correct": "✅ صح! قانون الـ Domination بيقول إن (p ∨ T ≡ T) لأن أي حاجة OR مع True بتطلع True.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي T."
     },
     {
-        "q": "In the truth table for (p and q)->p, when p=F and q=T, the result is:",
+        "q": "The equivalence (p ∨ p ≡ p) and (p ∧ p ≡ p) is known as:",
         "type": "mcq",
         "options": [
-            "F",
-            "T",
-            "Same as p and q",
-            "Undefined"
+            "Idempotent laws",
+            "Identity laws",
+            "Domination laws",
+            "Absorption laws"
         ],
-        "ans": "T",
-        "explain_correct": "✅ صح! هنا (p and q) هتكون F. وفي الـ Implication (->) لو البداية F فالنتيجة دايماً T.",
-        "explain_wrong": "❌ غلط! الـ Implication اللي بيبدأ بـ False نتيجته دايماً True."
+        "ans": "Idempotent laws",
+        "explain_correct": "✅ صح! ده قانون الـ Idempotent اللي معناه إن تكرار المتغير مع نفسه مش بيغير النتيجة.",
+        "explain_wrong": "❌ غلط! ده يُسمى الـ Idempotent laws."
     },
     {
-        "q": "All four rows of the truth table for (p and q)->p are TRUE. This means it is a:",
+        "q": "De Morgan's laws state that ¬(p ∧ q) is logically equivalent to:",
         "type": "mcq",
         "options": [
-            "Contradiction",
-            "Contingency",
-            "Tautology",
-            "Satisfiable but not a tautology"
+            "¬p ∨ ¬q",
+            "¬p ∧ ¬q",
+            "p ∨ q",
+            "p ∧ q"
         ],
-        "ans": "Tautology",
-        "explain_correct": "✅ صح! مادام كل الصفوف نتيجتها True في الـ truth table، إذن التعبير ده Tautology.",
-        "explain_wrong": "❌ غلط! أي تعبير دايماً نتيجته True بيسمى Tautology."
+        "ans": "¬p ∨ ¬q",
+        "explain_correct": "✅ صح! النفي بيدخل على القوس فبيعكس المتغيرات ويقلب الـ AND لـ OR.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ¬p ∨ ¬q."
     },
     {
-        "q": "Which is a classic example of a CONTRADICTION?",
+        "q": "The conditional statement (p → q) is logically equivalent to:",
         "type": "mcq",
         "options": [
-            "p or neg-p",
-            "p -> q",
-            "p and neg-p",
-            "p <-> p"
+            "¬p ∨ q",
+            "¬p ∧ q",
+            "p ∨ ¬q",
+            "p ∧ ¬q"
         ],
-        "ans": "p and neg-p",
-        "explain_correct": "✅ صح! مفيش حاجة ممكن تكون صح وعكسها صح في نفس الوقت، عشان كده (p and neg-p) دايماً False.",
-        "explain_wrong": "❌ غلط! الإجابة هي p and neg-p لأنها مستحيل تكون صح."
+        "ans": "¬p ∨ q",
+        "explain_correct": "✅ صح! من أهم القوانين: (p → q) تكافئ نفي الأول OR التاني (¬p ∨ q).",
+        "explain_wrong": "❌ غلط! الإجابة هي ¬p ∨ q."
+    },
+    {
+        "q": "The contrapositive of (p → q) is:",
+        "type": "mcq",
+        "options": [
+            "¬q → ¬p",
+            "q → p",
+            "¬p → ¬q",
+            "q → ¬p"
+        ],
+        "ans": "¬q → ¬p",
+        "explain_correct": "✅ صح! الـ Contrapositive بيعكس الاتجاه وينفي الاتنين (¬q → ¬p).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ¬q → ¬p."
+    },
+    {
+        "q": "The biconditional (p ↔ q) is logically equivalent to:",
+        "type": "mcq",
+        "options": [
+            "(p → q) ∧ (q → p)",
+            "(p → q) ∨ (q → p)",
+            "¬p ↔ ¬q",
+            "¬(p ↔ q)"
+        ],
+        "ans": "(p → q) ∧ (q → p)",
+        "explain_correct": "✅ صح! الـ Biconditional معناه إن الطرفين بيأدوا لبعض، يعني (p → q) AND (q → p).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي (p → q) ∧ (q → p)."
+    },
+    {
+        "q": "The equivalence (p ∨ ¬p ≡ T) and (p ∧ ¬p ≡ F) is known as:",
+        "type": "mcq",
+        "options": [
+            "Negation laws",
+            "Absorption laws",
+            "Associative laws",
+            "Commutative laws"
+        ],
+        "ans": "Negation laws",
+        "explain_correct": "✅ صح! دي قوانين النفي (Negation laws).",
+        "explain_wrong": "❌ غلط! دي تُسمى Negation laws."
     },
 
     # ══════════════════════════════════════════════
-    # 🔹 SECTION 5: Logical Equivalences 
+    # 🔹 SECTION 2: Predicates and Propositions
     # ══════════════════════════════════════════════
     {
-        "q": "Two propositions p and q are logically equivalent when:",
+        "q": "In the statement 'x is greater than 5', the phrase 'is greater than 5' is called the:",
         "type": "mcq",
         "options": [
-            "p->q is always true",
-            "p<->q is a tautology",
-            "p and q is always true",
-            "They have the same number of variables"
+            "Predicate",
+            "Subject",
+            "Quantifier",
+            "Variable"
         ],
-        "ans": "p<->q is a tautology",
-        "explain_correct": "✅ صح! بيكونوا متكافئين منطقياً لو الـ biconditional بينهم (p <-> q) عبارة عن Tautology.",
-        "explain_wrong": "❌ غلط! التكافؤ بيحصل لما الـ biconditional يكون Tautology."
+        "ans": "Predicate",
+        "explain_correct": "✅ صح! المتغير (x) هو الـ Subject، والجزء التاني اللي بيوصفه هو الـ Predicate.",
+        "explain_wrong": "❌ غلط! الجزء ده بيسمى Predicate."
     },
     {
-        "q": "The notation used to denote logical equivalence is:",
+        "q": "Let P(x) denote the statement 'x > 3'. What is the truth value of P(2)?",
         "type": "mcq",
-        "options": [
-            "->",
-            "and",
-            "equiv (or <=>)",
-            "or"
-        ],
-        "ans": "equiv (or <=>)",
-        "explain_correct": "✅ صح! رمز التكافؤ المنطقي هو equiv (≡) أو <=>.",
-        "explain_wrong": "❌ غلط! الرمز الصحيح هو equiv (or <=>)."
+        "options": ["False", "True", "Undefined", "Cannot be determined"],
+        "ans": "False",
+        "explain_correct": "✅ صح! لما نعوض بـ 2 هتبقى (2 > 3)، ودي طبعاً عبارة خاطئة (False).",
+        "explain_wrong": "❌ غلط! الـ 2 مش أكبر من 3، إذن الإجابة False."
     },
     {
-        "q": "In the truth table for neg(p or q) and neg-p and neg-q, when p=F and q=F, both values are:",
+        "q": "Let Q(x,y) denote the statement '4x = y + 3'. What is the truth value of Q(1, 2)?",
         "type": "mcq",
-        "options": [
-            "F and F",
-            "T and F",
-            "F and T",
-            "T and T"
-        ],
-        "ans": "T and T",
-        "explain_correct": "✅ صح! لو عوضت بـ F في التعبيرين، الأول هيطلع T والتاني هيطلع T، وده بيثبت تكافؤهم.",
-        "explain_wrong": "❌ غلط! التعبيرين هيطلعوا T."
+        "options": ["False", "True", "Undefined", "Depends on z"],
+        "ans": "False",
+        "explain_correct": "✅ صح! هنعوض عن x بـ 1 و y بـ 2: 4(1) = 2 + 3، يعني 4 = 5 ودي عبارة خاطئة.",
+        "explain_wrong": "❌ غلط! بالتعويض هتطلع 4 = 5، يبقى الإجابة False."
     },
     {
-        "q": "In the truth table for neg(p or q) and neg-p and neg-q, when p=T and q=T, both values are:",
+        "q": "Let P(x) denote 'x ≤ 4'. What is the truth value of P(0)?",
         "type": "mcq",
-        "options": [
-            "T and T",
-            "T and F",
-            "F and F",
-            "F and T"
-        ],
-        "ans": "F and F",
-        "explain_correct": "✅ صح! لو عوضت بـ T، التعبيرين هيطلعوا F، وده مطابق لقاعدة دي مورجان.",
-        "explain_wrong": "❌ غلط! التعبيرين هيطلعوا F."
+        "options": ["True", "False", "Undefined", "Null"],
+        "ans": "True",
+        "explain_correct": "✅ صح! الصفر أقل من أو يساوي 4، إذن العبارة صحيحة (True).",
+        "explain_wrong": "❌ غلط! الصفر فعلاً أقل من 4، إذن True."
     },
     {
-        "q": "The equivalence neg(p or q) equiv neg-p and neg-q is known as:",
+        "q": "Let P(x) be the statement 'the word x contains the letter a'. What is the truth value of P(lemon)?",
         "type": "mcq",
-        "options": [
-            "Commutative Law",
-            "Associative Law",
-            "De Morgan's Law",
-            "Distributive Law"
-        ],
-        "ans": "De Morgan's Law",
-        "explain_correct": "✅ صح! دي قاعدة دي مورجان الشهيرة، اللي بتوزع النفي وتقلب الـ OR لـ AND والعكس.",
-        "explain_wrong": "❌ غلط! دي قاعدة De Morgan's Law."
+        "options": ["False", "True", "Undefined", "Depends on language"],
+        "ans": "False",
+        "explain_correct": "✅ صح! كلمة lemon مفهاش حرف a، إذن العبارة False.",
+        "explain_wrong": "❌ غلط! كلمة lemon مفهاش حرف a."
     },
 
     # ══════════════════════════════════════════════
-    # 🔹 True / False Questions 
+    # 🔹 SECTION 3: Quantifiers
     # ══════════════════════════════════════════════
     {
-        "q": "The bit string 101010011 has a length of nine.",
+        "q": "The quantifier that expresses 'for all values of x in the domain' is called the:",
+        "type": "mcq",
+        "options": [
+            "Universal quantifier",
+            "Existential quantifier",
+            "Uniqueness quantifier",
+            "Predicate quantifier"
+        ],
+        "ans": "Universal quantifier",
+        "explain_correct": "✅ صح! الـ Universal quantifier (∀) هو اللي بيعبر عن 'كل القيم' في الدومين.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي Universal quantifier."
+    },
+    {
+        "q": "The existential quantification of P(x) is denoted by:",
+        "type": "mcq",
+        "options": [
+            "∃x P(x)",
+            "∀x P(x)",
+            "∃!x P(x)",
+            "∀!x P(x)"
+        ],
+        "ans": "∃x P(x)",
+        "explain_correct": "✅ صح! الـ Existential بنرمز ليه بالرمز (∃).",
+        "explain_wrong": "❌ غلط! الرمز بتاعه هو ∃x P(x)."
+    },
+    {
+        "q": "The uniqueness quantifier ∃!x P(x) means:",
+        "type": "mcq",
+        "options": [
+            "There exists a unique x such that P(x) is true",
+            "There exists at least one x such that P(x) is true",
+            "For all x P(x) is true",
+            "There is no x such that P(x) is true"
+        ],
+        "ans": "There exists a unique x such that P(x) is true",
+        "explain_correct": "✅ صح! علامة التعجب مع الـ ∃ معناها إن فيه عنصر 'وحيد' فقط هو اللي بيحقق الشرط.",
+        "explain_wrong": "❌ غلط! معناها 'يوجد عنصر وحيد فقط' (unique)."
+    },
+    {
+        "q": "The statement ∀x P(x) is False when:",
+        "type": "mcq",
+        "options": [
+            "There is an x for which P(x) is false",
+            "P(x) is true for every x",
+            "There is an x for which P(x) is true",
+            "P(x) is false for every x"
+        ],
+        "ans": "There is an x for which P(x) is false",
+        "explain_correct": "✅ صح! الـ Universal بيكون False لو لقينا عنصر واحد بس (Counterexample) بيخلي العبارة غلط.",
+        "explain_wrong": "❌ غلط! بيكفي إيجاد قيمة واحدة تخليها False عشان تكون العبارة كلها False."
+    },
+    {
+        "q": "The statement ∃x P(x) is False when:",
+        "type": "mcq",
+        "options": [
+            "P(x) is false for every x",
+            "There is an x for which P(x) is false",
+            "P(x) is true for every x",
+            "There is an x for which P(x) is true"
+        ],
+        "ans": "P(x) is false for every x",
+        "explain_correct": "✅ صح! الـ Existential بتكون False لو مفيش ولا عنصر واحد حقق الشرط (كلهم False).",
+        "explain_wrong": "❌ غلط! بتكون False لو كل القيم اللي في الدومين طلعت False."
+    },
+    {
+        "q": "Let P(x) be the statement 'x + 1 > x'. What is the truth value of ∀x P(x) for all real numbers?",
+        "type": "mcq",
+        "options": ["True", "False", "Undefined", "Contingency"],
+        "ans": "True",
+        "explain_correct": "✅ صح! أي رقم حقيقي لو زودت عليه 1 هيكون أكبر من نفسه، فالجملة دايماً صحيحة.",
+        "explain_wrong": "❌ غلط! الجملة دي صحيحة لكل الأرقام، يبقى الإجابة True."
+    },
+    {
+        "q": "Let Q(x) be the statement 'x < 2'. What is the truth value of ∀x Q(x) for all real numbers?",
+        "type": "mcq",
+        "options": ["False", "True", "Undefined", "Cannot be determined"],
+        "ans": "False",
+        "explain_correct": "✅ صح! الجملة بتقول 'كل الأرقام الحقيقية أقل من 2'، وده غلط، الـ 3 مثلاً مش أقل من 2.",
+        "explain_wrong": "❌ غلط! في أرقام أكبر من 2، إذن العبارة False."
+    },
+    {
+        "q": "Let P(x) be the statement 'x² > 10'. What is the truth value of ∃x P(x) if the domain is {1, 2, 3, 4}?",
+        "type": "mcq",
+        "options": ["True", "False", "Undefined", "0"],
+        "ans": "True",
+        "explain_correct": "✅ صح! الـ ∃ محتاجة رقم واحد بس يحقق الشرط. لو عوضنا بـ 4 (4² = 16 > 10)، إذن العبارة True.",
+        "explain_wrong": "❌ غلط! الرقم 4 بيحقق الشرط، يبقى الإجابة True."
+    },
+    {
+        "q": "Let P(x) be 'x = x²'. If the domain is the integers, what is the truth value of ∀x P(x)?",
+        "type": "mcq",
+        "options": ["False", "True", "Undefined", "Depends on x"],
+        "ans": "False",
+        "explain_correct": "✅ صح! هل كل الأرقام بتساوي مربعها؟ لأ طبعاً (2 مش بتساوي 4)، إذن العبارة False.",
+        "explain_wrong": "❌ غلط! الجملة مش صحيحة لكل الأرقام، إذن False."
+    },
+    {
+        "q": "Let P(x) be 'x = x²'. If the domain is the integers, what is the truth value of ∃x P(x)?",
+        "type": "mcq",
+        "options": ["True", "False", "Undefined", "Depends on x"],
+        "ans": "True",
+        "explain_correct": "✅ صح! الـ ∃ محتاجة رقم واحد بس يحقق الشرط. هنا الصفر والواحد بيحققوه (1 = 1²)، إذن True.",
+        "explain_wrong": "❌ غلط! في أرقام بتحقق الشرط زي 0 و 1، يبقى الإجابة True."
+    },
+
+    # ══════════════════════════════════════════════
+    # 🔹 SECTION 4: Translation and Negation
+    # ══════════════════════════════════════════════
+    {
+        "q": "Translate: 'Every student in this class has studied calculus' where S(x) is 'x is in this class' and P(x) is 'x has studied calculus'.",
+        "type": "mcq",
+        "options": [
+            "∀x (S(x) → P(x))",
+            "∀x (S(x) ∧ P(x))",
+            "∃x (S(x) → P(x))",
+            "∃x (S(x) ∧ P(x))"
+        ],
+        "ans": "∀x (S(x) → P(x))",
+        "explain_correct": "✅ صح! مع الـ ∀ بنستخدم دايماً الـ Implication (→) لترجمة الجمل الشرطية.",
+        "explain_wrong": "❌ غلط! الترجمة الصح هي ∀x (S(x) → P(x))."
+    },
+    {
+        "q": "Translate: 'Some comedians are funny' where C(x) is 'x is a comedian' and F(x) is 'x is funny'.",
+        "type": "mcq",
+        "options": [
+            "∃x (C(x) ∧ F(x))",
+            "∃x (C(x) → F(x))",
+            "∀x (C(x) ∧ F(x))",
+            "∀x (C(x) → F(x))"
+        ],
+        "ans": "∃x (C(x) ∧ F(x))",
+        "explain_correct": "✅ صح! مع الـ ∃ بنستخدم دايماً الـ AND (∧) عشان نقول إن فيه شخص بيحمل الصفتين مع بعض.",
+        "explain_wrong": "❌ غلط! الترجمة الصح هي ∃x (C(x) ∧ F(x))."
+    },
+    {
+        "q": "Translate: 'Every comedian is funny'.",
+        "type": "mcq",
+        "options": [
+            "∀x (C(x) → F(x))",
+            "∀x (C(x) ∧ F(x))",
+            "∃x (C(x) → F(x))",
+            "∃x (C(x) ∧ F(x))"
+        ],
+        "ans": "∀x (C(x) → F(x))",
+        "explain_correct": "✅ صح! هنا بنقول 'لكل x، لو كان كوميديان، إذن هو مضحك' (استخدام → مع ∀).",
+        "explain_wrong": "❌ غلط! الترجمة الصح هي ∀x (C(x) → F(x))."
+    },
+    {
+        "q": "Translate: 'No one is perfect' where P(x) is 'x is perfect' and domain is all people.",
+        "type": "mcq",
+        "options": [
+            "∀x ¬P(x)",
+            "¬∀x P(x)",
+            "∃x P(x)",
+            "∃x ¬P(x)"
+        ],
+        "ans": "∀x ¬P(x)",
+        "explain_correct": "✅ صح! الجملة بتقول 'كل الناس مش كاملين'، فبتتكتب ∀x ¬P(x).",
+        "explain_wrong": "❌ غلط! الإجابة هي ∀x ¬P(x)."
+    },
+    {
+        "q": "Translate: 'Not everyone is perfect'.",
+        "type": "mcq",
+        "options": [
+            "¬∀x P(x)",
+            "∀x ¬P(x)",
+            "∃x P(x)",
+            "¬∃x P(x)"
+        ],
+        "ans": "¬∀x P(x)",
+        "explain_correct": "✅ صح! دي ترجمة حرفية: نفي (Not) للـ ∀x P(x). وممكن تتكتب برضه ∃x ¬P(x).",
+        "explain_wrong": "❌ غلط! الترجمة الصح هي ¬∀x P(x)."
+    },
+    {
+        "q": "Which has higher precedence in logical expressions?",
+        "type": "mcq",
+        "options": [
+            "Quantifiers (∀, ∃)",
+            "Logical operators (AND, OR)",
+            "They have equal precedence",
+            "Relational operators"
+        ],
+        "ans": "Quantifiers (∀, ∃)",
+        "explain_correct": "✅ صح! الـ Quantifiers ليها الأولوية الأعلى وبتتنفذ قبل أي logical operator.",
+        "explain_wrong": "❌ غلط! الـ Quantifiers (∀, ∃) ليها أولوية أعلى."
+    },
+    {
+        "q": "According to De Morgan's laws for quantifiers, the negation of ∀x P(x) is logically equivalent to:",
+        "type": "mcq",
+        "options": [
+            "∃x ¬P(x)",
+            "∀x ¬P(x)",
+            "¬∃x P(x)",
+            "∃x P(x)"
+        ],
+        "ans": "∃x ¬P(x)",
+        "explain_correct": "✅ صح! لما ننفي الـ ∀ بتتحول لـ ∃ والنفي بيدخل على الـ P(x).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ∃x ¬P(x)."
+    },
+    {
+        "q": "The negation of ∃x P(x) is logically equivalent to:",
+        "type": "mcq",
+        "options": [
+            "∀x ¬P(x)",
+            "∃x ¬P(x)",
+            "¬∀x P(x)",
+            "∀x P(x)"
+        ],
+        "ans": "∀x ¬P(x)",
+        "explain_correct": "✅ صح! لما ننفي الـ ∃ بتتحول لـ ∀ والنفي بيدخل جوا.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ∀x ¬P(x)."
+    },
+    {
+        "q": "What is the negation of the statement ∀x (x² > x)?",
+        "type": "mcq",
+        "options": [
+            "∃x (x² ≤ x)",
+            "∀x (x² ≤ x)",
+            "∃x (x² < x)",
+            "∃x (x² = x)"
+        ],
+        "ans": "∃x (x² ≤ x)",
+        "explain_correct": "✅ صح! الـ ∀ بتتقلب ∃، وعلامة (>) نفيها بيكون (≤).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ∃x (x² ≤ x)."
+    },
+    {
+        "q": "What is the negation of the statement ∃x (x² = 2)?",
+        "type": "mcq",
+        "options": [
+            "∀x (x² ≠ 2)",
+            "∀x (x² = 2)",
+            "∃x (x² ≠ 2)",
+            "¬∀x (x² = 2)"
+        ],
+        "ans": "∀x (x² ≠ 2)",
+        "explain_correct": "✅ صح! الـ ∃ بتتقلب ∀، وعلامة (=) نفيها بيكون (≠).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ∀x (x² ≠ 2)."
+    },
+
+    # ══════════════════════════════════════════════
+    # 🔹 SECTION 5: Rules of Inference & Proofs
+    # ══════════════════════════════════════════════
+    {
+        "q": "An argument in propositional logic is defined as:",
+        "type": "mcq",
+        "options": [
+            "A sequence of propositions",
+            "A single true proposition",
+            "A false statement",
+            "A mathematical equation"
+        ],
+        "ans": "A sequence of propositions",
+        "explain_correct": "✅ صح! الـ argument هو تسلسل من العبارات المنطقية (propositions).",
+        "explain_wrong": "❌ غلط! هو عبارة عن A sequence of propositions."
+    },
+    {
+        "q": "In an argument, the final proposition is called the:",
+        "type": "mcq",
+        "options": [
+            "Conclusion",
+            "Premise",
+            "Lemma",
+            "Theorem"
+        ],
+        "ans": "Conclusion",
+        "explain_correct": "✅ صح! الجملة الأخيرة اللي بنستنتجها اسمها الـ Conclusion (النتيجة).",
+        "explain_wrong": "❌ غلط! الجملة الأخيرة تُسمى Conclusion."
+    },
+    {
+        "q": "In an argument, all propositions before the final one are called:",
+        "type": "mcq",
+        "options": [
+            "Premises",
+            "Conclusions",
+            "Variables",
+            "Quantifiers"
+        ],
+        "ans": "Premises",
+        "explain_correct": "✅ صح! الجمل اللي بنبني عليها استنتاجنا اسمها الـ Premises (المقدمات أو المعطيات).",
+        "explain_wrong": "❌ غلط! تُسمى Premises."
+    },
+    {
+        "q": "The argument with premises (p → q) and (p), and conclusion (q) is valid if which of the following is a tautology?",
+        "type": "mcq",
+        "options": [
+            "((p → q) ∧ p) → q",
+            "(p → q) → (p ∧ q)",
+            "(p ∧ q) → p",
+            "p → (q ∧ p)"
+        ],
+        "ans": "((p → q) ∧ p) → q",
+        "explain_correct": "✅ صح! بنعمل AND للـ Premises وبعدين Implication للـ Conclusion، ولازم الناتج يكون Tautology.",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ((p → q) ∧ p) → q."
+    },
+    {
+        "q": "A statement that can be shown to be true is called a:",
+        "type": "mcq",
+        "options": [
+            "Theorem",
+            "Proof",
+            "Variable",
+            "Quantifier"
+        ],
+        "ans": "Theorem",
+        "explain_correct": "✅ صح! الـ Theorem (النظرية) هي جملة نقدر نثبت صحتها.",
+        "explain_wrong": "❌ غلط! تُسمى Theorem."
+    },
+    {
+        "q": "A valid argument that establishes the truth of a theorem is called a:",
+        "type": "mcq",
+        "options": [
+            "Proof",
+            "Lemma",
+            "Proposition",
+            "Predicate"
+        ],
+        "ans": "Proof",
+        "explain_correct": "✅ صح! الـ Proof (الإثبات) هو اللي بيأكد صحة النظرية.",
+        "explain_wrong": "❌ غلط! يُسمى Proof."
+    },
+    {
+        "q": "A 'helping theorem' or a result which is needed to prove a theorem is called a:",
+        "type": "mcq",
+        "options": [
+            "Lemma",
+            "Conclusion",
+            "Premise",
+            "Predicate"
+        ],
+        "ans": "Lemma",
+        "explain_correct": "✅ صح! الـ Lemma هي نظرية مساعدة بنستخدمها عشان نثبت نظرية أكبر.",
+        "explain_wrong": "❌ غلط! تُسمى Lemma."
+    },
+    {
+        "q": "If 'a' is an even integer, it can be written as:",
+        "type": "mcq",
+        "options": [
+            "a = 2n",
+            "a = 2n + 1",
+            "a = n²",
+            "a = n/m"
+        ],
+        "ans": "a = 2n",
+        "explain_correct": "✅ صح! أي رقم زوجي هو عبارة عن 2 مضروبة في أي رقم صحيح (2n).",
+        "explain_wrong": "❌ غلط! الرقم الزوجي بيتكتب على صورة 2n."
+    },
+    {
+        "q": "If 'a' is an odd integer, it can be written as:",
+        "type": "mcq",
+        "options": [
+            "a = 2m + 1",
+            "a = 2m",
+            "a = m²",
+            "a = m/2"
+        ],
+        "ans": "a = 2m + 1",
+        "explain_correct": "✅ صح! أي رقم فردي هو رقم زوجي زائد واحد (2m + 1).",
+        "explain_wrong": "❌ غلط! الرقم الفردي بيتكتب على صورة 2m + 1."
+    },
+    {
+        "q": "If 'a' is a perfect square, it can be written as:",
+        "type": "mcq",
+        "options": [
+            "a = n²",
+            "a = 2n",
+            "a = 2n+1",
+            "a = √n"
+        ],
+        "ans": "a = n²",
+        "explain_correct": "✅ صح! المربع الكامل هو رقم مضروب في نفسه (n²).",
+        "explain_wrong": "❌ غلط! المربع الكامل بيتكتب a = n²."
+    },
+    {
+        "q": "In a Direct Proof of the theorem (p → q), what is the first step?",
+        "type": "mcq",
+        "options": [
+            "Assume that p is true",
+            "Assume that q is true",
+            "Assume that p is false",
+            "Assume that q is false"
+        ],
+        "ans": "Assume that p is true",
+        "explain_correct": "✅ صح! في الإثبات المباشر بنبدأ بافتراض إن المعطى (p) صحيح، ونحاول نوصل لـ (q).",
+        "explain_wrong": "❌ غلط! أول خطوة هي Assume that p is true."
+    },
+    {
+        "q": "In an Indirect Proof by Contraposition of (p → q), what is the first step?",
+        "type": "mcq",
+        "options": [
+            "Assume that ¬q is true",
+            "Assume that ¬p is true",
+            "Assume that p is true",
+            "Assume that q is true"
+        ],
+        "ans": "Assume that ¬q is true",
+        "explain_correct": "✅ صح! في الـ Contraposition بنعكس الجملة، فبنبأ بافتراض نفي النتيجة (¬q).",
+        "explain_wrong": "❌ غلط! بنبدأ بافتراض Assume that ¬q is true."
+    },
+    {
+        "q": "In an Indirect Proof by Contradiction, to prove p, we show that:",
+        "type": "mcq",
+        "options": [
+            "¬p → F",
+            "p → F",
+            "¬p → T",
+            "p → T"
+        ],
+        "ans": "¬p → F",
+        "explain_correct": "✅ صح! في الإثبات بالتناقض (Contradiction) عشان نثبت p، بنفترض إن عكسها (¬p) صح، ولازم ده يوصلنا لتناقض أو نتيجة غلط (F).",
+        "explain_wrong": "❌ غلط! الإجابة الصح هي ¬p → F."
+    },
+
+    # ══════════════════════════════════════════════
+    # 🔹 True / False Questions
+    # ══════════════════════════════════════════════
+    {
+        "q": "A rational number can be written as n/m where n and m are integers with no common factor and m ≠ 0.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "✅ صح! لو عديناهم هنلاقيهم فعلاً 9 أرقام (bits).",
-        "explain_wrong": "❌ غلط! العبارة صحيحة، طولها 9."
+        "explain_correct": "✅ صح! ده التعريف الرياضي السليم للرقم النسبي (Rational Number).",
+        "explain_wrong": "❌ غلط! العبارة صحيحة، المقام (m) مستحيل يساوي صفر."
     },
     {
-        "q": "The sentence 'The automated reply cannot be sent when the file system is full' is correctly represented as p->q (where p=automated reply CAN be sent, q=file system is full).",
+        "q": "The equivalence p ∨ ¬p ≡ F is known as the Negation law.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "False",
-        "explain_correct": "✅ صح! التمثيل الصح هو q -> neg-p، لأن امتلاء النظام (q) هو اللي بيؤدي لعدم الإرسال (neg-p).",
-        "explain_wrong": "❌ غلط! التمثيل الصح هو q -> neg-p مش p -> q."
+        "explain_correct": "✅ صح! العبارة دي غلط لأن قانون النفي بيقول إن p ∨ ¬p ≡ T (بيساوي True مش False).",
+        "explain_wrong": "❌ غلط! قانون النفي بيقول إن p ∨ ¬p ≡ T."
     },
     {
-        "q": "A tautology is a compound proposition that is always false.",
+        "q": "The statement 'Not everyone is perfect' is logically equivalent to 'There is at least one person who is not perfect'.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! حسب قوانين دي مورجان للـ Quantifiers: ¬∀x P(x) ≡ ∃x ¬P(x).",
+        "explain_wrong": "❌ غلط! العبارة صحيحة تماماً."
+    },
+    {
+        "q": "An indirect proof by contradiction of (p → q) starts by assuming (p ∧ ¬q) is true.",
+        "type": "tf",
+        "options": ["True", "False"],
+        "ans": "True",
+        "explain_correct": "✅ صح! لأننا بنفترض نفي الجملة كلها، ونفي (p → q) هو (p ∧ ¬q).",
+        "explain_wrong": "❌ غلط! العبارة صحيحة، بنفترض (p ∧ ¬q) وندور على تناقض."
+    },
+    {
+        "q": "The associative laws state that p ∨ q ≡ q ∨ p.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "False",
-        "explain_correct": "✅ صح! العبارة غلط، الـ Tautology دايماً True. الـ Contradiction هي اللي دايماً False.",
-        "explain_wrong": "❌ غلط! الـ Tautology بتكون دايماً True."
-    },
-    {
-        "q": "According to De Morgan's Law, neg(p or q) is logically equivalent to neg-p and neg-q.",
-        "type": "tf",
-        "options": ["True", "False"],
-        "ans": "True",
-        "explain_correct": "✅ صح! دي واحدة من قواعد دي مورجان الأساسية.",
-        "explain_wrong": "❌ غلط! العبارة صحيحة، دي قاعدة دي مورجان."
-    },
-    {
-        "q": "Any complicated digital circuit can be built using only three basic gates: OR gate, AND gate, and Inverter.",
-        "type": "tf",
-        "options": ["True", "False"],
-        "ans": "True",
-        "explain_correct": "✅ صح! أي دايرة مهما كانت معقدة نقدر نبنيها بالـ 3 بوابات دول بس.",
-        "explain_wrong": "❌ غلط! العبارة دي صحيحة."
+        "explain_correct": "✅ صح! العبارة غلط، لأن ده قانون التبديل (Commutative law) مش الـ Associative.",
+        "explain_wrong": "❌ غلط! ده قانون الـ Commutative مش الـ Associative."
     }
 ]
