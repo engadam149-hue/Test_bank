@@ -9,7 +9,8 @@ import arc_lec1
 import arc_lec2
 import arc_lec3
 import dm_lec1  
-import dm_lec2  # 👈 استدعاء المحاضرة التانية من الديسكريت
+import dm_lec2  
+import dm_lec3  # 👈 استدعاء المحاضرة التالتة من الديسكريت
 
 # 2. إعدادات المواد
 SUBJECTS = [
@@ -44,7 +45,8 @@ SUBJECTS = [
         "key": "dm",
         "lectures": [
             {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True},
-            {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True}, # 👈 فتحنا المحاضرة التانية أهو
+            {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True},
+            {"num": "03", "title": "Lec 3: Logic Circuits", "count": "50 سؤال", "key": "dm_lec3", "available": True}, # 👈 فتحنا المحاضرة التالتة أهو
         ]
     }
 ]
@@ -62,5 +64,6 @@ QUESTIONS_DB = {
     
     # 🧮 الديسكريت
     "dm_lec1": dm_lec1.QUESTIONS,
-    "dm_lec2": dm_lec2.QUESTIONS, # 👈 ربطنا أسئلتها هنا
+    "dm_lec2": dm_lec2.QUESTIONS, 
+    "dm_lec3": dm_lec3.QUESTIONS, # 👈 ربطنا أسئلتها هنا
 }
