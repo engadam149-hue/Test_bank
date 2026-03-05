@@ -73,7 +73,6 @@ def section_header(label):
         <div class="section-hdr-line right"></div>
     </div>""", unsafe_allow_html=True)
 
-
 # ════════════════════════════════════════════════════════════
 # 🔧 Scroll-lock (JavaScript)
 # ════════════════════════════════════════════════════════════
@@ -221,9 +220,24 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .explain-wrong   {{ background: var(--opt-wrong-bg); border: 1px solid var(--opt-wrong-border); color: var(--opt-wrong-text); }}
 .q-sep {{ height: 1px; background: var(--border-line); margin: 20px 0; }}
 
+/* Base Button CSS */
 div[data-testid="stButton"] button {{ background: var(--btn-bg) !important; border: 1px solid var(--btn-border) !important; border-radius: 10px !important; color: var(--text-muted) !important; font-size: 14px !important; font-weight: 500 !important; padding: 12px 16px !important; transition: all .2s !important; width: 100% !important; height: 100% !important; }}
 div[data-testid="stButton"] button:hover {{ border-color: var(--primary) !important; color: var(--primary) !important; background: var(--btn-hover) !important; }}
-div[data-testid="stButton"][aria-label*="theme"] button {{ border-radius: 50px !important; padding: 6px 12px !important; font-size: 18px !important; width: auto !important; float: right; margin-bottom: 10px; }}
+
+/* 🚀 Special Styling for Theme Toggle Button */
+div[data-testid="stButton"][aria-label*="Mode"] button {{
+    border-radius: 50px !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+    background: var(--badge-bg) !important;
+    font-weight: 700 !important;
+    margin-bottom: 10px;
+    font-family: sans-serif !important;
+}}
+div[data-testid="stButton"][aria-label*="Mode"] button:hover {{
+    background: var(--primary) !important;
+    color: #fff !important;
+}}
 
 #MainMenu, footer, header {{ visibility: hidden; }}
 .stDeployButton {{ display: none; }}
@@ -232,15 +246,14 @@ div[data-testid="stButton"][aria-label*="theme"] button {{ border-radius: 50px !
 </style>
 """, unsafe_allow_html=True)
 
-
 # ════════════════════════════════════════════════════════════
 # 🌙 THEME TOGGLE BUTTON (TOP RIGHT)
 # ════════════════════════════════════════════════════════════
-col_space, col_btn = st.columns([10, 1])
-with col_btn:
-    icon = "☀️" if st.session_state.theme == "dark" else "🌙"
-    st.button(icon, key="theme_toggle", on_click=toggle_theme, help="تغيير المظهر")
-
+# 8 في الشمال و 2 في اليمين عشان يظهر الزرار ناحية اليمين براحته
+t_col_space, t_col_btn = st.columns([8, 2])
+with t_col_btn:
+    btn_text = "☀️ Light Mode" if st.session_state.theme == "dark" else "🌙 Dark Mode"
+    st.button(btn_text, on_click=toggle_theme, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 1️⃣  PAGE: SUBJECTS
