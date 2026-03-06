@@ -2,15 +2,18 @@
 # ملف: data.py
 # ==========================================
 
-# 1. استدعاء الملفات
+# 1. استدعاء الملفات (تأكد إن كل الملفات دي موجودة عندك في نفس الفولدر)
 import ml_lec1
 import ml_lec2
+
 import arc_lec1
 import arc_lec2
 import arc_lec3
+import arc_lec4  # 👈 المحاضرة الرابعة الجديدة
+
 import dm_lec1  
 import dm_lec2  
-import dm_lec3  # 👈 استدعاء المحاضرة التالتة
+import dm_lec3  
 
 # 2. إعدادات المواد
 SUBJECTS = [
@@ -32,9 +35,10 @@ SUBJECTS = [
         "desc": "CPU, Memory, Buses, Cycle...", 
         "key": "arc",
         "lectures": [
-            {"num": "01", "title": "Lec 1: Intro & Structure", "count": "43 سؤال", "key": "arc_lec1", "available": True},
+            {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, 
+            {"num": "04", "title": "Lec 4: Bus Construction", "count": "50 سؤال", "key": "arc_lec4", "available": True}, # 👈 ضفنا المحاضرة هنا
         ]
     },
     {
@@ -46,7 +50,7 @@ SUBJECTS = [
         "lectures": [
             {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True},
             {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True},
-            {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, # 👈 الاسم اتعدل هنا اهو
+            {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, 
         ]
     }
 ]
@@ -61,9 +65,10 @@ QUESTIONS_DB = {
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
+    "arc_lec4": arc_lec4.QUESTIONS, # 👈 وربطنا أسئلتها هنا
     
     # 🧮 الديسكريت
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
-    "dm_lec3": dm_lec3.QUESTIONS, # 👈 ربطنا أسئلتها هنا
+    "dm_lec3": dm_lec3.QUESTIONS,
 }
