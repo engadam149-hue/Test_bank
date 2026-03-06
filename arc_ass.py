@@ -40,7 +40,7 @@ QUESTIONS = [
         "ans": "True"
     },
     {
-        "q": "Computer Organization differs between different versions of the same family.",
+        "q": "Organization differs between different versions of the same family.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True"
@@ -64,21 +64,21 @@ QUESTIONS = [
         "ans": "All are correct"
     },
     {
-        "q": "Addition is considered as data:",
+        "q": "The addition is considered as data:",
         "type": "mcq",
-        "options": ["Processing", "Movement", "Storage", "Control"],
+        "options": ["Processing", "Movement", "Storage", "All are correct"],
         "ans": "Processing"
     },
     {
         "q": "The Loading of data is considered as data:",
         "type": "mcq",
-        "options": ["Processing", "Movement", "Storage", "Control"],
+        "options": ["Processing", "Movement", "Storage", "All are correct"],
         "ans": "Movement"
     },
     {
-        "q": "Storing data in memory is considered as data:",
+        "q": "The storing data in memory is considered as data:",
         "type": "mcq",
-        "options": ["Processing", "Movement", "Storage", "Control"],
+        "options": ["Processing", "Movement", "Storage", "All are correct"],
         "ans": "Storage"
     },
     {
@@ -124,16 +124,40 @@ QUESTIONS = [
         "ans": "Registers"
     },
     {
-        "q": "Sequencing logic, Control Unit Registers, Decoders, and Control Memory are the internal components of:",
+        "q": "______ Controls all the computer.",
         "type": "mcq",
         "options": ["ALU", "Control Unit", "Memory", "BUS"],
         "ans": "Control Unit"
     },
     {
-        "q": "______ is used to transmit data and instruction everywhere.",
+        "q": "Sequencing logic, Control Unit Registers, Decoders, and Control Memory are internal components of:",
+        "type": "mcq",
+        "options": ["ALU", "Control Unit", "Memory", "BUS"],
+        "ans": "Control Unit"
+    },
+    {
+        "q": "______ performs all arithmetic and logic operations.",
+        "type": "mcq",
+        "options": ["ALU", "Control Unit", "Memory", "BUS"],
+        "ans": "ALU"
+    },
+    {
+        "q": "______ stores data and programs.",
+        "type": "mcq",
+        "options": ["ALU", "Control Unit", "Memory", "BUS"],
+        "ans": "Memory"
+    },
+    {
+        "q": "______ is used to transmit data and instructions everywhere.",
         "type": "mcq",
         "options": ["ALU", "Control Unit", "Memory", "BUS"],
         "ans": "BUS"
+    },
+    {
+        "q": "______ Controls the whole computer.",
+        "type": "mcq",
+        "options": ["ALU", "Control Unit", "Memory", "BUS"],
+        "ans": "Control Unit"
     },
     {
         "q": "Semiconductor memory capacity approximately doubles each:",
@@ -161,7 +185,7 @@ QUESTIONS = [
     {
         "q": "CPU generates ______.",
         "type": "mcq",
-        "options": ["Data", "Addresses", "Control Signals", "All are correct"],
+        "options": ["Data", "Address", "Control", "All are correct"],
         "ans": "All are correct"
     },
     {
@@ -177,13 +201,13 @@ QUESTIONS = [
         "ans": "Data"
     },
     {
-        "q": "Separate data & address lines are found in ______ buses.",
+        "q": "Separate data & address lines is found in ______ buses.",
         "type": "mcq",
         "options": ["Dedicated", "Multiplexed", "Distributed", "Centralized"],
         "ans": "Dedicated"
     },
     {
-        "q": "Address valid or data valid control lines are found in ______ buses.",
+        "q": "Address valid or data valid control lines is found in ______ buses.",
         "type": "mcq",
         "options": ["Dedicated", "Multiplexed", "Distributed", "Centralized"],
         "ans": "Multiplexed"
@@ -209,7 +233,7 @@ QUESTIONS = [
     {
         "q": "______ is a temporary storage of code and results.",
         "type": "mcq",
-        "options": ["Program", "Main Memory", "Bus", "Registers"],
+        "options": ["inflexible", "Program", "Main Memory", "Bus"],
         "ans": "Main Memory"
     },
     {
@@ -225,25 +249,25 @@ QUESTIONS = [
         "ans": "fetch"
     },
     {
-        "q": "______ contains the address of the next instruction.",
+        "q": "______ contain the address of the next instruction.",
         "type": "mcq",
         "options": ["PC", "decode", "fetch", "execute"],
         "ans": "PC"
     },
     {
-        "q": "______ analyzes instruction to determine type of the operation to be performed.",
+        "q": "______ analyze instruction to determine type of the operation to be performed.",
         "type": "mcq",
-        "options": ["PC", "decode cycle", "fetch cycle", "execute cycle"],
-        "ans": "decode cycle"
+        "options": ["PC", "decode", "fetch", "execute"],
+        "ans": "decode"
     },
     {
         "q": "______ is a mechanism by which other modules may interrupt normal sequence of processing.",
         "type": "mcq",
-        "options": ["Program", "Interrupt", "Main memory", "Bus"],
-        "ans": "Interrupt"
+        "options": ["Program", "interrupt", "Main memory", "Bus"],
+        "ans": "interrupt"
     },
     {
-        "q": "Overflow and division by zero are types of ______ interrupt.",
+        "q": "Overflow, division by zero are types of ______ interrupt.",
         "type": "mcq",
         "options": ["Timer", "I/O", "Hardware failure", "Program"],
         "ans": "Program"
@@ -261,7 +285,7 @@ QUESTIONS = [
         "ans": "Hardware failure"
     },
     {
-        "q": "______ interrupt comes from the I/O controller.",
+        "q": "______ interrupt comes from I/O controller.",
         "type": "mcq",
         "options": ["Timer", "I/O", "Hardware failure", "Program"],
         "ans": "I/O"
@@ -269,13 +293,13 @@ QUESTIONS = [
     {
         "q": "Instruction loaded into Instruction Register (IR) is done during ______ cycle.",
         "type": "mcq",
-        "options": ["execute", "fetch", "decode", "interrupt"],
+        "options": ["execute", "fetch", "first", "Program"],
         "ans": "fetch"
     },
     {
-        "q": "Data transfer between CPU and I/O module is typically done during ______ cycle.",
+        "q": "Data transfer between CPU and I/O module is done during ______ cycle.",
         "type": "mcq",
-        "options": ["execute", "fetch", "decode", "first"],
+        "options": ["execute", "fetch", "first", "Program"],
         "ans": "execute"
     },
     {
@@ -285,7 +309,7 @@ QUESTIONS = [
         "ans": "Disable"
     },
     {
-        "q": "In ______ interrupt, Low priority interrupts can be interrupted by higher priority ones.",
+        "q": "In ______ interrupt, low priority interrupts can be interrupted by higher priority ones.",
         "type": "mcq",
         "options": ["Disable", "Priority", "multi", "single"],
         "ans": "Priority"
@@ -309,18 +333,56 @@ QUESTIONS = [
         "ans": "MAR"
     },
     {
-        "q": "______ Contain the instruction fetched from the memory.",
+        "q": "______ Contains the instruction fetched from the memory.",
         "type": "mcq",
         "options": ["PC", "MBR", "MAR", "IR"],
         "ans": "IR"
     },
 
     # ══════════════════════════════════════════════
-    # 📝 Assignment 2 - Problem Solving Questions (Memory Decode)
+    # 📝 Essay Questions Converted to MCQs (3 Questions)
     # ══════════════════════════════════════════════
 
     {
-        "q": "Based on the memory content: Address 2C00 holds '01010010110001010000'. What does this instruction do?",
+        "q": "What are the major components of a Computer?",
+        "type": "mcq",
+        "options": [
+            "CPU, Main Memory, I/O Modules, System Interconnection",
+            "ALU, Control Unit, Registers",
+            "Hard Disk, Monitor, Keyboard, Mouse",
+            "Instruction Set, Data representation"
+        ],
+        "ans": "CPU, Main Memory, I/O Modules, System Interconnection"
+    },
+    {
+        "q": "What are the major components of a CPU?",
+        "type": "mcq",
+        "options": [
+            "ALU, Control Unit, Registers, CPU Interconnection",
+            "Main Memory, I/O Modules, System Bus",
+            "Decoders, Control Memory, RAM",
+            "ALU, Hard Disk, Monitor"
+        ],
+        "ans": "ALU, Control Unit, Registers, CPU Interconnection"
+    },
+    {
+        "q": "What are the major components of a Control Unit?",
+        "type": "mcq",
+        "options": [
+            "Sequencing Logic, CU Registers, Decoders, Control Memory",
+            "ALU, Registers, System Bus",
+            "Main Memory, I/O, CPU",
+            "Data Bus, Address Bus, Control Bus"
+        ],
+        "ans": "Sequencing Logic, CU Registers, Decoders, Control Memory"
+    },
+
+    # ══════════════════════════════════════════════
+    # 📝 Problem Solving Converted to MCQs (8 Questions)
+    # ══════════════════════════════════════════════
+
+    {
+        "q": "Based on the memory content table: Address 2C00 holds '0101 0010 1100 0101 0000'. What does this instruction do?",
         "type": "mcq",
         "options": [
             "Store AC to memory location 2C50",
@@ -331,7 +393,7 @@ QUESTIONS = [
         "ans": "Load AC from memory location 2C50"
     },
     {
-        "q": "Based on the memory content: Address 2C02 holds '10110010110001010010'. What does this instruction do?",
+        "q": "Based on the memory content table: Address 2C02 holds '1011 0010 1100 0101 0010'. What does this instruction do?",
         "type": "mcq",
         "options": [
             "Load AC from memory location 2C52",
@@ -342,13 +404,25 @@ QUESTIONS = [
         "ans": "Store AC to memory location 2C52"
     },
     {
-        "q": "Given an instruction like '01010010110001010000', what is the total size of the instruction in bits?",
+        "q": "What is the Hexadecimal representation of the instruction '0011 0010 1100 0101 0001' located at 2C01?",
+        "type": "mcq",
+        "options": ["52C50", "32C51", "B2C52", "00000"],
+        "ans": "32C51"
+    },
+    {
+        "q": "Given an instruction like '0101 0010 1100 0101 0000', what is the total size of the instruction in bits?",
         "type": "mcq",
         "options": ["8 bits", "16 bits", "20 bits", "24 bits"],
         "ans": "20 bits"
     },
     {
-        "q": "Given the instruction structure (4-bit opcode + 16-bit address), what is the size of the Address?",
+        "q": "What is the size of the Word in this system based on the given binary content?",
+        "type": "mcq",
+        "options": ["8 bits", "16 bits", "20 bits", "32 bits"],
+        "ans": "20 bits"
+    },
+    {
+        "q": "Given the instruction structure (4-bit opcode + Address part), what is the size of the Address?",
         "type": "mcq",
         "options": ["4 bits", "16 bits", "20 bits", "32 bits"],
         "ans": "16 bits"
@@ -364,11 +438,5 @@ QUESTIONS = [
         "type": "mcq",
         "options": ["4 operations", "8 operations", "16 operations", "32 operations"],
         "ans": "16 operations"
-    },
-    {
-        "q": "What is the number of instructions per word if the word size equals the instruction size?",
-        "type": "mcq",
-        "options": ["1", "2", "4", "It depends on the opcode"],
-        "ans": "1"
     }
 ]
