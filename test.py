@@ -26,7 +26,7 @@ def toggle_mistakes():
     st.session_state.show_mistakes_only = not st.session_state.show_mistakes_only
 
 # ════════════════════════════════════════════════════════════
-# 🚀 Routing Logic (With Random Seed Fix)
+# 🚀 Routing Logic
 # ════════════════════════════════════════════════════════════
 def go_to_page(page_name, subj=None, lec=None):
     st.session_state.page = page_name
@@ -96,7 +96,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ════════════════════════════════════════════════════════════
-# 🎨 CSS — Dynamic Theme (Dark/Light)
+# 🎨 CSS
 # ════════════════════════════════════════════════════════════
 if st.session_state.theme == "dark":
     css_vars = """
@@ -151,6 +151,7 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 ::-webkit-scrollbar-track {{ background: var(--bg-main); }}
 ::-webkit-scrollbar-thumb {{ background: var(--scrollbar-thumb); border-radius: 4px; }}
 
+/* ═════ HERO SECTION ═════ */
 .hero {{ position: relative; overflow: hidden; background: var(--bg-hero); border-bottom: 1px solid var(--border-line); padding: 56px 48px 48px; margin: 0 -2rem 48px; text-align: center; transition: background 0.3s; }}
 .hero::before {{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, #7c3aed11 0%, transparent 70%); }}
 .hero::after {{ content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-light), transparent); opacity: 0.3; }}
@@ -170,37 +171,51 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .section-hdr-line.right {{ background: linear-gradient(270deg, var(--border-line), transparent); }}
 .section-hdr-label {{ font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--scrollbar-thumb); text-transform: uppercase; white-space: nowrap; }}
 
+/* ═════ CARDS DESIGN ═════ */
 .subject-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 20px; padding: 28px 24px; text-align: right; direction: rtl; transition: all .25s; cursor: pointer; height: 100%; position: relative; overflow: hidden; }}
 .subject-card::before {{ content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--scrollbar-thumb), transparent); opacity: 0; transition: opacity .3s; }}
-.subject-card:hover {{ border-color: var(--primary); background: var(--btn-hover); box-shadow: 0 10px 30px #7c3aed11; }}
-.subject-card:hover::before {{ opacity: 1; }}
 .subj-icon {{ font-size: 36px; margin-bottom: 14px; display: block; }}
 .subj-name {{ font-size: 16px; font-weight: 700; color: var(--text-card-title); margin-bottom: 4px; }}
 .subj-code {{ font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }}
 .subj-desc {{ font-size: 13px; color: var(--text-muted); line-height: 1.5; }}
 
 .lec-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 18px 20px; text-align: right; direction: rtl; transition: all .2s; cursor: pointer; position: relative; height: 100%; }}
-.lec-card:hover {{ border-color: var(--scrollbar-thumb); transform: translateY(-2px); }}
-.lec-card.locked {{ opacity: .5; cursor: not-allowed; filter: grayscale(1); }}
-
-/* 🌟 الكارت المميز بتاع الاسايمنتات */
-.lec-card.special-card {{
-    background: var(--special-bg);
-    border: 2px solid var(--special-border);
-    box-shadow: var(--special-shadow);
-    transform: scale(1.02);
-}}
-.lec-card.special-card:hover {{
-    transform: scale(1.04);
-    box-shadow: 0 8px 40px var(--special-shadow);
-}}
+.lec-card.locked {{ opacity: .5; filter: grayscale(1); }}
+.lec-card.special-card {{ background: var(--special-bg); border: 2px solid var(--special-border); box-shadow: var(--special-shadow); transform: scale(1.02); }}
 .special-card .lec-num {{ font-size: 12px; color: var(--primary-light); font-weight: 800; }}
 .special-card .lec-title {{ color: var(--text-main); font-size: 16px; }}
-
 .lec-num {{ font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--scrollbar-thumb); text-transform: uppercase; margin-bottom: 8px; }}
 .lec-title {{ font-size: 14px; font-weight: 700; color: var(--text-card-title); margin-bottom: 6px; }}
 .lec-count-badge {{ display: inline-block; background: var(--border-card); border: 1px solid var(--border-line); border-radius: 100px; padding: 2px 10px; font-size: 11px; color: var(--text-muted); }}
 
+/* 🔥 THE MAGIC TRICK: FULL CLICKABLE CARDS 🔥 */
+[data-testid="column"]:has(.overlay-btn) {{
+    position: relative;
+}}
+[data-testid="column"]:has(.overlay-btn) [data-testid="stButton"] {{
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10;
+}}
+[data-testid="column"]:has(.overlay-btn) [data-testid="stButton"] button {{
+    width: 100% !important; height: 100% !important;
+    opacity: 0 !important; cursor: pointer !important;
+}}
+
+/* 🌟 HOVER EFFECTS TRIGGERED BY THE INVISIBLE BUTTON 🌟 */
+[data-testid="column"]:has(.overlay-btn):hover .subject-card {{
+    border-color: var(--primary); background: var(--btn-hover); box-shadow: 0 10px 30px #7c3aed11;
+}}
+[data-testid="column"]:has(.overlay-btn):hover .subject-card::before {{ opacity: 1; }}
+
+[data-testid="column"]:has(.overlay-btn):hover .lec-card:not(.locked) {{
+    border-color: var(--scrollbar-thumb); transform: translateY(-2px);
+}}
+[data-testid="column"]:has(.overlay-btn):hover .special-card:not(.locked) {{
+    transform: scale(1.04); box-shadow: 0 8px 40px var(--special-shadow);
+}}
+
+/* ═════ QUIZ RESULTS & PROGRESS ═════ */
 .prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; direction: rtl; }}
 .prog-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }}
 .prog-label {{ font-size: 13px; color: var(--text-muted); font-weight: 600; }}
@@ -239,24 +254,12 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .explain-wrong   {{ background: var(--opt-wrong-bg); border: 1px solid var(--opt-wrong-border); color: var(--opt-wrong-text); }}
 .q-sep {{ height: 1px; background: var(--border-line); margin: 20px 0; }}
 
-/* Base Button CSS */
+/* ═════ BUTTONS ═════ */
 div[data-testid="stButton"] button {{ background: var(--btn-bg) !important; border: 1px solid var(--btn-border) !important; border-radius: 10px !important; color: var(--text-muted) !important; font-size: 14px !important; font-weight: 500 !important; padding: 12px 16px !important; transition: all .2s !important; width: 100% !important; height: 100% !important; }}
 div[data-testid="stButton"] button:hover {{ border-color: var(--primary) !important; color: var(--primary) !important; background: var(--btn-hover) !important; }}
 
-/* 🚀 Special Styling for Theme Toggle Button */
-div[data-testid="stButton"][aria-label*="Mode"] button {{
-    border-radius: 50px !important;
-    border: 1px solid var(--primary) !important;
-    color: var(--primary) !important;
-    background: var(--badge-bg) !important;
-    font-weight: 700 !important;
-    margin-bottom: 10px;
-    font-family: sans-serif !important;
-}}
-div[data-testid="stButton"][aria-label*="Mode"] button:hover {{
-    background: var(--primary) !important;
-    color: #fff !important;
-}}
+div[data-testid="stButton"][aria-label*="Mode"] button {{ border-radius: 50px !important; border: 1px solid var(--primary) !important; color: var(--primary) !important; background: var(--badge-bg) !important; font-weight: 700 !important; margin-bottom: 10px; font-family: sans-serif !important; }}
+div[data-testid="stButton"][aria-label*="Mode"] button:hover {{ background: var(--primary) !important; color: #fff !important; }}
 
 #MainMenu, footer, header {{ visibility: hidden; }}
 .stDeployButton {{ display: none; }}
@@ -295,20 +298,26 @@ if st.session_state.page == "subjects":
     </div>""", unsafe_allow_html=True)
 
     section_header("اختر المادة")
-    subj_count = max(1, min(len(SUBJECTS), 3))
-    cols = st.columns(subj_count)
-    for idx, subj in enumerate(SUBJECTS):
-        with cols[idx % subj_count]:
-            st.markdown(f"""
-            <div class="subject-card">
-                <span class="subj-icon">{subj['icon']}</span>
-                <div class="subj-name">{subj['name']}</div>
-                <div class="subj-code">{subj['code']}</div>
-                <div class="subj-desc">{subj['desc']}</div>
-            </div>""", unsafe_allow_html=True)
-            st.button("اختر المادة", key=f"btn_{subj['key']}",
-                      on_click=go_to_page, args=("lectures", subj["key"]),
-                      use_container_width=True)
+    
+    subj_count = 3
+    for i in range(0, len(SUBJECTS), subj_count):
+        cols = st.columns(subj_count)
+        for j in range(subj_count):
+            if i + j < len(SUBJECTS):
+                subj = SUBJECTS[i + j]
+                with cols[j]:
+                    # هنا التعديل: حطينا كلاس overlay-btn عشان نلقطه بالـ CSS
+                    st.markdown(f"""
+                    <div class="overlay-btn"></div>
+                    <div class="subject-card">
+                        <span class="subj-icon">{subj['icon']}</span>
+                        <div class="subj-name">{subj['name']}</div>
+                        <div class="subj-code">{subj['code']}</div>
+                        <div class="subj-desc">{subj['desc']}</div>
+                    </div>""", unsafe_allow_html=True)
+                    
+                    # الزرار المخفي اللي بيغطي الكارت
+                    st.button("invisible", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 2️⃣  PAGE: LECTURES
@@ -323,29 +332,32 @@ elif st.session_state.page == "lectures":
         section_header(f"محاضرات · {cur_subj['name']}")
 
     num_lecs  = len(cur_subj["lectures"])
-    col_count = max(1, min(num_lecs, 3))
-    lec_cols  = st.columns(col_count)
+    col_count = 3
+    
+    for i in range(0, num_lecs, col_count):
+        cols = st.columns(col_count)
+        for j in range(col_count):
+            if i + j < num_lecs:
+                lec = cur_subj["lectures"][i + j]
+                with cols[j]:
+                    is_special = lec.get("special", False)
+                    sp_class = "special-card" if is_special else ""
+                    locked_cls = "locked" if not lec['available'] else ""
+                    
+                    # الكارت هنا كمان اتعدل
+                    st.markdown(f"""
+                    <div class="overlay-btn"></div>
+                    <div class="lec-card {sp_class} {locked_cls}">
+                        <div class="lec-num">{'✨' if is_special else 'Lecture'} {lec['num']}</div>
+                        <div class="lec-title">{lec['title']}</div>
+                        <span class="lec-count-badge">{lec['count']}</span>
+                        {'' if lec['available'] else '<div class="soon-tag">قريباً ⏳</div>'}
+                    </div>""", unsafe_allow_html=True)
 
-    for idx, lec in enumerate(cur_subj["lectures"]):
-        with lec_cols[idx % col_count]:
-            is_special = lec.get("special", False)
-            sp_class = "special-card" if is_special else ""
-            locked_cls = "locked" if not lec['available'] else ""
-            
-            # عرض الكارت، لو سبيشال هيظهر بشكل وكلمة مختلفة
-            st.markdown(f"""
-            <div class="lec-card {sp_class} {locked_cls}">
-                <div class="lec-num">{'✨' if is_special else 'Lecture'} {lec['num']}</div>
-                <div class="lec-title">{lec['title']}</div>
-                <span class="lec-count-badge">{lec['count']}</span>
-                {'' if lec['available'] else '<div class="soon-tag">قريباً ⏳</div>'}
-            </div>""", unsafe_allow_html=True)
-
-            if lec["available"]:
-                btn_label = "🔥 ابدأ التحدي" if is_special else "ابدأ الاختبار"
-                st.button(btn_label, key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
-            else:
-                st.button("مغلق", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
+                    if lec["available"]:
+                        st.button("invisible", key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
+                    else:
+                        st.button("invisible", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 3️⃣  PAGE: QUIZ
