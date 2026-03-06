@@ -96,7 +96,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ════════════════════════════════════════════════════════════
-# 🎨 CSS - COMPLETE CYBERPUNK THEME
+# 🎨 CSS - CYBERPUNK THEME + NORMAL BUTTONS
 # ════════════════════════════════════════════════════════════
 if st.session_state.theme == "dark":
     css_vars = """
@@ -164,6 +164,7 @@ st.markdown(f"""
 * {{ font-family: 'Tajawal', sans-serif !important; }}
 [data-testid="stSidebar"], [data-testid="collapsedControl"] {{ display: none !important; }}
 
+/* Matrix Grid Background */
 .stApp {{ background-color: var(--bg-main); background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 40px 40px; color: var(--text-main); transition: background-color 0.3s ease; }}
 section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .block-container {{ padding: 1rem 2rem 4rem !important; max-width: 1200px !important; }}
@@ -172,6 +173,7 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 ::-webkit-scrollbar-track {{ background: var(--bg-main); }}
 ::-webkit-scrollbar-thumb {{ background: var(--scrollbar-thumb); border-radius: 4px; }}
 
+/* ═════ HERO SECTION ═════ */
 .hero {{ position: relative; overflow: hidden; background: var(--bg-hero); border-bottom: 1px solid var(--border-line); padding: 56px 48px 48px; margin: 0 -2rem 48px; text-align: center; }}
 .hero::before {{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 243, 255, 0.05) 0%, transparent 70%); pointer-events: none; }}
 .hero-inner {{ position: relative; z-index: 1; }}
@@ -189,22 +191,19 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .section-hdr-line.right {{ background: linear-gradient(270deg, var(--border-line), transparent); }}
 .section-hdr-label {{ font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }}
 
-.clickable-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 20px; padding: 28px 24px; text-align: right; direction: rtl; transition: all .3s ease; position: relative; height: 100%; margin-bottom: 15px; backdrop-filter: blur(10px); }}
-.clickable-card.lec {{ padding: 18px 20px; border-radius: 14px; }}
-.clickable-card.locked {{ opacity: .5; filter: grayscale(1); }}
-.clickable-card.special-card {{ background: var(--special-bg); border: 2px solid var(--special-border); box-shadow: var(--special-shadow); transform: scale(1.02); }}
-
-div[data-testid="column"]:has(.clickable-card) {{ position: relative; }}
-div[data-testid="column"]:has(.clickable-card) div[data-testid="stButton"] {{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }}
-div[data-testid="column"]:has(.clickable-card) div[data-testid="stButton"] button {{ width: 100% !important; height: 100% !important; opacity: 0 !important; cursor: pointer !important; background: transparent !important; border: none !important; color: transparent !important; }}
-
-div[data-testid="column"]:has(.clickable-card):hover .clickable-card:not(.locked) {{ border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1); transform: translateY(-4px); }}
-div[data-testid="column"]:has(.special-card):hover .special-card:not(.locked) {{ border-color: #d85bff; box-shadow: 0 10px 40px rgba(188, 19, 254, 0.3); transform: scale(1.04) translateY(-2px); }}
-
+/* ═════ CARDS DESIGN (Normal) ═════ */
+.subject-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 20px; padding: 28px 24px; text-align: right; direction: rtl; transition: all .3s ease; height: 100%; margin-bottom: 15px; backdrop-filter: blur(10px); }}
+.subject-card:hover {{ border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1); transform: translateY(-4px); }}
 .subj-icon {{ font-size: 36px; margin-bottom: 14px; display: block; }}
 .subj-name {{ font-size: 16px; font-weight: 700; color: var(--text-card-title); margin-bottom: 4px; }}
 .subj-code {{ font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }}
 .subj-desc {{ font-size: 13px; color: var(--text-muted); line-height: 1.5; }}
+
+.lec-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 18px 20px; text-align: right; direction: rtl; transition: all .3s ease; height: 100%; margin-bottom: 15px; backdrop-filter: blur(10px); }}
+.lec-card:not(.locked):hover {{ border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1); transform: translateY(-4px); }}
+.lec-card.locked {{ opacity: .5; filter: grayscale(1); }}
+.lec-card.special-card {{ background: var(--special-bg); border: 2px solid var(--special-border); box-shadow: var(--special-shadow); }}
+.lec-card.special-card:not(.locked):hover {{ border-color: #d85bff; box-shadow: 0 10px 40px rgba(188, 19, 254, 0.3); transform: scale(1.02) translateY(-2px); }}
 
 .special-card .lec-num {{ font-size: 12px; color: var(--primary-light); font-weight: 800; }}
 .special-card .lec-title {{ color: var(--text-main); font-size: 16px; }}
@@ -212,6 +211,7 @@ div[data-testid="column"]:has(.special-card):hover .special-card:not(.locked) {{
 .lec-title {{ font-size: 14px; font-weight: 700; color: var(--text-card-title); margin-bottom: 6px; }}
 .lec-count-badge {{ display: inline-block; background: var(--border-card); border: 1px solid var(--border-line); border-radius: 100px; padding: 2px 10px; font-size: 11px; color: var(--text-muted); }}
 
+/* ═════ QUIZ UI & NAVIGATOR ═════ */
 .prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 16px; direction: rtl; }}
 .prog-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }}
 .prog-label {{ font-size: 13px; color: var(--text-muted); font-weight: 600; }}
@@ -250,6 +250,7 @@ div[data-testid="column"]:has(.special-card):hover .special-card:not(.locked) {{
 .explain-wrong   {{ background: var(--opt-wrong-bg); border: 1px solid var(--opt-wrong-border); color: var(--opt-wrong-text); }}
 .q-sep {{ height: 1px; background: var(--border-line); margin: 20px 0; }}
 
+/* Score Banner */
 .score-banner {{ background: var(--bg-card); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px 40px; text-align: center; margin-bottom: 32px; position: relative; overflow: hidden; direction: rtl; box-shadow: inset 0 0 50px rgba(0,243,255,0.02); }}
 .score-ring {{ width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--ring-border); margin: 0 auto 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--ring-bg); box-shadow: 0 0 20px rgba(188,19,254,0.1); }}
 .score-ring-num {{ font-size: 36px; font-weight: 800; color: var(--primary-light); line-height: 1; text-shadow: 0 0 10px rgba(188,19,254,0.3); }}
@@ -257,15 +258,18 @@ div[data-testid="column"]:has(.special-card):hover .special-card:not(.locked) {{
 .score-title    {{ font-size: 22px; font-weight: 800; color: var(--text-card-title); margin-bottom: 6px; }}
 .score-pct      {{ font-size: 14px; color: var(--text-muted); }}
 
+/* ═════ REGULAR BUTTONS (quiz options, nav, explicitly visible) ═════ */
 div[data-testid="stButton"] button {{ background: var(--btn-bg) !important; border: 1px solid var(--btn-border) !important; border-radius: 10px !important; color: var(--text-main) !important; font-size: 14px !important; font-weight: 700 !important; padding: 12px 16px !important; transition: all .3s ease !important; width: 100% !important; height: 100% !important; margin-bottom: 10px; }}
 div[data-testid="stButton"] button:hover {{ border-color: var(--primary) !important; color: var(--primary) !important; background: var(--btn-hover) !important; box-shadow: 0 0 15px rgba(0,243,255,0.1); }}
+
+/* Theme toggle pill */
 div[data-testid="stButton"][aria-label*="Mode"] button {{ border-radius: 50px !important; border: 1px solid var(--border-card) !important; color: var(--text-muted) !important; background: var(--bg-card) !important; font-weight: 700 !important; margin-bottom: 10px; font-family: sans-serif !important; box-shadow: none !important; }}
 div[data-testid="stButton"][aria-label*="Mode"] button:hover {{ background: var(--primary) !important; color: #000 !important; border-color: var(--primary) !important; }}
 
 #MainMenu, footer, header {{ visibility: hidden; }}
 .stDeployButton {{ display: none; }}
 @keyframes fadeUp {{ from {{ opacity: 0; transform: translateY(12px); }} to {{ opacity: 1; transform: translateY(0); }} }}
-.q-card, .clickable-card {{ animation: fadeUp .4s ease both; }}
+.q-card, .subject-card, .lec-card {{ animation: fadeUp .4s ease both; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -308,13 +312,14 @@ if st.session_state.page == "subjects":
                 subj = SUBJECTS[i + j]
                 with cols[j]:
                     st.markdown(f"""
-                    <div class="clickable-card">
+                    <div class="subject-card">
                         <span class="subj-icon">{subj['icon']}</span>
                         <div class="subj-name">{subj['name']}</div>
                         <div class="subj-code">{subj['code']}</div>
                         <div class="subj-desc">{subj['desc']}</div>
                     </div>""", unsafe_allow_html=True)
-                    st.button(" ", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
+                    # ✅ الزرار الصريح رجع
+                    st.button("اختر المادة", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 2️⃣  PAGE: LECTURES
@@ -342,7 +347,7 @@ elif st.session_state.page == "lectures":
                     locked_cls = "locked" if not lec['available'] else ""
                     
                     st.markdown(f"""
-                    <div class="clickable-card lec {sp_class} {locked_cls}">
+                    <div class="lec-card {sp_class} {locked_cls}">
                         <div class="lec-num">{'✨' if is_special else 'Lecture'} {lec['num']}</div>
                         <div class="lec-title">{lec['title']}</div>
                         <span class="lec-count-badge">{lec['count']}</span>
@@ -350,9 +355,11 @@ elif st.session_state.page == "lectures":
                     </div>""", unsafe_allow_html=True)
 
                     if lec["available"]:
-                        st.button(" ", key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
+                        # ✅ الزراير الصريحة رجعت حسب نوع الكارت
+                        btn_lbl = "🔥 ابدأ التحدي" if is_special else "ابدأ الاختبار"
+                        st.button(btn_lbl, key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
                     else:
-                        st.button(" ", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
+                        st.button("مغلق", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 3️⃣  PAGE: QUIZ
@@ -389,14 +396,13 @@ elif st.session_state.page == "quiz":
             </div>
         </div>""", unsafe_allow_html=True)
 
-        # ── 🆕 QUESTION NAVIGATOR GRID (FIXED) ──
+        # ── 🆕 QUESTION NAVIGATOR GRID (FIXED FOR MISTAKES ONLY) ──
         nav_html = '<div class="nav-wrapper">'
         nav_display_num = 1
         for orig_idx in st.session_state.q_order:
             chosen = st.session_state.answers.get(orig_idx)
             is_correct = (chosen == questions[orig_idx]["ans"]) if chosen is not None else False
             
-            # تخطي الأسئلة الصح في الـ Navigator لو وضع الأخطاء متفعل
             if st.session_state.show_mistakes_only and is_correct:
                 continue
                 
@@ -413,8 +419,6 @@ elif st.session_state.page == "quiz":
             nav_display_num += 1
             
         nav_html += '</div>'
-        
-        # Display the Navigator
         st.markdown(nav_html, unsafe_allow_html=True)
 
         # ── Questions Display ──
