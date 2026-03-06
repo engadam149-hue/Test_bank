@@ -16,7 +16,7 @@ import dm_lec1
 import dm_lec2  
 import dm_lec3  
 
-# 2. إعدادات المواد
+# 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
     {
         "icon": "🤖", 
@@ -36,7 +36,7 @@ SUBJECTS = [
         "desc": "CPU, Memory, Buses, Cycle...", 
         "key": "arc",
         "lectures": [
-            # 👈 الرقم اتعدل هنا لـ 65 سؤال وموجود في أول القايمة ومميز
+            # 👈 الاسايمنتات ملكة في مكانها أول واحدة بـ 65 سؤال
             {"num": "🏆", "title": "Assignments & Quizzes", "count": "65 سؤال", "key": "arc_ass", "available": True, "special": True}, 
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
@@ -63,11 +63,11 @@ QUESTIONS_DB = {
     "ml_lec1": ml_lec1.QUESTIONS,
     "ml_lec2": ml_lec2.QUESTIONS,
     
+    "arc_ass": arc_ass.QUESTIONS, # 👈 مربوطة صح
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
     "arc_lec4": arc_lec4.QUESTIONS, 
-    "arc_ass": arc_ass.QUESTIONS, 
     
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
