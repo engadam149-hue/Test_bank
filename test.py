@@ -43,7 +43,6 @@ def go_to_page(page_name, subj=None, lec=None):
             st.session_state.seed     = random.randint(1, 10000)
             st.session_state.show_mistakes_only = False
             
-            # ترتيب عشوائي ثابت للأسئلة
             questions = QUESTIONS_DB.get(lec, [])
             order = list(range(len(questions)))
             rng = random.Random(st.session_state.seed)
@@ -58,7 +57,6 @@ def retry_quiz():
     st.session_state.seed    = random.randint(1, 10000)
     st.session_state.show_mistakes_only = False
     
-    # ترتيب عشوائي جديد للأسئلة في المحاولة الجديدة
     questions = QUESTIONS_DB.get(st.session_state.sel_lec, [])
     order = list(range(len(questions)))
     rng = random.Random(st.session_state.seed)
@@ -113,6 +111,9 @@ if st.session_state.theme == "dark":
         --scrollbar-thumb: #3d2d6e; --prog-bg: #1a1530;
         --ring-bg: #0c0a18; --ring-border: #1e1633;
         --badge-tf-bg: #0d1f30; --badge-tf-text: #3b82f6; --badge-tf-border: #1e3a5f;
+        --special-bg: linear-gradient(135deg, #1e133c, #0e0c1a);
+        --special-border: #a78bfa;
+        --special-shadow: 0 4px 30px #7c3aed33;
     }
     """
 else:
@@ -128,6 +129,9 @@ else:
         --scrollbar-thumb: #a78bfa; --prog-bg: #e2e4ea;
         --ring-bg: #ffffff; --ring-border: #d0d4e0;
         --badge-tf-bg: #eff6ff; --badge-tf-text: #1d4ed8; --badge-tf-border: #bfdbfe;
+        --special-bg: linear-gradient(135deg, #f3f0ff, #ffffff);
+        --special-border: #8b5cf6;
+        --special-shadow: 0 8px 30px #8b5cf644;
     }
     """
 
@@ -178,6 +182,21 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .lec-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 18px 20px; text-align: right; direction: rtl; transition: all .2s; cursor: pointer; position: relative; height: 100%; }}
 .lec-card:hover {{ border-color: var(--scrollbar-thumb); transform: translateY(-2px); }}
 .lec-card.locked {{ opacity: .5; cursor: not-allowed; filter: grayscale(1); }}
+
+/* 🌟 الكارت المميز بتاع الاسايمنتات */
+.lec-card.special-card {{
+    background: var(--special-bg);
+    border: 2px solid var(--special-border);
+    box-shadow: var(--special-shadow);
+    transform: scale(1.02);
+}}
+.lec-card.special-card:hover {{
+    transform: scale(1.04);
+    box-shadow: 0 8px 40px var(--special-shadow);
+}}
+.special-card .lec-num {{ font-size: 12px; color: var(--primary-light); font-weight: 800; }}
+.special-card .lec-title {{ color: var(--text-main); font-size: 16px; }}
+
 .lec-num {{ font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--scrollbar-thumb); text-transform: uppercase; margin-bottom: 8px; }}
 .lec-title {{ font-size: 14px; font-weight: 700; color: var(--text-card-title); margin-bottom: 6px; }}
 .lec-count-badge {{ display: inline-block; background: var(--border-card); border: 1px solid var(--border-line); border-radius: 100px; padding: 2px 10px; font-size: 11px; color: var(--text-muted); }}
@@ -247,9 +266,8 @@ div[data-testid="stButton"][aria-label*="Mode"] button:hover {{
 """, unsafe_allow_html=True)
 
 # ════════════════════════════════════════════════════════════
-# 🌙 THEME TOGGLE BUTTON (TOP RIGHT)
+# 🌙 THEME TOGGLE BUTTON
 # ════════════════════════════════════════════════════════════
-# 8 في الشمال و 2 في اليمين عشان يظهر الزرار ناحية اليمين براحته
 t_col_space, t_col_btn = st.columns([8, 2])
 with t_col_btn:
     btn_text = "☀️ Light Mode" if st.session_state.theme == "dark" else "🌙 Dark Mode"
@@ -310,16 +328,22 @@ elif st.session_state.page == "lectures":
 
     for idx, lec in enumerate(cur_subj["lectures"]):
         with lec_cols[idx % col_count]:
+            is_special = lec.get("special", False)
+            sp_class = "special-card" if is_special else ""
+            locked_cls = "locked" if not lec['available'] else ""
+            
+            # عرض الكارت، لو سبيشال هيظهر بشكل وكلمة مختلفة
             st.markdown(f"""
-            <div class="lec-card {'locked' if not lec['available'] else ''}">
-                <div class="lec-num">Lecture {lec['num']}</div>
+            <div class="lec-card {sp_class} {locked_cls}">
+                <div class="lec-num">{'✨' if is_special else 'Lecture'} {lec['num']}</div>
                 <div class="lec-title">{lec['title']}</div>
                 <span class="lec-count-badge">{lec['count']}</span>
                 {'' if lec['available'] else '<div class="soon-tag">قريباً ⏳</div>'}
             </div>""", unsafe_allow_html=True)
 
             if lec["available"]:
-                st.button("ابدأ الاختبار", key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
+                btn_label = "🔥 ابدأ التحدي" if is_special else "ابدأ الاختبار"
+                st.button(btn_label, key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
             else:
                 st.button("مغلق", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
 
@@ -357,7 +381,6 @@ elif st.session_state.page == "quiz":
             </div>
         </div>""", unsafe_allow_html=True)
 
-        # ── Questions Render Loop ────────────────────────────────
         display_num = 1
         for orig_idx in st.session_state.q_order:
             q = questions[orig_idx]
@@ -366,7 +389,6 @@ elif st.session_state.page == "quiz":
             is_correct  = chosen == q["ans"]
             q_type      = q.get("type", "mcq")
 
-            # لو وضع كشف الأخطاء متفعل وهو مجاوب السؤال صح.. مانعرضوش
             if st.session_state.show_mistakes_only and is_correct:
                 continue
 
@@ -413,7 +435,6 @@ elif st.session_state.page == "quiz":
 
             st.markdown("<div class='q-sep'></div>", unsafe_allow_html=True)
 
-        # ── Score banner & Review Mistakes ──────────────────────
         if answered == total:
             pct = int((score / total) * 100)
             if   pct == 100: emoji, msg = "🏆", "نتيجة مثالية!"

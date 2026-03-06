@@ -10,7 +10,7 @@ import arc_lec1
 import arc_lec2
 import arc_lec3
 import arc_lec4
-import arc_ass   # 👈 ملف كويزات واسايمنتات الأركتكتشر
+import arc_ass   
 
 import dm_lec1  
 import dm_lec2  
@@ -36,12 +36,12 @@ SUBJECTS = [
         "desc": "CPU, Memory, Buses, Cycle...", 
         "key": "arc",
         "lectures": [
+            # 👈 رفعنا الاسايمنتات فوق خالص، وضفنا "special": True عشان نميزها
+            {"num": "🏆", "title": "Assignments & Quizzes", "count": "52 سؤال", "key": "arc_ass", "available": True, "special": True}, 
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, 
             {"num": "04", "title": "Lec 4: Bus Construction", "count": "50 سؤال", "key": "arc_lec4", "available": True},
-            # 👈 حدثنا العدد هنا لـ 52 سؤال
-            {"num": "📝", "title": "Assignments & Quizzes", "count": "52 سؤال", "key": "arc_ass", "available": True}, 
         ]
     },
     {
@@ -60,18 +60,15 @@ SUBJECTS = [
 
 # 3. ربط المفاتيح بملفات الأسئلة
 QUESTIONS_DB = {
-    # 🤖 الماشين ليرننج
     "ml_lec1": ml_lec1.QUESTIONS,
     "ml_lec2": ml_lec2.QUESTIONS,
     
-    # 💻 الأركتكتشر
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
     "arc_lec4": arc_lec4.QUESTIONS, 
-    "arc_ass": arc_ass.QUESTIONS, # 👈 ربطنا الملف بنجاح
+    "arc_ass": arc_ass.QUESTIONS, 
     
-    # 🧮 الديسكريت
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
