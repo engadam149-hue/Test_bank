@@ -2,14 +2,15 @@
 # ملف: data.py
 # ==========================================
 
-# 1. استدعاء الملفات (تأكد إن كل الملفات دي موجودة عندك في نفس الفولدر)
+# 1. استدعاء الملفات
 import ml_lec1
 import ml_lec2
 
 import arc_lec1
 import arc_lec2
 import arc_lec3
-import arc_lec4  # 👈 المحاضرة الرابعة الجديدة
+import arc_lec4
+import arc_ass   # 👈 ملف كويزات واسايمنتات الأركتكتشر
 
 import dm_lec1  
 import dm_lec2  
@@ -38,7 +39,9 @@ SUBJECTS = [
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, 
-            {"num": "04", "title": "Lec 4: Bus Construction", "count": "50 سؤال", "key": "arc_lec4", "available": True}, # 👈 ضفنا المحاضرة هنا
+            {"num": "04", "title": "Lec 4: Bus Construction", "count": "50 سؤال", "key": "arc_lec4", "available": True},
+            # 👈 حدثنا العدد هنا لـ 52 سؤال
+            {"num": "📝", "title": "Assignments & Quizzes", "count": "52 سؤال", "key": "arc_ass", "available": True}, 
         ]
     },
     {
@@ -65,7 +68,8 @@ QUESTIONS_DB = {
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
-    "arc_lec4": arc_lec4.QUESTIONS, # 👈 وربطنا أسئلتها هنا
+    "arc_lec4": arc_lec4.QUESTIONS, 
+    "arc_ass": arc_ass.QUESTIONS, # 👈 ربطنا الملف بنجاح
     
     # 🧮 الديسكريت
     "dm_lec1": dm_lec1.QUESTIONS,
