@@ -36,8 +36,8 @@ SUBJECTS = [
         "desc": "CPU, Memory, Buses, Cycle...", 
         "key": "arc",
         "lectures": [
-            # 👈 رفعنا الاسايمنتات فوق خالص، وضفنا "special": True عشان نميزها
-            {"num": "🏆", "title": "Assignments & Quizzes", "count": "52 سؤال", "key": "arc_ass", "available": True, "special": True}, 
+            # 👈 الرقم اتعدل هنا لـ 65 سؤال وموجود في أول القايمة ومميز
+            {"num": "🏆", "title": "Assignments & Quizzes", "count": "65 سؤال", "key": "arc_ass", "available": True, "special": True}, 
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Instruction Cycle", "count": "42 سؤال", "key": "arc_lec3", "available": True}, 
