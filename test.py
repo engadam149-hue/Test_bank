@@ -211,8 +211,8 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .lec-title {{ font-size: 14px; font-weight: 700; color: var(--text-card-title); margin-bottom: 6px; }}
 .lec-count-badge {{ display: inline-block; background: var(--border-card); border: 1px solid var(--border-line); border-radius: 100px; padding: 2px 10px; font-size: 11px; color: var(--text-muted); }}
 
-/* ═════ QUIZ UI & NAVIGATOR ═════ */
-.prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 16px; direction: rtl; }}
+/* ═════ QUIZ UI ═════ */
+.prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; direction: rtl; }}
 .prog-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }}
 .prog-label {{ font-size: 13px; color: var(--text-muted); font-weight: 600; }}
 .prog-stats {{ display: flex; gap: 16px; }}
@@ -221,13 +221,6 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .prog-stat.wrong   {{ color: var(--opt-wrong-text); }}
 .prog-bar-bg {{ background: var(--prog-bg); border-radius: 100px; height: 6px; overflow: hidden; border: 1px solid var(--border-line); }}
 .prog-bar-fill {{ height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width .4s ease; box-shadow: 0 0 10px var(--primary); }}
-
-.nav-wrapper {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 16px; margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; direction: ltr; }}
-.nav-item {{ display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; font-size: 13px; font-weight: 700; border: 1px solid var(--border-line); background: var(--btn-bg); color: var(--text-muted); transition: all 0.3s; position: relative; }}
-.nav-item.pending {{ color: var(--text-muted); }}
-.nav-item.correct {{ border-color: var(--opt-correct-border); color: var(--opt-correct-text); box-shadow: inset 0 0 8px rgba(0,243,255,0.1); }}
-.nav-item.wrong {{ border-color: var(--opt-wrong-border); color: var(--opt-wrong-text); box-shadow: inset 0 0 8px rgba(255,0,85,0.1); }}
-.nav-icon {{ position: absolute; bottom: -4px; right: -4px; font-size: 10px; background: var(--bg-main); border-radius: 50%; padding: 2px; }}
 
 .q-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 18px; padding: 28px 32px; margin-bottom: 8px; direction: ltr; transition: border-color .3s; }}
 .q-card.state-correct {{ border-color: var(--opt-correct-border); box-shadow: 0 0 15px rgba(0,243,255,0.05); }}
@@ -318,7 +311,6 @@ if st.session_state.page == "subjects":
                         <div class="subj-code">{subj['code']}</div>
                         <div class="subj-desc">{subj['desc']}</div>
                     </div>""", unsafe_allow_html=True)
-                    # ✅ الزرار الصريح رجع
                     st.button("اختر المادة", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
@@ -355,7 +347,6 @@ elif st.session_state.page == "lectures":
                     </div>""", unsafe_allow_html=True)
 
                     if lec["available"]:
-                        # ✅ الزراير الصريحة رجعت حسب نوع الكارت
                         btn_lbl = "🔥 ابدأ التحدي" if is_special else "ابدأ الاختبار"
                         st.button(btn_lbl, key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
                     else:
@@ -395,31 +386,6 @@ elif st.session_state.page == "quiz":
                 <div class="prog-bar-fill" style="width:{pct_done*100:.1f}%"></div>
             </div>
         </div>""", unsafe_allow_html=True)
-
-        # ── 🆕 QUESTION NAVIGATOR GRID (FIXED FOR MISTAKES ONLY) ──
-        nav_html = '<div class="nav-wrapper">'
-        nav_display_num = 1
-        for orig_idx in st.session_state.q_order:
-            chosen = st.session_state.answers.get(orig_idx)
-            is_correct = (chosen == questions[orig_idx]["ans"]) if chosen is not None else False
-            
-            if st.session_state.show_mistakes_only and is_correct:
-                continue
-                
-            num_str = str(nav_display_num).zfill(2)
-            
-            if chosen is None:
-                nav_html += f'<div class="nav-item pending">{num_str}</div>'
-            else:
-                if is_correct:
-                    nav_html += f'<div class="nav-item correct">{num_str}<span class="nav-icon">✅</span></div>'
-                else:
-                    nav_html += f'<div class="nav-item wrong">{num_str}<span class="nav-icon">❌</span></div>'
-                    
-            nav_display_num += 1
-            
-        nav_html += '</div>'
-        st.markdown(nav_html, unsafe_allow_html=True)
 
         # ── Questions Display ──
         display_num = 1
