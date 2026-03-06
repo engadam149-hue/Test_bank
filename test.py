@@ -5,7 +5,7 @@ from data import SUBJECTS, QUESTIONS_DB
 # ════════════════════════════════════════════════════════════
 # ⚙️ Page Config
 # ════════════════════════════════════════════════════════════
-st.set_page_config(page_title="بنك أسئلة NMU", page_icon="📚", layout="wide")
+st.set_page_config(page_title="بنك أسئلة NMU", page_icon="🤖", layout="wide")
 
 # ════════════════════════════════════════════════════════════
 # 🔧 State Initialization
@@ -96,30 +96,49 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ════════════════════════════════════════════════════════════
-# 🎨 CSS
+# 🎨 CSS - COMPLETE CYBERPUNK THEME
 # ════════════════════════════════════════════════════════════
 if st.session_state.theme == "dark":
     css_vars = """
     :root {
-        --bg-main: #08070f; --bg-card: #0e0c1a; --bg-hero: #0c0a18;
-        --border-card: #1a1530; --border-line: #1e1633;
-        --text-main: #e8e4f0; --text-muted: #5a5078; --text-card-title: #e8e4f0;
-        --primary: #7c3aed; --primary-light: #a78bfa;
-        --badge-bg: #1a1333; --btn-bg: #0e0c1a; --btn-border: #1e1a30; --btn-hover: #110e20;
-        --opt-neutral-bg: #0e0c1a; --opt-correct-bg: #0a1f12; --opt-correct-text: #4ade80; --opt-correct-border: #16a34a;
-        --opt-wrong-bg: #1c0a0a; --opt-wrong-text: #f87171; --opt-wrong-border: #dc2626;
-        --scrollbar-thumb: #3d2d6e; --prog-bg: #1a1530;
-        --ring-bg: #0c0a18; --ring-border: #1e1633;
-        --badge-tf-bg: #0d1f30; --badge-tf-text: #3b82f6; --badge-tf-border: #1e3a5f;
-        --special-bg: linear-gradient(135deg, #1e133c, #0e0c1a);
-        --special-border: #a78bfa;
-        --special-shadow: 0 4px 30px #7c3aed33;
+        --bg-main: #06070a; 
+        --bg-card: #0c0e14; 
+        --bg-hero: transparent;
+        --border-card: #1f2233; 
+        --border-line: #1f2233;
+        --text-main: #e2e8f0; 
+        --text-muted: #8b949e; 
+        --text-card-title: #ffffff;
+        --primary: #00f3ff; 
+        --primary-light: #bc13fe; 
+        --badge-bg: rgba(0, 243, 255, 0.1); 
+        --btn-bg: #0c0e14; 
+        --btn-border: #1f2233; 
+        --btn-hover: #131722;
+        --opt-neutral-bg: #0c0e14; 
+        --opt-correct-bg: rgba(0, 243, 255, 0.05); 
+        --opt-correct-text: #00f3ff; 
+        --opt-correct-border: #00f3ff;
+        --opt-wrong-bg: rgba(255, 0, 85, 0.05); 
+        --opt-wrong-text: #ff0055; 
+        --opt-wrong-border: #ff0055;
+        --scrollbar-thumb: #1f2233; 
+        --prog-bg: #0c0e14;
+        --ring-bg: #06070a; 
+        --ring-border: #1f2233;
+        --badge-tf-bg: rgba(188, 19, 254, 0.1); 
+        --badge-tf-text: #bc13fe; 
+        --badge-tf-border: rgba(188, 19, 254, 0.3);
+        --special-bg: linear-gradient(135deg, rgba(188, 19, 254, 0.05), #0c0e14);
+        --special-border: rgba(188, 19, 254, 0.6);
+        --special-shadow: 0 4px 30px rgba(188, 19, 254, 0.2);
+        --grid-color: rgba(0, 243, 255, 0.03);
     }
     """
 else:
     css_vars = """
     :root {
-        --bg-main: #f4f5f8; --bg-card: #ffffff; --bg-hero: #ffffff;
+        --bg-main: #f4f5f8; --bg-card: #ffffff; --bg-hero: transparent;
         --border-card: #e2e4ea; --border-line: #d0d4e0;
         --text-main: #1f1b2e; --text-muted: #6b667a; --text-card-title: #141021;
         --primary: #6d28d9; --primary-light: #8b5cf6;
@@ -132,6 +151,7 @@ else:
         --special-bg: linear-gradient(135deg, #f3f0ff, #ffffff);
         --special-border: #8b5cf6;
         --special-shadow: 0 8px 30px #8b5cf644;
+        --grid-color: rgba(109, 40, 217, 0.03);
     }
     """
 
@@ -143,7 +163,8 @@ st.markdown(f"""
 *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
 * {{ font-family: 'Tajawal', sans-serif !important; }}
 [data-testid="stSidebar"], [data-testid="collapsedControl"] {{ display: none !important; }}
-.stApp {{ background: var(--bg-main); color: var(--text-main); transition: background 0.3s ease; }}
+
+.stApp {{ background-color: var(--bg-main); background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 40px 40px; color: var(--text-main); transition: background-color 0.3s ease; }}
 section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .block-container {{ padding: 1rem 2rem 4rem !important; max-width: 1200px !important; }}
 
@@ -151,15 +172,12 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 ::-webkit-scrollbar-track {{ background: var(--bg-main); }}
 ::-webkit-scrollbar-thumb {{ background: var(--scrollbar-thumb); border-radius: 4px; }}
 
-/* ═════ HERO SECTION ═════ */
-.hero {{ position: relative; overflow: hidden; background: var(--bg-hero); border-bottom: 1px solid var(--border-line); padding: 56px 48px 48px; margin: 0 -2rem 48px; text-align: center; transition: background 0.3s; }}
-.hero::before {{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, #7c3aed11 0%, transparent 70%); }}
-.hero::after {{ content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--primary-light), transparent); opacity: 0.3; }}
+.hero {{ position: relative; overflow: hidden; background: var(--bg-hero); border-bottom: 1px solid var(--border-line); padding: 56px 48px 48px; margin: 0 -2rem 48px; text-align: center; }}
+.hero::before {{ content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0, 243, 255, 0.05) 0%, transparent 70%); pointer-events: none; }}
 .hero-inner {{ position: relative; z-index: 1; }}
-.hero-badge {{ display: inline-flex; align-items: center; gap: 8px; background: var(--badge-bg); border: 1px solid var(--scrollbar-thumb); border-radius: 100px; padding: 6px 18px; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--primary-light); text-transform: uppercase; margin-bottom: 20px; }}
-.hero-badge::before {{ content: '◆'; font-size: 8px; color: var(--primary); }}
+.hero-badge {{ display: inline-flex; align-items: center; gap: 8px; background: var(--badge-bg); border: 1px solid rgba(0, 243, 255, 0.3); border-radius: 100px; padding: 6px 18px; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--primary); text-transform: uppercase; margin-bottom: 20px; box-shadow: 0 0 15px rgba(0, 243, 255, 0.1); }}
 .hero-title {{ font-family: 'Playfair Display', serif !important; font-size: clamp(36px, 5vw, 56px); font-weight: 800; color: var(--text-main); line-height: 1.1; margin-bottom: 12px; }}
-.hero-title em {{ font-style: normal; color: var(--primary-light); }}
+.hero-title em {{ font-style: normal; color: var(--primary-light); text-shadow: 0 0 20px rgba(188, 19, 254, 0.4); }}
 .hero-sub {{ font-size: 15px; color: var(--text-muted); max-width: 480px; margin: 0 auto; line-height: 1.7; }}
 .hero-stats {{ display: flex; justify-content: center; gap: 40px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-line); }}
 .stat {{ text-align: center; }}
@@ -169,82 +187,60 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .section-hdr {{ display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }}
 .section-hdr-line {{ flex: 1; height: 1px; background: linear-gradient(90deg, var(--border-line), transparent); }}
 .section-hdr-line.right {{ background: linear-gradient(270deg, var(--border-line), transparent); }}
-.section-hdr-label {{ font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--scrollbar-thumb); text-transform: uppercase; white-space: nowrap; }}
+.section-hdr-label {{ font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--text-muted); text-transform: uppercase; white-space: nowrap; }}
 
-/* ═════ CARDS DESIGN ═════ */
-.subject-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 20px; padding: 28px 24px; text-align: right; direction: rtl; transition: all .25s; cursor: pointer; height: 100%; position: relative; overflow: hidden; }}
-.subject-card::before {{ content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--scrollbar-thumb), transparent); opacity: 0; transition: opacity .3s; }}
+.clickable-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 20px; padding: 28px 24px; text-align: right; direction: rtl; transition: all .3s ease; position: relative; height: 100%; margin-bottom: 15px; backdrop-filter: blur(10px); }}
+.clickable-card.lec {{ padding: 18px 20px; border-radius: 14px; }}
+.clickable-card.locked {{ opacity: .5; filter: grayscale(1); }}
+.clickable-card.special-card {{ background: var(--special-bg); border: 2px solid var(--special-border); box-shadow: var(--special-shadow); transform: scale(1.02); }}
+
+div[data-testid="column"]:has(.clickable-card) {{ position: relative; }}
+div[data-testid="column"]:has(.clickable-card) div[data-testid="stButton"] {{ position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }}
+div[data-testid="column"]:has(.clickable-card) div[data-testid="stButton"] button {{ width: 100% !important; height: 100% !important; opacity: 0 !important; cursor: pointer !important; background: transparent !important; border: none !important; color: transparent !important; }}
+
+div[data-testid="column"]:has(.clickable-card):hover .clickable-card:not(.locked) {{ border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1); transform: translateY(-4px); }}
+div[data-testid="column"]:has(.special-card):hover .special-card:not(.locked) {{ border-color: #d85bff; box-shadow: 0 10px 40px rgba(188, 19, 254, 0.3); transform: scale(1.04) translateY(-2px); }}
+
 .subj-icon {{ font-size: 36px; margin-bottom: 14px; display: block; }}
 .subj-name {{ font-size: 16px; font-weight: 700; color: var(--text-card-title); margin-bottom: 4px; }}
 .subj-code {{ font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }}
 .subj-desc {{ font-size: 13px; color: var(--text-muted); line-height: 1.5; }}
 
-.lec-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 18px 20px; text-align: right; direction: rtl; transition: all .2s; cursor: pointer; position: relative; height: 100%; }}
-.lec-card.locked {{ opacity: .5; filter: grayscale(1); }}
-.lec-card.special-card {{ background: var(--special-bg); border: 2px solid var(--special-border); box-shadow: var(--special-shadow); transform: scale(1.02); }}
 .special-card .lec-num {{ font-size: 12px; color: var(--primary-light); font-weight: 800; }}
 .special-card .lec-title {{ color: var(--text-main); font-size: 16px; }}
-.lec-num {{ font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--scrollbar-thumb); text-transform: uppercase; margin-bottom: 8px; }}
+.lec-num {{ font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px; }}
 .lec-title {{ font-size: 14px; font-weight: 700; color: var(--text-card-title); margin-bottom: 6px; }}
 .lec-count-badge {{ display: inline-block; background: var(--border-card); border: 1px solid var(--border-line); border-radius: 100px; padding: 2px 10px; font-size: 11px; color: var(--text-muted); }}
 
-/* 🔥 THE MAGIC TRICK: FULL CLICKABLE CARDS 🔥 */
-[data-testid="column"]:has(.overlay-btn) {{
-    position: relative;
-}}
-[data-testid="column"]:has(.overlay-btn) [data-testid="stButton"] {{
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 10;
-}}
-[data-testid="column"]:has(.overlay-btn) [data-testid="stButton"] button {{
-    width: 100% !important; height: 100% !important;
-    opacity: 0 !important; cursor: pointer !important;
-}}
-
-/* 🌟 HOVER EFFECTS TRIGGERED BY THE INVISIBLE BUTTON 🌟 */
-[data-testid="column"]:has(.overlay-btn):hover .subject-card {{
-    border-color: var(--primary); background: var(--btn-hover); box-shadow: 0 10px 30px #7c3aed11;
-}}
-[data-testid="column"]:has(.overlay-btn):hover .subject-card::before {{ opacity: 1; }}
-
-[data-testid="column"]:has(.overlay-btn):hover .lec-card:not(.locked) {{
-    border-color: var(--scrollbar-thumb); transform: translateY(-2px);
-}}
-[data-testid="column"]:has(.overlay-btn):hover .special-card:not(.locked) {{
-    transform: scale(1.04); box-shadow: 0 8px 40px var(--special-shadow);
-}}
-
-/* ═════ QUIZ RESULTS & PROGRESS ═════ */
-.prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 28px; direction: rtl; }}
+.prog-wrap {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 20px 24px; margin-bottom: 16px; direction: rtl; }}
 .prog-top {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }}
 .prog-label {{ font-size: 13px; color: var(--text-muted); font-weight: 600; }}
 .prog-stats {{ display: flex; gap: 16px; }}
 .prog-stat {{ font-size: 13px; font-weight: 700; }}
 .prog-stat.correct {{ color: var(--opt-correct-text); }}
 .prog-stat.wrong   {{ color: var(--opt-wrong-text); }}
-.prog-bar-bg {{ background: var(--prog-bg); border-radius: 100px; height: 6px; overflow: hidden; }}
-.prog-bar-fill {{ height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width .4s ease; }}
+.prog-bar-bg {{ background: var(--prog-bg); border-radius: 100px; height: 6px; overflow: hidden; border: 1px solid var(--border-line); }}
+.prog-bar-fill {{ height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--primary), var(--primary-light)); transition: width .4s ease; box-shadow: 0 0 10px var(--primary); }}
 
-.score-banner {{ background: var(--bg-card); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px 40px; text-align: center; margin-bottom: 32px; position: relative; overflow: hidden; direction: rtl; }}
-.score-ring {{ width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--ring-border); margin: 0 auto 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--ring-bg); }}
-.score-ring-num {{ font-size: 36px; font-weight: 800; color: var(--primary-light); line-height: 1; }}
-.score-ring-den {{ font-size: 14px; color: var(--scrollbar-thumb); }}
-.score-title    {{ font-size: 22px; font-weight: 800; color: var(--text-card-title); margin-bottom: 6px; }}
-.score-pct      {{ font-size: 14px; color: var(--text-muted); }}
+.nav-wrapper {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px; padding: 16px; margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; direction: ltr; }}
+.nav-item {{ display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; font-size: 13px; font-weight: 700; border: 1px solid var(--border-line); background: var(--btn-bg); color: var(--text-muted); transition: all 0.3s; position: relative; }}
+.nav-item.pending {{ color: var(--text-muted); }}
+.nav-item.correct {{ border-color: var(--opt-correct-border); color: var(--opt-correct-text); box-shadow: inset 0 0 8px rgba(0,243,255,0.1); }}
+.nav-item.wrong {{ border-color: var(--opt-wrong-border); color: var(--opt-wrong-text); box-shadow: inset 0 0 8px rgba(255,0,85,0.1); }}
+.nav-icon {{ position: absolute; bottom: -4px; right: -4px; font-size: 10px; background: var(--bg-main); border-radius: 50%; padding: 2px; }}
 
 .q-card {{ background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 18px; padding: 28px 32px; margin-bottom: 8px; direction: ltr; transition: border-color .3s; }}
-.q-card.state-correct {{ border-color: var(--opt-correct-border); }}
-.q-card.state-wrong   {{ border-color: var(--opt-wrong-border); }}
+.q-card.state-correct {{ border-color: var(--opt-correct-border); box-shadow: 0 0 15px rgba(0,243,255,0.05); }}
+.q-card.state-wrong   {{ border-color: var(--opt-wrong-border); box-shadow: 0 0 15px rgba(255,0,85,0.05); }}
 .q-header {{ display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }}
-.q-num  {{ font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--scrollbar-thumb); text-transform: uppercase; }}
+.q-num  {{ font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }}
 .q-badge {{ font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 10px; border-radius: 100px; text-transform: uppercase; }}
-.badge-mcq {{ background: var(--border-card); color: var(--primary); border: 1px solid var(--scrollbar-thumb); }}
+.badge-mcq {{ background: var(--badge-bg); color: var(--primary); border: 1px solid rgba(0,243,255,0.2); }}
 .badge-tf  {{ background: var(--badge-tf-bg); color: var(--badge-tf-text); border: 1px solid var(--badge-tf-border); }}
 .q-text {{ font-size: 17px; font-weight: 500; color: var(--text-card-title); line-height: 1.65; margin-bottom: 0; text-align: left; }}
 
-.opt {{ border-radius: 12px; padding: 14px 20px; font-size: 14px; font-weight: 500; margin-bottom: 8px; line-height: 1.5; transition: all .2s; display: flex; align-items: center; height: 100%; }}
-.opt-correct {{ background: var(--opt-correct-bg); border: 1.5px solid var(--opt-correct-border); color: var(--opt-correct-text); text-align: left; direction: ltr; }}
+.opt {{ border-radius: 12px; padding: 14px 20px; font-size: 14px; font-weight: 500; margin-bottom: 8px; line-height: 1.5; transition: all .2s; display: flex; align-items: center; height: 100%; cursor: pointer; }}
+.opt-correct {{ background: var(--opt-correct-bg); border: 1.5px solid var(--opt-correct-border); color: var(--opt-correct-text); text-align: left; direction: ltr; box-shadow: inset 0 0 10px rgba(0,243,255,0.1); }}
 .opt-wrong   {{ background: var(--opt-wrong-bg); border: 1.5px solid var(--opt-wrong-border); color: var(--opt-wrong-text); text-decoration: line-through; text-align: left; direction: ltr; }}
 .opt-reveal  {{ background: var(--opt-correct-bg); border: 1.5px solid var(--opt-correct-border); color: var(--opt-correct-text); opacity: 0.8; text-align: left; direction: ltr; }}
 .opt-neutral {{ background: var(--opt-neutral-bg); border: 1.5px solid var(--border-card); color: var(--text-main); text-align: left; direction: ltr; }}
@@ -254,17 +250,22 @@ section[data-testid="stMain"] > div {{ padding-top: 0 !important; }}
 .explain-wrong   {{ background: var(--opt-wrong-bg); border: 1px solid var(--opt-wrong-border); color: var(--opt-wrong-text); }}
 .q-sep {{ height: 1px; background: var(--border-line); margin: 20px 0; }}
 
-/* ═════ BUTTONS ═════ */
-div[data-testid="stButton"] button {{ background: var(--btn-bg) !important; border: 1px solid var(--btn-border) !important; border-radius: 10px !important; color: var(--text-muted) !important; font-size: 14px !important; font-weight: 500 !important; padding: 12px 16px !important; transition: all .2s !important; width: 100% !important; height: 100% !important; }}
-div[data-testid="stButton"] button:hover {{ border-color: var(--primary) !important; color: var(--primary) !important; background: var(--btn-hover) !important; }}
+.score-banner {{ background: var(--bg-card); border: 1px solid var(--border-line); border-radius: 24px; padding: 48px 40px; text-align: center; margin-bottom: 32px; position: relative; overflow: hidden; direction: rtl; box-shadow: inset 0 0 50px rgba(0,243,255,0.02); }}
+.score-ring {{ width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--ring-border); margin: 0 auto 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--ring-bg); box-shadow: 0 0 20px rgba(188,19,254,0.1); }}
+.score-ring-num {{ font-size: 36px; font-weight: 800; color: var(--primary-light); line-height: 1; text-shadow: 0 0 10px rgba(188,19,254,0.3); }}
+.score-ring-den {{ font-size: 14px; color: var(--text-muted); }}
+.score-title    {{ font-size: 22px; font-weight: 800; color: var(--text-card-title); margin-bottom: 6px; }}
+.score-pct      {{ font-size: 14px; color: var(--text-muted); }}
 
-div[data-testid="stButton"][aria-label*="Mode"] button {{ border-radius: 50px !important; border: 1px solid var(--primary) !important; color: var(--primary) !important; background: var(--badge-bg) !important; font-weight: 700 !important; margin-bottom: 10px; font-family: sans-serif !important; }}
-div[data-testid="stButton"][aria-label*="Mode"] button:hover {{ background: var(--primary) !important; color: #fff !important; }}
+div[data-testid="stButton"] button {{ background: var(--btn-bg) !important; border: 1px solid var(--btn-border) !important; border-radius: 10px !important; color: var(--text-main) !important; font-size: 14px !important; font-weight: 700 !important; padding: 12px 16px !important; transition: all .3s ease !important; width: 100% !important; height: 100% !important; margin-bottom: 10px; }}
+div[data-testid="stButton"] button:hover {{ border-color: var(--primary) !important; color: var(--primary) !important; background: var(--btn-hover) !important; box-shadow: 0 0 15px rgba(0,243,255,0.1); }}
+div[data-testid="stButton"][aria-label*="Mode"] button {{ border-radius: 50px !important; border: 1px solid var(--border-card) !important; color: var(--text-muted) !important; background: var(--bg-card) !important; font-weight: 700 !important; margin-bottom: 10px; font-family: sans-serif !important; box-shadow: none !important; }}
+div[data-testid="stButton"][aria-label*="Mode"] button:hover {{ background: var(--primary) !important; color: #000 !important; border-color: var(--primary) !important; }}
 
 #MainMenu, footer, header {{ visibility: hidden; }}
 .stDeployButton {{ display: none; }}
 @keyframes fadeUp {{ from {{ opacity: 0; transform: translateY(12px); }} to {{ opacity: 1; transform: translateY(0); }} }}
-.q-card, .subject-card, .lec-card {{ animation: fadeUp .3s ease both; }}
+.q-card, .clickable-card {{ animation: fadeUp .4s ease both; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -306,18 +307,14 @@ if st.session_state.page == "subjects":
             if i + j < len(SUBJECTS):
                 subj = SUBJECTS[i + j]
                 with cols[j]:
-                    # هنا التعديل: حطينا كلاس overlay-btn عشان نلقطه بالـ CSS
                     st.markdown(f"""
-                    <div class="overlay-btn"></div>
-                    <div class="subject-card">
+                    <div class="clickable-card">
                         <span class="subj-icon">{subj['icon']}</span>
                         <div class="subj-name">{subj['name']}</div>
                         <div class="subj-code">{subj['code']}</div>
                         <div class="subj-desc">{subj['desc']}</div>
                     </div>""", unsafe_allow_html=True)
-                    
-                    # الزرار المخفي اللي بيغطي الكارت
-                    st.button("invisible", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
+                    st.button(" ", key=f"btn_{subj['key']}", on_click=go_to_page, args=("lectures", subj["key"]), use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 2️⃣  PAGE: LECTURES
@@ -327,7 +324,7 @@ elif st.session_state.page == "lectures":
 
     col1, col2 = st.columns([10, 2])
     with col2:
-        st.button("🔙 رجوع للمواد", on_click=go_to_page, args=("subjects",), use_container_width=True)
+        st.button("🔙 رجوع", on_click=go_to_page, args=("subjects",), use_container_width=True)
     with col1:
         section_header(f"محاضرات · {cur_subj['name']}")
 
@@ -344,10 +341,8 @@ elif st.session_state.page == "lectures":
                     sp_class = "special-card" if is_special else ""
                     locked_cls = "locked" if not lec['available'] else ""
                     
-                    # الكارت هنا كمان اتعدل
                     st.markdown(f"""
-                    <div class="overlay-btn"></div>
-                    <div class="lec-card {sp_class} {locked_cls}">
+                    <div class="clickable-card lec {sp_class} {locked_cls}">
                         <div class="lec-num">{'✨' if is_special else 'Lecture'} {lec['num']}</div>
                         <div class="lec-title">{lec['title']}</div>
                         <span class="lec-count-badge">{lec['count']}</span>
@@ -355,9 +350,9 @@ elif st.session_state.page == "lectures":
                     </div>""", unsafe_allow_html=True)
 
                     if lec["available"]:
-                        st.button("invisible", key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
+                        st.button(" ", key=f"btn_{lec['key']}", on_click=go_to_page, args=("quiz", None, lec["key"]), use_container_width=True)
                     else:
-                        st.button("invisible", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
+                        st.button(" ", key=f"locked_{lec['key']}", disabled=True, use_container_width=True)
 
 # ════════════════════════════════════════════════════════════
 # 3️⃣  PAGE: QUIZ
@@ -367,7 +362,7 @@ elif st.session_state.page == "quiz":
 
     col1, col2 = st.columns([10, 2])
     with col2:
-        st.button("🔙 للمحاضرات", on_click=go_to_page, args=("lectures",), use_container_width=True)
+        st.button("🔙 رجوع", on_click=go_to_page, args=("lectures",), use_container_width=True)
     with col1:
         section_header("الاختبار")
 
@@ -379,6 +374,7 @@ elif st.session_state.page == "quiz":
         total    = len(questions)
         pct_done = answered / total if total else 0
 
+        # ── Progress Bar ──
         st.markdown(f"""
         <div class="prog-wrap">
             <div class="prog-top">
@@ -393,6 +389,35 @@ elif st.session_state.page == "quiz":
             </div>
         </div>""", unsafe_allow_html=True)
 
+        # ── 🆕 QUESTION NAVIGATOR GRID (FIXED) ──
+        nav_html = '<div class="nav-wrapper">'
+        nav_display_num = 1
+        for orig_idx in st.session_state.q_order:
+            chosen = st.session_state.answers.get(orig_idx)
+            is_correct = (chosen == questions[orig_idx]["ans"]) if chosen is not None else False
+            
+            # تخطي الأسئلة الصح في الـ Navigator لو وضع الأخطاء متفعل
+            if st.session_state.show_mistakes_only and is_correct:
+                continue
+                
+            num_str = str(nav_display_num).zfill(2)
+            
+            if chosen is None:
+                nav_html += f'<div class="nav-item pending">{num_str}</div>'
+            else:
+                if is_correct:
+                    nav_html += f'<div class="nav-item correct">{num_str}<span class="nav-icon">✅</span></div>'
+                else:
+                    nav_html += f'<div class="nav-item wrong">{num_str}<span class="nav-icon">❌</span></div>'
+                    
+            nav_display_num += 1
+            
+        nav_html += '</div>'
+        
+        # Display the Navigator
+        st.markdown(nav_html, unsafe_allow_html=True)
+
+        # ── Questions Display ──
         display_num = 1
         for orig_idx in st.session_state.q_order:
             q = questions[orig_idx]
@@ -447,6 +472,7 @@ elif st.session_state.page == "quiz":
 
             st.markdown("<div class='q-sep'></div>", unsafe_allow_html=True)
 
+        # ── Score Display ──
         if answered == total:
             pct = int((score / total) * 100)
             if   pct == 100: emoji, msg = "🏆", "نتيجة مثالية!"
@@ -468,7 +494,7 @@ elif st.session_state.page == "quiz":
 
             c_btn1, c_btn2 = st.columns(2)
             with c_btn1:
-                st.button("🔄 إعادة المحاولة (بترتيب جديد)", on_click=retry_quiz, use_container_width=True)
+                st.button("🔄 إعادة المحاولة", on_click=retry_quiz, use_container_width=True)
             with c_btn2:
                 if score < total:
                     lbl = "📖 عرض كل الأسئلة" if st.session_state.show_mistakes_only else "🔍 مراجعة أخطائي فقط"
