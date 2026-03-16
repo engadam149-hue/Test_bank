@@ -18,7 +18,8 @@ import dm_lec3
 
 # 👈 استدعاء ملفات مادة الـ DSP
 import dsp_lec1 
-import dsp_lec2 # 👈 المحاضرة التانية بـ 51 سؤال
+import dsp_lec2
+import dsp_lec3  # 👈 المحاضرة التالتة الجديدة
 
 # 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
@@ -67,8 +68,9 @@ SUBJECTS = [
         "key": "dsp",
         "lectures": [
             {"num": "01", "title": "Lec 1: Intro & Sampling", "count": "40 سؤال", "key": "dsp_lec1", "available": True},
-            # 👈 المحاضرة التانية اتضافت وعدد الأسئلة اتحدث لـ 51
             {"num": "02", "title": "Lec 2: Periodicity & Operations", "count": "51 سؤال", "key": "dsp_lec2", "available": True},
+            # 👈 المحاضرة التالتة اتضافت هنا بـ 46 سؤال!
+            {"num": "03", "title": "Lec 3: Signals & Energy", "count": "46 سؤال", "key": "dsp_lec3", "available": True},
         ]
     }
 ]
@@ -88,7 +90,8 @@ QUESTIONS_DB = {
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
     
-    # 👈 ربطنا أسئلة الـ DSP بالملفات بتاعتها
+    # 👈 ربطنا أسئلة الـ DSP كلها بالملفات بتاعتها
     "dsp_lec1": dsp_lec1.QUESTIONS,
     "dsp_lec2": dsp_lec2.QUESTIONS,
+    "dsp_lec3": dsp_lec3.QUESTIONS, # 👈 المحاضرة التالتة
 }
