@@ -3,25 +3,31 @@
 # ==========================================
 
 # 1. استدعاء الملفات
+# 👈 ملفات مادة Machine Learning
 import ml_lec1
 import ml_lec2
+import ml_lec3
+import ml_lec4
+import ml_lec5
 
+# 👈 ملفات مادة Computer Architecture
 import arc_lec1
 import arc_lec2
 import arc_lec3
 import arc_lec4
 import arc_ass   
 
+# 👈 ملفات مادة Discrete Mathematics
 import dm_lec1  
 import dm_lec2  
 import dm_lec3  
 
-# 👈 استدعاء ملفات مادة الـ DSP
+# 👈 ملفات مادة Digital Signal Processing
 import dsp_lec1 
 import dsp_lec2
 import dsp_lec3
 import dsp_lec4
-import dsp_lec5_6  # 👈 المحاضرة 5 و 6 الجديدة
+import dsp_lec5_6
 
 # 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
@@ -29,11 +35,14 @@ SUBJECTS = [
         "icon": "🤖", 
         "name": "Machine Learning", 
         "code": "AIE121",
-        "desc": "Intro, KNN, Decision Trees...", 
+        "desc": "Intro, KNN, Decision Trees, Regression, Clustering...", 
         "key": "ml",
         "lectures": [
             {"num": "01", "title": "Intro to ML", "count": "50 سؤال", "key": "ml_lec1", "available": True},
             {"num": "02", "title": "KNN Algorithm", "count": "50 سؤال", "key": "ml_lec2", "available": True},
+            {"num": "03", "title": "Linear Regression & GD", "count": "25 سؤال", "key": "ml_lec3", "available": True},
+            {"num": "04", "title": "Logistic Regression", "count": "22 سؤال", "key": "ml_lec4", "available": True},
+            {"num": "05", "title": "K-Means Clustering", "count": "21 سؤال", "key": "ml_lec5", "available": True},
         ]
     },
     {
@@ -73,7 +82,6 @@ SUBJECTS = [
             {"num": "02", "title": "Lec 2: Periodicity & Operations", "count": "51 سؤال", "key": "dsp_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Signals & Energy", "count": "46 سؤال", "key": "dsp_lec3", "available": True},
             {"num": "04", "title": "Lec 4: LTI Systems", "count": "36 سؤال", "key": "dsp_lec4", "available": True},
-            # 👈 المحاضرة 5 و 6 اتضافت هنا بـ 35 سؤال!
             {"num": "5-6", "title": "Lec 5-6: Convolution & LTI", "count": "35 سؤال", "key": "dsp_lec5_6", "available": True},
         ]
     }
@@ -81,23 +89,29 @@ SUBJECTS = [
 
 # 3. ربط المفاتيح بملفات الأسئلة
 QUESTIONS_DB = {
+    # Machine Learning
     "ml_lec1": ml_lec1.QUESTIONS,
     "ml_lec2": ml_lec2.QUESTIONS,
+    "ml_lec3": ml_lec3.QUESTIONS,
+    "ml_lec4": ml_lec4.QUESTIONS,
+    "ml_lec5": ml_lec5.QUESTIONS,
     
+    # Computer Architecture
     "arc_ass": arc_ass.QUESTIONS, 
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
     "arc_lec4": arc_lec4.QUESTIONS, 
     
+    # Discrete Mathematics
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
     
-    # 👈 ربطنا أسئلة الـ DSP كلها بالملفات بتاعتها
+    # Digital Signal Processing
     "dsp_lec1": dsp_lec1.QUESTIONS,
     "dsp_lec2": dsp_lec2.QUESTIONS,
     "dsp_lec3": dsp_lec3.QUESTIONS,
     "dsp_lec4": dsp_lec4.QUESTIONS,
-    "dsp_lec5_6": dsp_lec5_6.QUESTIONS, # 👈 ربط المحاضرة 5 و 6
+    "dsp_lec5_6": dsp_lec5_6.QUESTIONS,
 }
