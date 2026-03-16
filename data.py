@@ -16,8 +16,9 @@ import dm_lec1
 import dm_lec2  
 import dm_lec3  
 
-# 👈 استدعاء ملف الـ DSP الجديد
+# 👈 استدعاء ملفات مادة الـ DSP
 import dsp_lec1 
+import dsp_lec2 # 👈 المحاضرة التانية بـ 51 سؤال
 
 # 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
@@ -39,7 +40,6 @@ SUBJECTS = [
         "desc": "CPU, Memory, Buses, Cycle...", 
         "key": "arc",
         "lectures": [
-            # 👈 الاسايمنتات ملكة في مكانها أول واحدة بـ 65 سؤال
             {"num": "🏆", "title": "Assignments & Quizzes", "count": "65 سؤال", "key": "arc_ass", "available": True, "special": True}, 
             {"num": "01", "title": "Lec 1: Intro & Structure", "count": "31 سؤال", "key": "arc_lec1", "available": True},
             {"num": "02", "title": "Lec 2: CPU & Buses", "count": "50 سؤال", "key": "arc_lec2", "available": True},
@@ -59,7 +59,6 @@ SUBJECTS = [
             {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, 
         ]
     },
-    # 👈 مادة الـ DSP اتضافت هنا!
     {
         "icon": "📡", 
         "name": "Digital Signal Processing", 
@@ -68,6 +67,8 @@ SUBJECTS = [
         "key": "dsp",
         "lectures": [
             {"num": "01", "title": "Lec 1: Intro & Sampling", "count": "40 سؤال", "key": "dsp_lec1", "available": True},
+            # 👈 المحاضرة التانية اتضافت وعدد الأسئلة اتحدث لـ 51
+            {"num": "02", "title": "Lec 2: Periodicity & Operations", "count": "51 سؤال", "key": "dsp_lec2", "available": True},
         ]
     }
 ]
@@ -77,7 +78,7 @@ QUESTIONS_DB = {
     "ml_lec1": ml_lec1.QUESTIONS,
     "ml_lec2": ml_lec2.QUESTIONS,
     
-    "arc_ass": arc_ass.QUESTIONS, # 👈 مربوطة صح
+    "arc_ass": arc_ass.QUESTIONS, 
     "arc_lec1": arc_lec1.QUESTIONS, 
     "arc_lec2": arc_lec2.QUESTIONS,
     "arc_lec3": arc_lec3.QUESTIONS, 
@@ -87,6 +88,7 @@ QUESTIONS_DB = {
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
     
-    # 👈 ربطنا أسئلة الـ DSP بالملف بتاعها
+    # 👈 ربطنا أسئلة الـ DSP بالملفات بتاعتها
     "dsp_lec1": dsp_lec1.QUESTIONS,
+    "dsp_lec2": dsp_lec2.QUESTIONS,
 }
