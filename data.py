@@ -16,6 +16,9 @@ import dm_lec1
 import dm_lec2  
 import dm_lec3  
 
+# 👈 استدعاء ملف الـ DSP الجديد
+import dsp_lec1 
+
 # 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
     {
@@ -55,6 +58,17 @@ SUBJECTS = [
             {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, 
         ]
+    },
+    # 👈 مادة الـ DSP اتضافت هنا!
+    {
+        "icon": "📡", 
+        "name": "Digital Signal Processing", 
+        "code": "DSP201",  
+        "desc": "Signals, Sampling, Z-Transform, Filters...", 
+        "key": "dsp",
+        "lectures": [
+            {"num": "01", "title": "Lec 1: Intro & Sampling", "count": "40 سؤال", "key": "dsp_lec1", "available": True},
+        ]
     }
 ]
 
@@ -72,4 +86,7 @@ QUESTIONS_DB = {
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
+    
+    # 👈 ربطنا أسئلة الـ DSP بالملف بتاعها
+    "dsp_lec1": dsp_lec1.QUESTIONS,
 }
