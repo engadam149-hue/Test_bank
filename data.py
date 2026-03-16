@@ -21,6 +21,8 @@ import arc_ass
 import dm_lec1  
 import dm_lec2  
 import dm_lec3  
+import dm_lec4  # 👈 المحاضرة الرابعة (Sets)
+import dm_lec5  # 👈 المحاضرة الخامسة (Functions)
 
 # 👈 ملفات مادة Digital Signal Processing
 import dsp_lec1 
@@ -69,6 +71,8 @@ SUBJECTS = [
             {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True},
             {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, 
+            {"num": "04", "title": "Lec 4: Sets & Operations", "count": "21 سؤال", "key": "dm_lec4", "available": True},
+            {"num": "05", "title": "Lec 5: Functions", "count": "21 سؤال", "key": "dm_lec5", "available": True},
         ]
     },
     {
@@ -107,6 +111,8 @@ QUESTIONS_DB = {
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
+    "dm_lec4": dm_lec4.QUESTIONS,
+    "dm_lec5": dm_lec5.QUESTIONS,
     
     # Digital Signal Processing
     "dsp_lec1": dsp_lec1.QUESTIONS,
