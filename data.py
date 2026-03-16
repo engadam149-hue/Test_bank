@@ -20,7 +20,8 @@ import dm_lec3
 import dsp_lec1 
 import dsp_lec2
 import dsp_lec3
-import dsp_lec4  # 👈 المحاضرة الرابعة الجديدة
+import dsp_lec4
+import dsp_lec5_6  # 👈 المحاضرة 5 و 6 الجديدة
 
 # 2. إعدادات المواد (بترتيبها الأصلي المظبوط)
 SUBJECTS = [
@@ -71,8 +72,9 @@ SUBJECTS = [
             {"num": "01", "title": "Lec 1: Intro & Sampling", "count": "40 سؤال", "key": "dsp_lec1", "available": True},
             {"num": "02", "title": "Lec 2: Periodicity & Operations", "count": "51 سؤال", "key": "dsp_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Signals & Energy", "count": "46 سؤال", "key": "dsp_lec3", "available": True},
-            # 👈 المحاضرة الرابعة اتضافت هنا بـ 36 سؤال!
             {"num": "04", "title": "Lec 4: LTI Systems", "count": "36 سؤال", "key": "dsp_lec4", "available": True},
+            # 👈 المحاضرة 5 و 6 اتضافت هنا بـ 35 سؤال!
+            {"num": "5-6", "title": "Lec 5-6: Convolution & LTI", "count": "35 سؤال", "key": "dsp_lec5_6", "available": True},
         ]
     }
 ]
@@ -96,5 +98,6 @@ QUESTIONS_DB = {
     "dsp_lec1": dsp_lec1.QUESTIONS,
     "dsp_lec2": dsp_lec2.QUESTIONS,
     "dsp_lec3": dsp_lec3.QUESTIONS,
-    "dsp_lec4": dsp_lec4.QUESTIONS, # 👈 المحاضرة الرابعة
+    "dsp_lec4": dsp_lec4.QUESTIONS,
+    "dsp_lec5_6": dsp_lec5_6.QUESTIONS, # 👈 ربط المحاضرة 5 و 6
 }
