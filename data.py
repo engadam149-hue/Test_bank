@@ -21,8 +21,9 @@ import arc_ass
 import dm_lec1  
 import dm_lec2  
 import dm_lec3  
-import dm_lec4  # 👈 المحاضرة الرابعة (Sets)
-import dm_lec5  # 👈 المحاضرة الخامسة (Functions)
+import dm_lec4  
+import dm_lec5  
+import ds_ex    # 👈 استدعاء ملف الأمثلة الشاملة الجديد
 
 # 👈 ملفات مادة Digital Signal Processing
 import dsp_lec1 
@@ -68,6 +69,8 @@ SUBJECTS = [
         "desc": "Logic, Proofs, Sets, Functions...", 
         "key": "dm",
         "lectures": [
+            # 👈 كارت الأمثلة الشاملة مميز عشان يظهر للدفعة فوق
+            {"num": "💡", "title": "All Explicit Examples (Ch1 & Ch2)", "count": "52 سؤال", "key": "ds_ex", "available": True, "special": True},
             {"num": "01", "title": "Lec 1: Logic & Proofs", "count": "36 سؤال", "key": "dm_lec1", "available": True},
             {"num": "02", "title": "Lec 2: Bit Strings & Eq", "count": "51 سؤال", "key": "dm_lec2", "available": True},
             {"num": "03", "title": "Lec 3: Quantifiers & Proofs", "count": "50 سؤال", "key": "dm_lec3", "available": True}, 
@@ -108,6 +111,7 @@ QUESTIONS_DB = {
     "arc_lec4": arc_lec4.QUESTIONS, 
     
     # Discrete Mathematics
+    "ds_ex": ds_ex.QUESTIONS, # 👈 ربطنا ملف الأمثلة هنا بقاعدة البيانات
     "dm_lec1": dm_lec1.QUESTIONS,
     "dm_lec2": dm_lec2.QUESTIONS, 
     "dm_lec3": dm_lec3.QUESTIONS,
