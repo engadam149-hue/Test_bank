@@ -7,187 +7,187 @@
 QUESTIONS = [
     # ─── Part 1: Classification & Sigmoid Function ───
     {
-        "q": "على الرغم من وجود كلمة 'Regression' في اسمه، إلا أن خوارزمية Logistic Regression تُستخدم أساساً في حل مشاكل:",
+        "q": "Although it contains the word 'Regression', Logistic Regression is mainly used for solving:",
         "type": "mcq",
-        "options": ["التصنيف (Classification)", "الانحدار (Regression)", "التجميع (Clustering)", "تقليل الأبعاد (Dimensionality Reduction)"],
-        "ans": "التصنيف (Classification)",
-        "explain_correct": "بالظبط! الـ Logistic Regression بيُستخدم لتوقع فئات محددة (زي مريض/سليم، 0/1)، وبالتالي هو خوارزمية Classification. ✅",
-        "explain_wrong": "اسمه خادع شوية، لكنه بيُستخدم للتصنيف عشان بيطلع احتمالات بين 0 و 1."
+        "options": ["Classification", "Regression", "Clustering", "Dimensionality Reduction"],
+        "ans": "Classification",
+        "explain_correct": "Exactly! Logistic Regression is used to predict discrete classes (like sick/healthy, 0/1), so it is a classification algorithm. ✅",
+        "explain_wrong": "The name is a bit misleading, but it is used for classification because it outputs probabilities between 0 and 1."
     },
     {
-        "q": "ما هي الوظيفة الأساسية لدالة الـ Sigmoid (Logistic Function) في هذه الخوارزمية؟",
+        "q": "What is the main function of the Sigmoid (Logistic Function) in this algorithm?",
         "type": "mcq",
-        "options": ["تحويل أي قيمة حقيقية إلى رقم بين 0 و 1", "تحويل الأرقام السالبة إلى موجبة", "زيادة سرعة الـ Gradient Descent", "حساب معدل الخطأ"],
-        "ans": "تحويل أي قيمة حقيقية إلى رقم بين 0 و 1",
-        "explain_correct": "دالة الـ Sigmoid بتاخد أي رقم (من سالب مالانهاية لموجب مالانهاية) وتضغطه عشان تطلعلك احتمال (Probability) بين 0 و 1. ✅",
-        "explain_wrong": "دالة الـ Sigmoid تُستخدم لضغط المخرجات لتكون في نطاق الاحتمالات [0, 1]."
+        "options": ["Convert any real value into a number between 0 and 1", "Convert negative numbers to positive", "Increase Gradient Descent speed", "Calculate the error rate"],
+        "ans": "Convert any real value into a number between 0 and 1",
+        "explain_correct": "The Sigmoid function takes any number (from -∞ to +∞) and squashes it into a probability between 0 and 1. ✅",
+        "explain_wrong": "The Sigmoid function is used to squash outputs into the probability range [0, 1]."
     },
     {
-        "q": "المعادلة الرياضية لدالة الـ Sigmoid (Logistic function) g(z) هي:",
+        "q": "The mathematical equation of the Sigmoid (Logistic function) g(z) is:",
         "type": "mcq",
         "options": ["1 / (1 + e^(-z))", "1 / (1 - e^(-z))", "e^(-z) / (1 + e^(-z))", "1 + e^(-z)"],
         "ans": "1 / (1 + e^(-z))",
-        "explain_correct": "هذا هو القانون الثابت لدالة الـ Sigmoid، وكلما زادت قيمة z، اقترب الناتج من 1. ✅",
-        "explain_wrong": "تذكر أن الإشارة في المقام هي زائد، والأس الخاص بـ e هو سالب z."
+        "explain_correct": "This is the standard formula of the Sigmoid function. As z increases, the output approaches 1. ✅",
+        "explain_wrong": "Remember the denominator has a plus sign, and the exponent of e is negative z."
     },
     {
-        "q": "ماذا تمثل القيمة الناتجة من الفرضية h_θ(x) في الـ Logistic Regression؟",
+        "q": "What does the value of the hypothesis h_θ(x) represent in Logistic Regression?",
         "type": "mcq",
-        "options": ["الاحتمال المقدر (Estimated Probability) أن تكون y = 1 بناءً على المدخلات x", "قيمة الخطأ في التوقع", "الفئة النهائية (0 أو 1) مباشرة", "قيمة الخصائص (Features)"],
-        "ans": "الاحتمال المقدر (Estimated Probability) أن تكون y = 1 بناءً على المدخلات x",
-        "explain_correct": "الخرج بتاع h_θ(x) لو طلع مثلاً 0.7، ده معناه إن فيه احتمال 70% إن المريض ده مصاب (y=1). ✅",
-        "explain_wrong": "الناتج هو احتمال (Probability) وليس الفئة النهائية، ونحن من نقرر الفئة بناءً على الـ Threshold."
+        "options": ["Estimated probability that y = 1 given x", "Prediction error value", "Final class directly (0 or 1)", "Feature values"],
+        "ans": "Estimated probability that y = 1 given x",
+        "explain_correct": "If h_θ(x) = 0.7, it means there is a 70% probability that y = 1. ✅",
+        "explain_wrong": "The output is a probability, not the final class—we decide the class using a threshold."
     },
     {
-        "q": "إذا كانت الفرضية تعطينا الاحتمال P(y=1|x;θ) = 0.7، فما هو الاحتمال P(y=0|x;θ)؟",
+        "q": "If the hypothesis gives P(y=1|x;θ) = 0.7, what is P(y=0|x;θ)?",
         "type": "mcq",
         "options": ["0.3", "0.7", "0", "1"],
         "ans": "0.3",
-        "explain_correct": "بما أننا في Binary Classification (فئتين فقط)، فمجموع الاحتمالين لازم يساوي 1. إذن 1 - 0.7 = 0.3. ✅",
-        "explain_wrong": "مجموع احتمالات كل الفئات يجب أن يساوي 1."
+        "explain_correct": "Since it's binary classification, probabilities sum to 1 → 1 - 0.7 = 0.3. ✅",
+        "explain_wrong": "The sum of probabilities of all classes must equal 1."
     },
 
     # ─── Part 2: Decision Boundary ───
     {
-        "q": "بشكل افتراضي، ما هي قيمة الـ Threshold (الحد الفاصل) التي نستخدمها لتحويل الاحتمال الناتج من h_θ(x) إلى قرار نهائي (y=1 أو y=0)؟",
+        "q": "By default, what threshold is used to convert h_θ(x) into a final decision (y=0 or y=1)?",
         "type": "mcq",
         "options": ["0.5", "0", "1", "0.8"],
         "ans": "0.5",
-        "explain_correct": "الافتراضي إننا بنقول لو الاحتمال >= 0.5 إذن y=1، ولو الاحتمال < 0.5 إذن y=0. ✅",
-        "explain_wrong": "الحد الفاصل الافتراضي لتحديد الفئة هو 50% أو 0.5."
+        "explain_correct": "Default rule: if probability ≥ 0.5 → y=1, else → y=0. ✅",
+        "explain_wrong": "The default classification threshold is 0.5 (50%)."
     },
     {
-        "q": "متى تكون قيمة دالة الـ Sigmoid g(z) أكبر من أو تساوي 0.5؟",
+        "q": "When is the Sigmoid function g(z) ≥ 0.5?",
         "type": "mcq",
-        "options": ["عندما تكون z >= 0", "عندما تكون z <= 0", "عندما تكون z = 1", "عندما تكون z < 0.5"],
-        "ans": "عندما تكون z >= 0",
-        "explain_correct": "من رسمة الـ Sigmoid، المنحنى بيقطع محور الصادات عند 0.5 بالظبط لما تكون z = 0. وكل الأرقام الموجبة بتدي ناتج أكبر من 0.5. ✅",
-        "explain_wrong": "لو z بصفر، فالـ Sigmoid بـ 0.5. لو z موجبة، فالـ Sigmoid أكبر من 0.5."
+        "options": ["When z ≥ 0", "When z ≤ 0", "When z = 1", "When z < 0.5"],
+        "ans": "When z ≥ 0",
+        "explain_correct": "At z = 0, g(z) = 0.5. For positive z, g(z) > 0.5. ✅",
+        "explain_wrong": "If z = 0 → output = 0.5. If z > 0 → output > 0.5."
     },
     {
-        "q": "الـ Decision Boundary (الحد الفاصل) هو خاصية تعتمد على:",
+        "q": "The Decision Boundary depends on:",
         "type": "mcq",
-        "options": ["الفرضية (Hypothesis) والمعاملات (Parameters θ)", "مجموعة بيانات التدريب (Training set) فقط", "دالة التكلفة (Cost Function)", "الـ Learning Rate"],
-        "ans": "الفرضية (Hypothesis) والمعاملات (Parameters θ)",
-        "explain_correct": "الـ Decision boundary بيتحدد بناءً على قيم الـ θ اللي اتعلمناها، الداتا وظيفتها بس إنها تساعدنا نلاقي الـ θ دي، لكن الخط نفسه بيترسم من المعادلة θ^T x = 0. ✅",
-        "explain_wrong": "الـ Decision Boundary ليس خاصية من خصائص البيانات، بل هو خاصية للـ Parameters."
+        "options": ["Hypothesis and parameters θ", "Training data only", "Cost function", "Learning rate"],
+        "ans": "Hypothesis and parameters θ",
+        "explain_correct": "The decision boundary is determined by θ. Data helps learn θ, but the boundary itself comes from θᵀx = 0. ✅",
+        "explain_wrong": "The decision boundary is a property of the model parameters, not the data itself."
     },
     {
-        "q": "للحصول على Decision Boundary غير خطي (Non-linear) دائري الشكل مثلاً، ماذا يجب أن نفعل؟",
+        "q": "To obtain a non-linear decision boundary (e.g., circular), what should we do?",
         "type": "mcq",
-        "options": ["نضيف خصائص ذات درجات عليا (Higher order polynomials) مثل x1^2 و x2^2", "نستخدم معدل تعلم (α) كبير جداً", "نغير دالة الـ Sigmoid", "نزيل بعض بيانات التدريب"],
-        "ans": "نضيف خصائص ذات درجات عليا (Higher order polynomials) مثل x1^2 و x2^2",
-        "explain_correct": "لعمل حدود فصل منحنية أو معقدة، بندخل الـ Polynomial features جوه دالة الـ Sigmoid. ✅",
-        "explain_wrong": "الخصائص غير الخطية (مثل التربيع) تخلق حدود فصل غير خطية."
+        "options": ["Add higher-order polynomial features like x1^2, x2^2", "Use a very large learning rate", "Change the Sigmoid function", "Remove some training data"],
+        "ans": "Add higher-order polynomial features like x1^2, x2^2",
+        "explain_correct": "Adding polynomial features allows curved decision boundaries. ✅",
+        "explain_wrong": "Non-linear features create non-linear decision boundaries."
     },
 
     # ─── Part 3: Logistic Regression Cost Function ───
     {
-        "q": "لماذا لا نستخدم دالة التكلفة الخاصة بالـ Linear Regression (Squared Error) مع الـ Logistic Regression؟",
+        "q": "Why don't we use the Linear Regression cost function (Squared Error) with Logistic Regression?",
         "type": "mcq",
-        "options": ["لأنها ستكون دالة غير مُحدبة (Non-convex) ومليئة بالـ Local Minima", "لأنها ستكون بطيئة جداً", "لأنها ستعطي دائماً صفراً", "لا يوجد سبب، يمكننا استخدامها"],
-        "ans": "لأنها ستكون دالة غير مُحدبة (Non-convex) ومليئة بالـ Local Minima",
-        "explain_correct": "بسبب وجود دالة الـ Sigmoid المعقدة، لو ربعنا الخطأ هيطلع شكل متعرج (Non-convex) والـ Gradient Descent هيعلق في القيعان الوهمية (Local Minima). ✅",
-        "explain_wrong": "دالة الـ Squared Error مع الـ Sigmoid تنتج دالة 'Wavy' غير مُحدبة (Non-convex)."
+        "options": ["It becomes non-convex with many local minima", "It becomes too slow", "It always gives zero", "There is no reason"],
+        "ans": "It becomes non-convex with many local minima",
+        "explain_correct": "With Sigmoid, squared error becomes wavy (non-convex), causing Gradient Descent to get stuck. ✅",
+        "explain_wrong": "Squared error with Sigmoid produces a non-convex function."
     },
     {
-        "q": "في دالة التكلفة الجديدة، إذا كانت القيمة الحقيقية y = 1، وتوقع النموذج h_θ(x) = 1، فما هي قيمة التكلفة (Cost)؟",
+        "q": "If y = 1 and h_θ(x) = 1, what is the cost?",
         "type": "mcq",
-        "options": ["0", "Infinity (مالانهاية)", "1", "0.5"],
+        "options": ["0", "Infinity", "1", "0.5"],
         "ans": "0",
-        "explain_correct": "بما إن التوقع طابق الحقيقة بالظبط، إذن مفيش أي خطأ والتكلفة (Cost) تساوي صفر. ✅",
-        "explain_wrong": "إذا كان التوقع صحيحاً بنسبة 100%، فإن الخطأ (التكلفة) يكون 0."
+        "explain_correct": "Perfect prediction → zero error → cost = 0. ✅",
+        "explain_wrong": "If prediction is perfectly correct, cost is zero."
     },
     {
-        "q": "في دالة التكلفة، إذا كانت القيمة الحقيقية y = 1، وتوقع النموذج h_θ(x) = 0، فماذا ستكون التكلفة؟",
+        "q": "If y = 1 and h_θ(x) = 0, what is the cost?",
         "type": "mcq",
-        "options": ["Infinity (مالانهاية)", "0", "-1", "1"],
-        "ans": "Infinity (مالانهاية)",
-        "explain_correct": "ده أسوأ سيناريو! الحقيقة إنها بـ 1، والنموذج واثق بنسبة 100% إنها بـ 0. هنا بنعاقبه بشدة وبندي خطأ مقداره مالانهاية (-log(0) = ∞). ✅",
-        "explain_wrong": "الخطأ القاتل (التوقع العكسي بيقين تام) يُعاقب بتكلفة تؤول للمالانهاية."
+        "options": ["Infinity", "0", "-1", "1"],
+        "ans": "Infinity",
+        "explain_correct": "Worst case → -log(0) = ∞. Huge penalty. ✅",
+        "explain_wrong": "Completely wrong confident prediction leads to infinite cost."
     },
     {
-        "q": "تتميز دالة التكلفة الخاصة بالـ Logistic Regression (المبنية على اللوغاريتمات) بأنها:",
+        "q": "The Logistic Regression cost function is:",
         "type": "mcq",
-        "options": ["Convex (مُحدبة ولها Global Minimum واحد فقط)", "Non-convex (متعرجة)", "ليس لها حد أدنى", "دالة خطية"],
-        "ans": "Convex (مُحدبة ولها Global Minimum واحد فقط)",
-        "explain_correct": "استخدام اللوغاريتمات بيخلي الدالة Convex زي الطبق (Bowl-shaped)، وده بيضمن إن الـ Gradient Descent يوصل لأفضل حل دايماً. ✅",
-        "explain_wrong": "الدالة اللوغاريتمية تضمن الـ Convexity."
+        "options": ["Convex (one global minimum)", "Non-convex", "No minimum", "Linear"],
+        "ans": "Convex (one global minimum)",
+        "explain_correct": "Log-based cost creates a convex (bowl-shaped) function. ✅",
+        "explain_wrong": "Logarithmic formulation ensures convexity."
     },
     {
-        "q": "المعادلة الموحدة لدالة التكلفة J(θ) التي تجمع حالتي (y=1 و y=0) معاً تعتمد على:",
+        "q": "The unified cost function J(θ) is based on:",
         "type": "mcq",
-        "options": ["ضرب الجزء الأول في y، والجزء الثاني في (1-y)", "جمع y مع التوقع", "تربيع الفرق بين y والتوقع", "حذف y من المعادلة"],
-        "ans": "ضرب الجزء الأول في y، والجزء الثاني في (1-y)",
-        "explain_correct": "بالظبط! المعادلة هي: y*log(h) + (1-y)*log(1-h). لو y=1 الجزء التاني بيطير، ولو y=0 الجزء الأول بيطير. خدعة رياضية عبقرية! ✅",
-        "explain_wrong": "تستخدم هذه الصيغة لدمج معادلتين في سطر واحد."
+        "options": ["y*log(h) + (1-y)*log(1-h)", "Adding y to prediction", "Squared error", "Removing y"],
+        "ans": "y*log(h) + (1-y)*log(1-h)",
+        "explain_correct": "If y=1 → second term cancels, if y=0 → first term cancels. Smart trick! ✅",
+        "explain_wrong": "This combines both cases into one equation."
     },
 
-    # ─── Part 4: Gradient Descent for Logistic Regression ───
+    # ─── Part 4: Gradient Descent ───
     {
-        "q": "معادلة الـ Gradient Descent لتحديث المعاملات (θ) في الـ Logistic Regression تبدو متطابقة تماماً مع معادلتها في الـ Linear Regression.",
+        "q": "Gradient Descent update rule in Logistic Regression is identical to Linear Regression.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "صح جداً! قانون الـ Update هو هو بالمللي. الاختلاف الوحيد والجوهري هو إن تعريف الفرضية h_θ(x) اتغير وبقى Sigmoid function بدل ما كان خط مستقيم. ✅",
-        "explain_wrong": "الخوارزمية (كشكل رياضي للتحديث) متطابقة، ولكن الـ h(x) تختلف."
+        "explain_correct": "Correct! Same formula, only h(x) changes to Sigmoid. ✅",
+        "explain_wrong": "Update rule is identical, but hypothesis differs."
     },
     {
-        "q": "عند تطبيق Gradient Descent على Logistic Regression، هل عملية الـ Feature Scaling مهمة؟",
+        "q": "Is Feature Scaling important in Logistic Regression?",
         "type": "mcq",
-        "options": ["نعم، تُسرع من تقارب الخوارزمية (Convergence)", "لا، ليس لها أي تأثير هنا", "تجعل الخوارزمية تعطي نتائج خاطئة", "مهمة فقط إذا كانت البيانات سالبة"],
-        "ans": "نعم، تُسرع من تقارب الخوارزمية (Convergence)",
-        "explain_correct": "زيها زي الـ Linear Regression، توحيد نطاق البيانات (Feature Scaling) بيخلي الـ Gradient Descent ينزل للقاع بسرعة وبطريق مستقيم. ✅",
-        "explain_wrong": "الـ Feature Scaling مفيد دائماً مع الـ Gradient Descent."
+        "options": ["Yes, it speeds up convergence", "No effect", "Causes errors", "Only for negative data"],
+        "ans": "Yes, it speeds up convergence",
+        "explain_correct": "Feature scaling helps Gradient Descent converge faster. ✅",
+        "explain_wrong": "Feature scaling is always useful with Gradient Descent."
     },
 
-    # ─── Part 5: Multiclass Classification (One-vs-All) ───
+    # ─── Part 5: Multiclass (One-vs-All) ───
     {
-        "q": "في مشاكل التصنيف متعدد الفئات (Multiclass Classification)، بيانات التدريب تحتوي على:",
+        "q": "Multiclass Classification involves:",
         "type": "mcq",
-        "options": ["أكثر من فئتين (مثال: الطقس مشمس، غائم، ممطر، ثلج)", "فئتين فقط (0 و 1)", "قيم متصلة (Continuous)", "لا تحتوي على فئات (Unsupervised)"],
-        "ans": "أكثر من فئتين (مثال: الطقس مشمس، غائم، ممطر، ثلج)",
-        "explain_correct": "الـ Multiclass معناه إن المخرجات الممكنة (y) بتاخد أكتر من قيمتين (مثلاً: 1، 2، 3، 4). ✅",
-        "explain_wrong": "Binary = فئتين. Multiclass = أكثر من فئتين."
+        "options": ["More than two classes", "Only two classes", "Continuous values", "No labels"],
+        "ans": "More than two classes",
+        "explain_correct": "Multiclass means more than two possible outputs. ✅",
+        "explain_wrong": "Binary = 2 classes, Multiclass = more."
     },
     {
-        "q": "لحل مشكلة Multiclass Classification تحتوي على k فئات، نستخدم تقنية (One-vs-All). كم عدد نماذج الـ Logistic Regression التي نحتاج لتدريبها؟",
+        "q": "For k classes using One-vs-All, how many models are trained?",
         "type": "mcq",
-        "options": ["نحتاج إلى k نموذج (نموذج لكل فئة)", "نموذج واحد فقط للكل", "نحتاج إلى k^2 نموذج", "نحتاج إلى 2 نموذج فقط"],
-        "ans": "نحتاج إلى k نموذج (نموذج لكل فئة)",
-        "explain_correct": "في طريقة (One-vs-All)، بندرب Classifier منفصل لكل فئة، عشان يميز الفئة دي (باعتبارها 1) عن باقي الفئات كلها (باعتبارهم 0). ✅",
-        "explain_wrong": "One-vs-all = Train k different classifiers for k classes."
+        "options": ["k models", "1 model", "k^2 models", "2 models"],
+        "ans": "k models",
+        "explain_correct": "One classifier per class. ✅",
+        "explain_wrong": "Train k classifiers for k classes."
     },
     {
-        "q": "في تقنية One-vs-All، عند إدخال بيانات جديدة x للنموذج، كيف نقرر الفئة النهائية؟",
+        "q": "How do we choose the final class in One-vs-All?",
         "type": "mcq",
-        "options": ["نختار الفئة التي تعطي أعلى احتمال max h_θ(x)", "نختار الفئة بشكل عشوائي", "نختار الفئة التي تعطي أقل احتمال", "نجمع كل الاحتمالات"],
-        "ans": "نختار الفئة التي تعطي أعلى احتمال max h_θ(x)",
-        "explain_correct": "بنجرب الـ Input الجديد على كل النماذج الـ k اللي عملناها، والنموذج اللي يطلع أعلى نسبة ثقة (أعلى احتمال)، يبقى هي دي الفئة المتوقعة! ✅",
-        "explain_wrong": "نختار الكلاس الذي يكون فيه الـ Classifier أكثر ثقة."
+        "options": ["Choose class with max probability", "Random", "Minimum probability", "Sum probabilities"],
+        "ans": "Choose class with max probability",
+        "explain_correct": "Pick the classifier with highest confidence. ✅",
+        "explain_wrong": "Choose the most confident classifier."
     },
     {
-        "q": "لنفترض أن لدينا 3 فئات طبية (سليم، زكام، إنفلونزا). لتدريب مصنف الـ 'زكام' باستخدام One-vs-All، كيف نصنف بيانات التدريب؟",
+        "q": "For training 'Cold' classifier (3 classes: Healthy, Cold, Flu), labels become:",
         "type": "mcq",
-        "options": ["الزكام يأخذ قيمة 1، والسليم والإنفلونزا يأخذان قيمة 0", "الكل يأخذ قيمة 1", "الزكام 1، السليم 2، الإنفلونزا 3", "نتجاهل السليم والإنفلونزا"],
-        "ans": "الزكام يأخذ قيمة 1، والسليم والإنفلونزا يأخذان قيمة 0",
-        "explain_correct": "في خطوة الـ One-vs-All، بنعتبر الفئة اللي بندربها هي الـ Positive (1)، وكل الفئات التانية بنضمهم مع بعض كـ Negative (0). ✅",
-        "explain_wrong": "نقوم بتبسيط المشكلة إلى (هذه الفئة) ضد (باقي الفئات مجتمعة)."
+        "options": ["Cold=1, others=0", "All=1", "Cold=1, Healthy=2, Flu=3", "Ignore others"],
+        "ans": "Cold=1, others=0",
+        "explain_correct": "Target class = 1, others = 0. ✅",
+        "explain_wrong": "Convert to binary problem."
     },
     {
-        "q": "ماذا يحدث لقيمة e^(-z) عندما تقترب z من المالانهاية الموجبة؟",
+        "q": "What happens to e^(-z) as z → +∞?",
         "type": "mcq",
-        "options": ["تقترب من الصفر", "تقترب من المالانهاية", "تساوي 1", "تصبح سالبة"],
-        "ans": "تقترب من الصفر",
-        "explain_correct": "e أس رقم سالب كبير جداً بتقترب من الصفر. وده اللي بيخلي 1/(1+0) يساوي 1 في دالة الـ Sigmoid. ✅",
-        "explain_wrong": "e^(-z) = 1 / e^z. عندما تكبر z، يكبر المقام، فيقترب الكسر من الصفر."
+        "options": ["Approaches 0", "Approaches ∞", "Equals 1", "Becomes negative"],
+        "ans": "Approaches 0",
+        "explain_correct": "e^(-z) → 0 → Sigmoid → 1. ✅",
+        "explain_wrong": "e^(-z) = 1/e^z → goes to 0."
     },
     {
-        "q": "ماذا يحدث لقيمة e^(-z) عندما تقترب z من المالانهاية السالبة؟",
+        "q": "What happens to e^(-z) as z → -∞?",
         "type": "mcq",
-        "options": ["تقترب من المالانهاية الموجبة", "تقترب من الصفر", "تساوي 1", "تصبح صفر"],
-        "ans": "تقترب من المالانهاية الموجبة",
-        "explain_correct": "سالب في سالب بموجب، فتبقى e أس رقم موجب كبير، ودي بتقترب من المالانهاية. وده اللي بيخلي 1/(1+∞) يساوي 0 في الـ Sigmoid. ✅",
-        "explain_wrong": "عندما z تكون سالبة جداً، e^(-z) تصبح e^(رقم موجب كبير) فتؤول للمالانهاية."
+        "options": ["Approaches ∞", "Approaches 0", "Equals 1", "Becomes 0"],
+        "ans": "Approaches ∞",
+        "explain_correct": "e^(-z) = e^(+big) → ∞ → Sigmoid → 0. ✅",
+        "explain_wrong": "Negative z makes exponent positive."
     }
 ]
