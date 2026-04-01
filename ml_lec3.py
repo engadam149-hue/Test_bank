@@ -7,211 +7,306 @@
 QUESTIONS = [
     # ─── Part 1: Basic Concepts & Notation ───
     {
-        "q": "في التعلم الخاضع للإشراف (Supervised Learning)، ما هو الفرق الأساسي بين مشكلة الانحدار (Regression) والتصنيف (Classification)؟",
+        "q": "In Supervised Learning, what is the fundamental difference between Regression and Classification?",
         "type": "mcq",
-        "options": ["الانحدار يتوقع قيمة متصلة (Continuous)، والتصنيف يتوقع قيمة منفصلة (Discrete)", "الانحدار للبيانات غير المسماة، والتصنيف للبيانات المسماة", "التصنيف يتوقع قيمة متصلة، والانحدار يتوقع فئات", "لا يوجد فرق بينهما"],
-        "ans": "الانحدار يتوقع قيمة متصلة (Continuous)، والتصنيف يتوقع قيمة منفصلة (Discrete)",
-        "explain_correct": "الانحدار (Regression) بيُستخدم لتوقع أرقام متصلة زي أسعار البيوت، أما التصنيف (Classification) بيُستخدم لتوقع فئات محددة زي (مريض/سليم). ✅",
-        "explain_wrong": "تذكر: Regression = Continuous/Real-valued، Classification = Discrete."
+        "options": [
+            "Regression predicts a continuous value, Classification predicts a discrete value",
+            "Regression is for unlabeled data, Classification is for labeled data",
+            "Classification predicts a continuous value, Regression predicts categories",
+            "There is no difference between them"
+        ],
+        "ans": "Regression predicts a continuous value, Classification predicts a discrete value",
+        "explain_correct": "Regression is used to predict continuous numbers like house prices, while Classification is used to predict discrete categories like (sick/healthy). ✅",
+        "explain_wrong": "Remember: Regression = Continuous/Real-valued, Classification = Discrete."
     },
     {
-        "q": "في مصطلحات تعلم الآلة، ماذا يمثل الرمز 'm'؟",
+        "q": "In machine learning terminology, what does the symbol 'm' represent?",
         "type": "mcq",
-        "options": ["عدد الخصائص (Features)", "عدد أمثلة التدريب (Training examples)", "متغير الخرج (Output variable)", "معدل التعلم (Learning rate)"],
-        "ans": "عدد أمثلة التدريب (Training examples)",
-        "explain_correct": "الرمز 'm' دايماً بيعبر عن عدد الصفوف أو الأمثلة في الداتا اللي بنتدرب عليها. ✅",
-        "explain_wrong": "الرمز 'n' هو اللي بيعبر عن عدد الخصائص (Features)."
+        "options": [
+            "Number of features",
+            "Number of training examples",
+            "Output variable",
+            "Learning rate"
+        ],
+        "ans": "Number of training examples",
+        "explain_correct": "The symbol 'm' always refers to the number of rows or examples in the training data. ✅",
+        "explain_wrong": "The symbol 'n' refers to the number of features."
     },
     {
-        "q": "ما هو الرمز الذي يعبر عن قيمة الخاصية رقم j في مثال التدريب رقم i؟",
+        "q": "What symbol represents the value of feature j in training example i?",
         "type": "mcq",
         "options": ["x_i^(j)", "x_j^(i)", "y_j^(i)", "theta_j^(i)"],
         "ans": "x_j^(i)",
-        "explain_correct": "الأس بين قوسين (i) بيعبر عن رقم الصف (مثال التدريب)، والـ subscript (j) بيعبر عن رقم العمود (الخاصية). ✅",
-        "explain_wrong": "تذكر: الـ (i) فوق للصف، والـ j تحت للعمود."
+        "explain_correct": "The superscript (i) in parentheses refers to the row (training example), and the subscript (j) refers to the column (feature). ✅",
+        "explain_wrong": "Remember: (i) on top for row, j on bottom for column."
     },
-    
+
     # ─── Part 2: Hypothesis & Cost Function ───
     {
-        "q": "المعادلة h_θ(x) = θ_0 + θ_1 * x تمثل:",
+        "q": "The equation h_θ(x) = θ_0 + θ_1 * x represents:",
         "type": "mcq",
-        "options": ["Cost Function", "Gradient Descent", "Linear Regression Hypothesis (بمتغير واحد)", "Polynomial Regression"],
-        "ans": "Linear Regression Hypothesis (بمتغير واحد)",
-        "explain_correct": "دي معادلة الخط المستقيم البسيطة (Hypothesis) اللي بنحاول نخليها تمر بأفضل شكل في البيانات. ✅",
-        "explain_wrong": "هذه الدالة تسمى الفرضية (Hypothesis) وليست دالة التكلفة."
+        "options": [
+            "Cost Function",
+            "Gradient Descent",
+            "Linear Regression Hypothesis (with one variable)",
+            "Polynomial Regression"
+        ],
+        "ans": "Linear Regression Hypothesis (with one variable)",
+        "explain_correct": "This is the simple straight-line equation (Hypothesis) that we try to fit as well as possible through the data. ✅",
+        "explain_wrong": "This function is called the Hypothesis, not the Cost Function."
     },
     {
-        "q": "في الـ Linear Regression، ما هو الهدف الأساسي لدالة التكلفة J(θ_0, θ_1)؟",
+        "q": "In Linear Regression, what is the main goal of the cost function J(θ_0, θ_1)?",
         "type": "mcq",
-        "options": ["تعظيم قيمة J(θ_0, θ_1)", "تقليل (Minimize) قيمة J(θ_0, θ_1)", "جعل J(θ_0, θ_1) تساوي 1 دائماً", "حساب عدد أمثلة التدريب"],
-        "ans": "تقليل (Minimize) قيمة J(θ_0, θ_1)",
-        "explain_correct": "دالة التكلفة (Cost Function) بتحسب مقدار الخطأ، فهدفنا دايماً هو تقليل الخطأ ده لأقل قيمة ممكنة (Minimize). ✅",
-        "explain_wrong": "دالة التكلفة تمثل الخطأ، والخطأ يجب تقليله."
+        "options": [
+            "Maximize J(θ_0, θ_1)",
+            "Minimize J(θ_0, θ_1)",
+            "Make J(θ_0, θ_1) always equal to 1",
+            "Count the number of training examples"
+        ],
+        "ans": "Minimize J(θ_0, θ_1)",
+        "explain_correct": "The cost function measures the error, so our goal is always to minimize that error to the lowest possible value. ✅",
+        "explain_wrong": "The cost function represents error, and error must be minimized."
     },
     {
-        "q": "تُعرف دالة التكلفة المستخدمة في الانحدار الخطي باسم:",
+        "q": "The cost function used in Linear Regression is known as:",
         "type": "mcq",
-        "options": ["Logistic Function", "Squared Error Function", "Absolute Error Function", "Sigmoid Function"],
+        "options": [
+            "Logistic Function",
+            "Squared Error Function",
+            "Absolute Error Function",
+            "Sigmoid Function"
+        ],
         "ans": "Squared Error Function",
-        "explain_correct": "دالة التكلفة في الانحدار الخطي هي متوسط مربعات الأخطاء (Squared Error)، وهي الأشهر والأكثر كفاءة لحل هذه المشكلة. ✅",
-        "explain_wrong": "تسمى Squared error function لأننا نُربع الفرق بين التوقع والقيمة الحقيقية."
+        "explain_correct": "The cost function in Linear Regression is the Mean Squared Error (Squared Error), the most common and efficient choice for this problem. ✅",
+        "explain_wrong": "It is called the Squared Error Function because we square the difference between the prediction and the true value."
     },
     {
-        "q": "في رسم الـ Contour Plot لدالة التكلفة، ماذا تمثل النقطة الموجودة في مركز الدوائر متحدة المركز؟",
+        "q": "In a Contour Plot of the cost function, what does the point at the center of the concentric ellipses represent?",
         "type": "mcq",
-        "options": ["أعلى قيمة للخطأ", "أقل قيمة لدالة التكلفة (Minimum)", "قيمة معدل التعلم", "نقطة البداية العشوائية"],
-        "ans": "أقل قيمة لدالة التكلفة (Minimum)",
-        "explain_correct": "مركز الدوائر (الـ Ellipses) في الـ Contour plot بيمثل قاع الـ Bowl، وهو أقل قيمة لدالة التكلفة (أفضل parameters). ✅",
-        "explain_wrong": "المركز يمثل الـ Global Minimum للـ Cost function."
+        "options": [
+            "The highest error value",
+            "The minimum of the cost function",
+            "The value of the learning rate",
+            "The random starting point"
+        ],
+        "ans": "The minimum of the cost function",
+        "explain_correct": "The center of the ellipses in the contour plot represents the bottom of the bowl, which is the minimum of the cost function (best parameters). ✅",
+        "explain_wrong": "The center represents the Global Minimum of the Cost Function."
     },
 
     # ─── Part 3: Gradient Descent Algorithm ───
     {
-        "q": "في خوارزمية الـ Gradient Descent، لضمان عمل الخوارزمية بشكل صحيح، يجب تحديث المعاملات (θ_0, θ_1) بشكل:",
+        "q": "In the Gradient Descent algorithm, to ensure it works correctly, the parameters (θ_0, θ_1) must be updated:",
         "type": "mcq",
-        "options": ["متسلسل (Sequential update)", "متزامن (Simultaneous update)", "عشوائي", "فقط تحديث θ_1 وترك θ_0"],
-        "ans": "متزامن (Simultaneous update)",
-        "explain_correct": "لازم نحسب كل القيم الجديدة للـ θ في متغيرات مؤقتة (temp)، وبعدين نحدثهم كلهم مع بعض في نفس الوقت (Simultaneously). ✅",
-        "explain_wrong": "التحديث المتسلسل يغير قيمة الدالة أثناء حساب المشتقات الأخرى، وهو خطأ."
+        "options": [
+            "Sequentially (Sequential update)",
+            "Simultaneously (Simultaneous update)",
+            "Randomly",
+            "Only update θ_1 and leave θ_0"
+        ],
+        "ans": "Simultaneously (Simultaneous update)",
+        "explain_correct": "We must compute all new θ values into temporary variables (temp), then update all of them at the same time (Simultaneously). ✅",
+        "explain_wrong": "Sequential update changes the function value while computing other derivatives, which is incorrect."
     },
     {
-        "q": "ماذا يحدث إذا كان معدل التعلم (Learning Rate α) صغيراً جداً؟",
+        "q": "What happens if the learning rate (α) is too small?",
         "type": "mcq",
-        "options": ["الخوارزمية ستفشل في العمل", "الخوارزمية ستتجاوز الحد الأدنى (Overshoot)", "الـ Gradient Descent سيكون بطيئاً جداً في الوصول للحل", "دالة التكلفة ستزداد"],
-        "ans": "الـ Gradient Descent سيكون بطيئاً جداً في الوصول للحل",
-        "explain_correct": "الـ Alpha الصغيرة معناها خطوات صغيرة جداً، وبالتالي هياخد وقت (Iterations) كتير جداً عشان يوصل للـ Minimum. ✅",
-        "explain_wrong": "الـ Alpha الصغيرة = بطء شديد (Slow convergence)."
+        "options": [
+            "The algorithm will fail to work",
+            "The algorithm will overshoot the minimum",
+            "Gradient Descent will be very slow to converge",
+            "The cost function will increase"
+        ],
+        "ans": "Gradient Descent will be very slow to converge",
+        "explain_correct": "A small α means very small steps, so it will take many iterations to reach the minimum. ✅",
+        "explain_wrong": "Small α = very slow convergence."
     },
     {
-        "q": "ماذا يحدث إذا كان معدل التعلم (Learning Rate α) كبيراً جداً؟",
+        "q": "What happens if the learning rate (α) is too large?",
         "type": "mcq",
-        "options": ["سيكون بطيئاً جداً", "سيصل للحل المثالي فوراً", "قد يتجاوز الحد الأدنى (Overshoot) ولا يصل للحل أبداً (Diverge)", "الـ Gradient Descent سيتحول لتصنيف"],
-        "ans": "قد يتجاوز الحد الأدنى (Overshoot) ولا يصل للحل أبداً (Diverge)",
-        "explain_correct": "الـ Alpha الكبيرة بتخلي الخطوة واسعة، فممكن تنط الناحية التانية من المنحنى وتفضل تكبر لحد ما تنفجر (Diverge). ✅",
-        "explain_wrong": "الـ Alpha الكبيرة = Overshoot and fail to converge."
+        "options": [
+            "It will be very slow",
+            "It will reach the optimal solution instantly",
+            "It may overshoot the minimum and diverge",
+            "Gradient Descent will turn into classification"
+        ],
+        "ans": "It may overshoot the minimum and diverge",
+        "explain_correct": "A large α causes large steps, so it may jump to the other side of the curve and keep growing until it diverges. ✅",
+        "explain_wrong": "Large α = Overshoot and fail to converge."
     },
     {
-        "q": "إذا وصل الـ Gradient Descent إلى نقطة الـ Local Minimum، ماذا ستكون قيمة خطوة التحديث التالية؟",
+        "q": "If Gradient Descent reaches a Local Minimum, what will the value of the next update step be?",
         "type": "mcq",
-        "options": ["ستتحرك الخوارزمية لنقطة عشوائية", "لن تتغير المعاملات (θ) لأن المشتقة ستكون صفراً", "ستزداد المعاملات بمقدار α", "ستعكس الخوارزمية اتجاهها"],
-        "ans": "لن تتغير المعاملات (θ) لأن المشتقة ستكون صفراً",
-        "explain_correct": "عند نقطة الـ Minimum، المماس بيكون أفقي فالمشتقة (Derivative) بتكون صفر. إذن θ - (α * 0) = θ. الخوارزمية بتثبت مكانها. ✅",
-        "explain_wrong": "عند الـ Local minimum، التحديث يتوقف لأن الـ slope = 0."
+        "options": [
+            "The algorithm will move to a random point",
+            "The parameters (θ) will not change because the derivative will be zero",
+            "The parameters will increase by α",
+            "The algorithm will reverse direction"
+        ],
+        "ans": "The parameters (θ) will not change because the derivative will be zero",
+        "explain_correct": "At a Minimum, the tangent is horizontal so the derivative is zero. Therefore θ - (α * 0) = θ. The algorithm stays in place. ✅",
+        "explain_wrong": "At a Local Minimum, the update stops because slope = 0."
     },
     {
-        "q": "كلما اقترب الـ Gradient Descent من الـ Local Minimum، فإن الخطوات التي يتخذها تُصبح أصغر تلقائياً، لذلك لا نحتاج لتقليل الـ α مع مرور الوقت.",
+        "q": "As Gradient Descent approaches the Local Minimum, the steps it takes automatically become smaller, so we do not need to decrease α over time.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "صح جداً! لأن المشتقة (Slope) بتقل كل ما بنقرب من القاع، فبالتالي قيمة (α * المشتقة) بتقل لوحدها والخطوات بتصغر تلقائياً. ✅",
-        "explain_wrong": "لست بحاجة لتغيير α لأن الميل (Derivative) يصغر من نفسه."
+        "explain_correct": "Correct! Because the derivative (slope) decreases as we approach the bottom, the value of (α * derivative) decreases on its own and steps shrink automatically. ✅",
+        "explain_wrong": "You do not need to change α because the slope (Derivative) shrinks by itself."
     },
     {
-        "q": "لماذا يُعتبر تطبيق Gradient Descent على Linear Regression آمناً من الوقوع في Local Minimum سيء؟",
+        "q": "Why is applying Gradient Descent to Linear Regression considered safe from getting stuck in a bad Local Minimum?",
         "type": "mcq",
-        "options": ["لأنه لا يستخدم مشتقات", "لأن دالة التكلفة فيه هي Convex Function (شكل الوعاء) ولها Global Optimum واحد فقط", "لأن معدل التعلم يتغير دائماً", "لأنه يعمل على ميزة واحدة فقط"],
-        "ans": "لأن دالة التكلفة فيه هي Convex Function (شكل الوعاء) ولها Global Optimum واحد فقط",
-        "explain_correct": "الـ Cost function في الـ Linear Regression دايماً بتكون Convex (على شكل وعاء)، يعني مفيهاش أي Local minimum يخدعها، هي دايماً بتنزل للـ Global Minimum الوحيد. ✅",
-        "explain_wrong": "دالة التكلفة هنا Convex (مُحدبة للأسفل) ولها حل مثالي واحد."
+        "options": [
+            "Because it does not use derivatives",
+            "Because the cost function is a Convex Function (bowl shape) with only one Global Optimum",
+            "Because the learning rate always changes",
+            "Because it works on only one feature"
+        ],
+        "ans": "Because the cost function is a Convex Function (bowl shape) with only one Global Optimum",
+        "explain_correct": "The Cost Function in Linear Regression is always Convex (bowl-shaped), meaning there are no local minima to get trapped in — it always descends to the single Global Minimum. ✅",
+        "explain_wrong": "The cost function here is Convex (curved downward) and has a single optimal solution."
     },
     {
-        "q": "ماذا تعني كلمة 'Batch' في مصطلح Batch Gradient Descent؟",
+        "q": "What does the word 'Batch' mean in the term Batch Gradient Descent?",
         "type": "mcq",
-        "options": ["أن الخوارزمية تستخدم مثال تدريب واحد في كل خطوة", "أن الخوارزمية تعالج البيانات في مجموعات عشوائية", "أن الخوارزمية تستخدم كل أمثلة التدريب (All training examples) لحساب المشتقة في كل خطوة", "أن الخوارزمية لا تستخدم بيانات"],
-        "ans": "أن الخوارزمية تستخدم كل أمثلة التدريب (All training examples) لحساب المشتقة في كل خطوة",
-        "explain_correct": "في كل خطوة تحديث، بنجمع الأخطاء على كل الـ m أمثلة (كل الداتا)، وده معنى كلمة Batch. ✅",
-        "explain_wrong": "Batch تعني استخدام Dataset كاملة في كل Update."
+        "options": [
+            "The algorithm uses one training example per step",
+            "The algorithm processes data in random groups",
+            "The algorithm uses all training examples to compute the derivative at each step",
+            "The algorithm uses no data"
+        ],
+        "ans": "The algorithm uses all training examples to compute the derivative at each step",
+        "explain_correct": "At each update step, we sum the errors over all m examples (the entire dataset), and that is the meaning of the word Batch. ✅",
+        "explain_wrong": "Batch means using the full Dataset in each Update."
     },
 
     # ─── Part 4: Multivariate Linear Regression ───
     {
-        "q": "في الـ Multivariate Linear Regression، نقوم بإضافة الخاصية الوهمية (x_0) لتبسيط ضرب المصفوفات. ما هي قيمة x_0 دائماً؟",
+        "q": "In Multivariate Linear Regression, we add the dummy feature (x_0) to simplify matrix multiplication. What is the value of x_0 always?",
         "type": "mcq",
-        "options": ["0", "1", "-1", "تساوي قيمة y"],
+        "options": ["0", "1", "-1", "Equal to y"],
         "ans": "1",
-        "explain_correct": "بنفترض دايماً إن x_0 = 1 عشان لما نضربها في المعامل θ_0 يفضل θ_0 زي ما هو (الـ Y-intercept). ✅",
-        "explain_wrong": "x_0 دايماً بواحد لتسهيل العمليات الحسابية بالـ Vectors."
+        "explain_correct": "We always assume x_0 = 1 so that when multiplied by the parameter θ_0, it remains θ_0 (the Y-intercept). ✅",
+        "explain_wrong": "x_0 is always 1 to simplify vector computations."
     },
     {
-        "q": "ما هو الهدف من عملية الـ Feature Scaling؟",
+        "q": "What is the purpose of Feature Scaling?",
         "type": "mcq",
-        "options": ["تقليل عدد الخصائص", "جعل الـ Gradient Descent يتقارب (Converge) بشكل أسرع", "زيادة قيمة دالة التكلفة", "إزالة الـ x_0"],
-        "ans": "جعل الـ Gradient Descent يتقارب (Converge) بشكل أسرع",
-        "explain_correct": "لما تكون الخصائص كلها في نفس الـ Range (مثلاً من -1 لـ 1)، الـ Contours بتبقى دائرية والـ Gradient Descent بيوصل للحل بسرعة جداً بدل ما يتذبذب. ✅",
-        "explain_wrong": "الـ Feature Scaling بيسرع الوصول للحل."
+        "options": [
+            "Reduce the number of features",
+            "Make Gradient Descent converge faster",
+            "Increase the value of the cost function",
+            "Remove x_0"
+        ],
+        "ans": "Make Gradient Descent converge faster",
+        "explain_correct": "When all features are in the same range (e.g., -1 to 1), the contours become circular and Gradient Descent reaches the solution much faster instead of oscillating. ✅",
+        "explain_wrong": "Feature Scaling speeds up convergence."
     },
     {
-        "q": "في أفضل الحالات (Ideal case)، ما هو النطاق التقريبي الذي يجب أن تتواجد فيه قيم الخصائص (Features) بعد عملية الـ Scaling؟",
+        "q": "In the ideal case, what is the approximate range that feature values should fall within after scaling?",
         "type": "mcq",
-        "options": ["من 0 إلى 100", "من -100 إلى 100", "تقريباً من -1 إلى 1", "من المالانهاية السالبة إلى الموجبة"],
-        "ans": "تقريباً من -1 إلى 1",
-        "explain_correct": "المثالي إن كل الخصائص تكون تقريباً بين -1 و 1. لو كانت من -3 لـ 3 أو -1/3 لـ 1/3 برضه مقبول. ✅",
-        "explain_wrong": "الرينج المثالي هو حول الصفر بقيم صغيرة (-1 to +1)."
+        "options": [
+            "0 to 100",
+            "-100 to 100",
+            "Approximately -1 to 1",
+            "Negative infinity to positive infinity"
+        ],
+        "ans": "Approximately -1 to 1",
+        "explain_correct": "Ideally all features should be approximately between -1 and 1. A range of -3 to 3 or -1/3 to 1/3 is also acceptable. ✅",
+        "explain_wrong": "The ideal range is around zero with small values (-1 to +1)."
     },
     {
-        "q": "المعادلة x_i = (x_i - μ_i) / s_i هي قانون لـ:",
+        "q": "The formula x_i = (x_i - μ_i) / s_i is the formula for:",
         "type": "mcq",
-        "options": ["Gradient Descent", "Cost Function", "Mean Normalization", "Polynomial Regression"],
+        "options": [
+            "Gradient Descent",
+            "Cost Function",
+            "Mean Normalization",
+            "Polynomial Regression"
+        ],
         "ans": "Mean Normalization",
-        "explain_correct": "هذا هو قانون الـ Mean Normalization، بنطرح المتوسط (μ) ونقسم على المدى أو الانحراف المعياري (s) عشان نخلي متوسط الداتا بصفر. ✅",
-        "explain_wrong": "هذا القانون يستخدم لعمل Scaling للبيانات."
+        "explain_correct": "This is the Mean Normalization formula — we subtract the mean (μ) and divide by the range or standard deviation (s) to center the data around zero. ✅",
+        "explain_wrong": "This formula is used to scale the data."
     },
     {
-        "q": "في قانون الـ Mean Normalization: x_i = (x_i - μ_i) / s_i، ماذا يمكن أن يمثل الرمز s_i؟",
+        "q": "In the Mean Normalization formula: x_i = (x_i - μ_i) / s_i, what can the symbol s_i represent?",
         "type": "mcq",
-        "options": ["المتوسط الحسابي", "المدى (Max - Min) أو الانحراف المعياري (Standard Deviation)", "عدد الأمثلة m", "الـ Learning Rate"],
-        "ans": "المدى (Max - Min) أو الانحراف المعياري (Standard Deviation)",
-        "explain_correct": "الرمز s بيمثل الـ Range (أكبر قيمة ناقص أصغر قيمة) أو ممكن نستخدم الـ Standard Deviation في القسمة. ✅",
-        "explain_wrong": "s_i هو مقياس التشتت (المدى أو الانحراف المعياري)."
+        "options": [
+            "The arithmetic mean",
+            "The range (Max - Min) or the Standard Deviation",
+            "The number of examples m",
+            "The Learning Rate"
+        ],
+        "ans": "The range (Max - Min) or the Standard Deviation",
+        "explain_correct": "The symbol s represents the Range (max value minus min value), or we can use the Standard Deviation in the denominator. ✅",
+        "explain_wrong": "s_i is a measure of spread (range or standard deviation)."
     },
 
     # ─── Part 5: Debugging & Polynomial Regression ───
     {
-        "q": "كيف نتأكد أن الـ Gradient Descent يعمل بشكل صحيح (Debugging)؟",
+        "q": "How do we verify that Gradient Descent is working correctly (Debugging)?",
         "type": "mcq",
-        "options": ["برسم قيمة J(θ) مع عدد الـ Iterations ويجب أن يتناقص", "برسم قيمة α مع عدد الـ Iterations ويجب أن تتزايد", "برسم قيم x مع قيم y", "برسم J(θ) ويجب أن يكون متزايداً"],
-        "ans": "برسم قيمة J(θ) مع عدد الـ Iterations ويجب أن يتناقص",
-        "explain_correct": "الطريقة الأفضل هي رسم الـ Cost function مع كل خطوة (Iteration). لو شغال صح، لازم الخطأ (J) يقل باستمرار. ✅",
-        "explain_wrong": "دالة التكلفة يجب أن تتناقص في كل خطوة."
+        "options": [
+            "By plotting J(θ) vs number of iterations — it should decrease",
+            "By plotting α vs number of iterations — it should increase",
+            "By plotting x values vs y values",
+            "By plotting J(θ) — it should be increasing"
+        ],
+        "ans": "By plotting J(θ) vs number of iterations — it should decrease",
+        "explain_correct": "The best approach is to plot the Cost Function at each iteration. If it is working correctly, the error (J) must continuously decrease. ✅",
+        "explain_wrong": "The cost function must decrease at every step."
     },
     {
-        "q": "إذا رسمت J(θ) مع عدد الـ Iterations ووجدته يزداد (يتجه للأعلى)، فما هو السبب المحتمل؟",
+        "q": "If you plot J(θ) vs number of iterations and find it is increasing (going upward), what is the likely cause?",
         "type": "mcq",
-        "options": ["البيانات صغيرة جداً", "قيمة معدل التعلم (α) كبيرة جداً ويجب تصغيرها", "قيمة (α) صغيرة جداً ويجب تكبيرها", "الـ Gradient Descent يعمل بشكل ممتاز"],
-        "ans": "قيمة معدل التعلم (α) كبيرة جداً ويجب تصغيرها",
-        "explain_correct": "لما الخطأ يزيد بدل ما يقل، ده معناه إن الخوارزمية بتعمل Overshoot (بتعدي الهدف)، وحلها الفوري إنك تصغر قيمة α. ✅",
-        "explain_wrong": "زيادة J(θ) تعني Divergence، وسببها α كبيرة."
+        "options": [
+            "The dataset is too small",
+            "The learning rate (α) is too large and should be decreased",
+            "The learning rate (α) is too small and should be increased",
+            "Gradient Descent is working perfectly"
+        ],
+        "ans": "The learning rate (α) is too large and should be decreased",
+        "explain_correct": "When the error increases instead of decreasing, the algorithm is overshooting the target. The immediate fix is to decrease α. ✅",
+        "explain_wrong": "An increasing J(θ) means Divergence, caused by a large α."
     },
     {
-        "q": "لإجراء اختبار تقارب تلقائي (Automatic Convergence Test)، يمكننا إيقاف الخوارزمية إذا انخفضت قيمة J(θ) بمقدار أقل من رقم صغير جداً، مثل:",
+        "q": "To perform an automatic convergence test, we can stop the algorithm if J(θ) decreases by less than a very small threshold, such as:",
         "type": "mcq",
         "options": ["100", "1", "10^-3 (0.001)", "0.5"],
         "ans": "10^-3 (0.001)",
-        "explain_correct": "ممكن نبرمج الكود إنه يوقف لو التغيير في دالة التكلفة بقى تافه جداً (أقل من 0.001 مثلاً)، وده معناه إنه وصل للقاع تقريباً. ✅",
-        "explain_wrong": "التغيير الضئيل (مثل 10^-3) يمثل الوصول لـ Convergence."
+        "explain_correct": "We can program the code to stop if the change in the cost function becomes negligible (less than 0.001 for example), indicating that it has approximately reached the bottom. ✅",
+        "explain_wrong": "A tiny change (such as 10^-3) represents reaching Convergence."
     },
     {
-        "q": "في الـ Polynomial Regression، يمكننا إنشاء خصائص جديدة (Features) من الخصائص الموجودة، مثل تربيع x أو أخذ الجذر التربيعي له لتناسب البيانات غير الخطية.",
+        "q": "In Polynomial Regression, we can create new features from existing ones, such as squaring x or taking its square root, to fit non-linear data.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "صح. لو البيانات شكلها مش خط مستقيم، ممكن نخترع خصائص جديدة زي x^2 أو x^3 أو sqrt(x) عشان الفرضية تاخد شكل منحنى يناسب الداتا. ✅",
-        "explain_wrong": "الـ Polynomial Regression يعتمد على دمج ورفع الأس للخصائص الموجودة."
+        "explain_correct": "Correct. If the data is not a straight line, we can engineer new features like x^2, x^3, or sqrt(x) so the hypothesis takes a curve shape that fits the data. ✅",
+        "explain_wrong": "Polynomial Regression relies on combining and raising existing features to higher powers."
     },
     {
-        "q": "عند استخدام الـ Polynomial Regression وتحويل خاصية x إلى x و x^2 و x^3، تصبح عملية الـ Feature Scaling غير مهمة.",
+        "q": "When using Polynomial Regression and transforming feature x into x, x^2, and x^3, Feature Scaling becomes unimportant.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "False",
-        "explain_correct": "خطأ تماماً! بالعكس، الـ Feature Scaling بيكون ضروري وحتمي هنا! لأن لو x مداها من 1 لـ 100، فـ x^3 هيكون مداها من 1 لـ 1,000,000! الفروق هتبقى ضخمة جداً. ✅",
-        "explain_wrong": "الـ Feature Scaling أهم بكثير في الـ Polynomial regression لاختلاف الـ Ranges الشديد."
+        "explain_correct": "Completely wrong! Feature Scaling becomes even more critical here. If x has a range of 1 to 100, then x^3 will have a range of 1 to 1,000,000 — the differences will be enormous. ✅",
+        "explain_wrong": "Feature Scaling is even more important in Polynomial Regression due to the extreme range differences."
     },
     {
-        "q": "أي من القيم التالية لمعدل التعلم (α) يُنصح بتجربتها عند البحث عن أفضل قيمة للـ Gradient Descent؟",
+        "q": "Which of the following learning rate (α) values is recommended to try when searching for the best value for Gradient Descent?",
         "type": "mcq",
-        "options": ["فقط 0.01 و 0.1", "أرقام سالبة فقط", "مضاعفات تقريبية بزيادة 3 أضعاف مثل: ..., 0.001, 0.003, 0.01, 0.03, 0.1, ...", "أرقام صحيحة كبيرة مثل 10, 100, 1000"],
-        "ans": "مضاعفات تقريبية بزيادة 3 أضعاف مثل: ..., 0.001, 0.003, 0.01, 0.03, 0.1, ...",
-        "explain_correct": "أندرو نج (Andrew Ng) بينصح دايماً إنك تجرب تضرب الألفا في 3 (تقريباً) في كل تجربة عشان تكتشف الرينج المناسب بسرعة. ✅",
-        "explain_wrong": "التدرج بلوغاريتم مضروب في 3 هو أفضل طريقة لاكتشاف α."
+        "options": [
+            "Only 0.01 and 0.1",
+            "Only negative numbers",
+            "Approximate multiples of 3 such as: ..., 0.001, 0.003, 0.01, 0.03, 0.1, ...",
+            "Large integers such as 10, 100, 1000"
+        ],
+        "ans": "Approximate multiples of 3 such as: ..., 0.001, 0.003, 0.01, 0.03, 0.1, ...",
+        "explain_correct": "Andrew Ng always recommends trying values that multiply by approximately 3 each time, to quickly discover the appropriate range for α. ✅",
+        "explain_wrong": "Logarithmic spacing multiplied by 3 is the best strategy for discovering a suitable α."
     }
 ]
