@@ -7,179 +7,264 @@
 QUESTIONS = [
     # ─── Part 1: Unsupervised Learning & Clustering Basics ───
     {
-        "q": "في التعلم غير الخاضع للإشراف (Unsupervised Learning)، ما هو الاختلاف الرئيسي في بيانات التدريب مقارنة بالتعلم الخاضع للإشراف؟",
+        "q": "In Unsupervised Learning, what is the main difference in the training data compared to Supervised Learning?",
         "type": "mcq",
-        "options": ["البيانات لا تحتوي على مخرجات أو تسميات (No labels y)", "البيانات تحتوي على تسميات (Labels) فقط بدون خصائص (Features)", "البيانات تكون دائماً مرتبة تصاعدياً", "عدد الخصائص يكون متغيراً في كل مثال"],
-        "ans": "البيانات لا تحتوي على مخرجات أو تسميات (No labels y)",
-        "explain_correct": "في الـ Unsupervised Learning، الداتا بتيجي عبارة عن X فقط من غير أي إجابات صحيحة أو Labels (y)، والهدف إن الخوارزمية تكتشف الأنماط بنفسها. ✅",
-        "explain_wrong": "تذكر: Supervised = (x, y). Unsupervised = (x) only."
+        "options": [
+            "The data does not contain outputs or labels (No labels y)",
+            "The data contains labels only without features",
+            "The data is always sorted in ascending order",
+            "The number of features is variable in each example"
+        ],
+        "ans": "The data does not contain outputs or labels (No labels y)",
+        "explain_correct": "In Unsupervised Learning, the dataset consists only of inputs (X) without any correct answers or labels (y). The algorithm's goal is to discover patterns on its own. ✅",
+        "explain_wrong": "Remember: Supervised = (x, y). Unsupervised = (x) only."
     },
     {
-        "q": "ما هي الوظيفة الأساسية لخوارزمية الـ Clustering (التجميع)؟",
+        "q": "What is the primary function of a Clustering algorithm?",
         "type": "mcq",
-        "options": ["توقع قيمة رقمية متصلة لبيانات جديدة", "إنشاء بيانات جديدة عن طريق استنتاج مجموعات أو فئات بناءً على العلاقات بين البيانات", "تصنيف البيانات بناءً على تسميات مسبقة", "تقليل عدد الخصائص (Features) في البيانات"],
-        "ans": "إنشاء بيانات جديدة عن طريق استنتاج مجموعات أو فئات بناءً على العلاقات بين البيانات",
-        "explain_correct": "الـ Clustering بيقسم البيانات لمجموعات (Clusters) متشابهة، وبالتالي هو بيخلق 'Labels' جديدة مكنتش موجودة أصلاً بناءً على المسافات والعلاقات. ✅",
-        "explain_wrong": "الـ Clustering لا يتوقع أرقاماً، بل يكتشف مجموعات (Clusters)."
+        "options": [
+            "To predict a continuous numerical value for new data",
+            "To group data by inferring clusters or categories based on relationships between data points",
+            "To classify data based on pre-existing labels",
+            "To reduce the number of features in the data"
+        ],
+        "ans": "To group data by inferring clusters or categories based on relationships between data points",
+        "explain_correct": "Clustering divides data into similar groups (Clusters), effectively creating new 'labels' that didn't exist originally, based on distances and relationships. ✅",
+        "explain_wrong": "Clustering does not predict numbers; it discovers groups (Clusters)."
     },
     {
-        "q": "أي من التطبيقات التالية يُعتبر مثالاً على استخدام الـ Clustering؟",
+        "q": "Which of the following applications is considered an example of using Clustering?",
         "type": "mcq",
-        "options": ["توقع سعر منزل بناءً على مساحته", "تصنيف الإيميلات إلى Spam أو غير Spam", "تقسيم السوق (Market Segmentation) إلى مجموعات من العملاء المتشابهين", "التعرف على الأرقام المكتوبة بخط اليد"],
-        "ans": "تقسيم السوق (Market Segmentation) إلى مجموعات من العملاء المتشابهين",
-        "explain_correct": "تقسيم العملاء، تحليل الشبكات الاجتماعية، وتنظيم مجموعات الحوسبة كلها تطبيقات شهيرة جداً للـ Clustering. ✅",
-        "explain_wrong": "توقع السعر (Regression) وتصنيف الإيميل (Classification) هي أمثلة للتعلم الخاضع للإشراف."
+        "options": [
+            "Predicting the price of a house based on its size",
+            "Classifying emails as Spam or Non-Spam",
+            "Market Segmentation (dividing a market into groups of similar customers)",
+            "Recognizing handwritten digits"
+        ],
+        "ans": "Market Segmentation (dividing a market into groups of similar customers)",
+        "explain_correct": "Customer segmentation, social network analysis, and organizing computing clusters are all very famous applications of Clustering. ✅",
+        "explain_wrong": "Predicting price (Regression) and classifying email (Classification) are examples of Supervised Learning."
     },
 
     # ─── Part 2: K-Means Algorithm Steps ───
     {
-        "q": "خوارزمية K-Means تتكون من خطوتين أساسيتين يتم تكرارهما (Loop). ما هما؟",
+        "q": "The K-Means algorithm consists of two main steps that are repeated in a loop. What are they?",
         "type": "mcq",
-        "options": ["حساب التكلفة، وتقليل معدل التعلم", "تعيين النقاط (Cluster Assignment)، وتحريك المراكز (Move Centroid)", "تهيئة الأوزان، وحساب المشتقة", "جمع البيانات، ورسم الـ Elbow"],
-        "ans": "تعيين النقاط (Cluster Assignment)، وتحريك المراكز (Move Centroid)",
-        "explain_correct": "الخوارزمية بتشتغل بخطوتين: 1. تربط كل نقطة بأقرب مركز ليها. 2. تحسب المتوسط للنقاط دي وتنقل المركز للمكان الجديد، وتفضل تكرر. ✅",
-        "explain_wrong": "K-Means لا تستخدم مشتقات أو معدل تعلم، بل تعتمد على المسافات والمتوسطات."
+        "options": [
+            "Calculating the cost and decreasing the learning rate",
+            "Cluster Assignment and Move Centroid",
+            "Initializing weights and calculating the derivative",
+            "Collecting data and plotting the Elbow curve"
+        ],
+        "ans": "Cluster Assignment and Move Centroid",
+        "explain_correct": "The algorithm works in two steps: 1. Assign each point to its closest centroid. 2. Calculate the mean of those points and move the centroid to that new location, then repeat. ✅",
+        "explain_wrong": "K-Means does not use derivatives or a learning rate; it relies on distances and means."
     },
     {
-        "q": "في خطوة 'Cluster Assignment'، كيف تقرر الخوارزمية المركز (Centroid) الذي ستنتمي إليه نقطة معينة؟",
+        "q": "In the 'Cluster Assignment' step, how does the algorithm decide which Centroid a specific point belongs to?",
         "type": "mcq",
-        "options": ["بشكل عشوائي", "باختيار المركز الأبعد لضمان التوزيع", "عن طريق حساب المسافة واختيار المركز الأقرب للنقطة", "بناءً على التسمية (Label) الأصلية للنقطة"],
-        "ans": "عن طريق حساب المسافة واختيار المركز الأقرب للنقطة",
-        "explain_correct": "الخوارزمية بتحسب المسافة بين النقطة وكل المراكز المتاحة، وبتلون النقطة بلون أقرب مركز ليها (Minimize distance). ✅",
-        "explain_wrong": "التعيين يتم دائماً للأقرب (Closest Centroid)."
+        "options": [
+            "Randomly",
+            "By choosing the farthest centroid to ensure broad distribution",
+            "By calculating the distance and choosing the closest centroid to the point",
+            "Based on the original label of the point"
+        ],
+        "ans": "By calculating the distance and choosing the closest centroid to the point",
+        "explain_correct": "The algorithm calculates the distance between the point and all available centroids, and assigns the point to the closest one (Minimize distance). ✅",
+        "explain_wrong": "Assignment is always done to the closest centroid."
     },
     {
-        "q": "في خطوة 'Move Centroid'، كيف يتم حساب الموقع الجديد للمركز (Centroid)؟",
+        "q": "In the 'Move Centroid' step, how is the new location of the centroid calculated?",
         "type": "mcq",
-        "options": ["بأخذ متوسط (Mean) مواقع كل النقاط التي تم تعيينها لهذا المركز", "بتحريكه مسافة ثابتة باتجاه نقطة الأصل", "باختيار نقطة عشوائية جديدة من البيانات", "بأخذ مجموع المسافات"],
-        "ans": "بأخذ متوسط (Mean) مواقع كل النقاط التي تم تعيينها لهذا المركز",
-        "explain_correct": "بنجيب كل النقاط اللي تابعة للمركز ده، ونحسب المتوسط بتاع الـ X والمتوسط بتاع الـ Y، وننقل المركز للنقطة الجديدة دي. ✅",
-        "explain_wrong": "المركز يتحرك لمتوسط (Mean) نقاطه، ومن هنا جاء اسم الخوارزمية (K-Means)."
+        "options": [
+            "By taking the mean (average) of the locations of all points assigned to that centroid",
+            "By moving it a fixed distance towards the origin",
+            "By choosing a new random point from the data",
+            "By taking the sum of all distances"
+        ],
+        "ans": "By taking the mean (average) of the locations of all points assigned to that centroid",
+        "explain_correct": "We gather all points assigned to this centroid, calculate the mean of their X and Y coordinates, and move the centroid to this new point. ✅",
+        "explain_wrong": "The centroid moves to the mean of its points, hence the name of the algorithm (K-Means)."
     },
 
     # ─── Part 3: K-Means Variables & Optimization Objective ───
     {
-        "q": "في المعادلات الرياضية لخوارزمية K-Means، ماذا يمثل الرمز c^(i)؟",
+        "q": "In the mathematical equations of the K-Means algorithm, what does the symbol c^(i) represent?",
         "type": "mcq",
-        "options": ["إحداثيات المركز رقم i", "رقم الكلاستر (Cluster index) الذي تنتمي إليه نقطة التدريب x^(i)", "عدد الكلاسترز الكلي K", "دالة التكلفة للبيانات i"],
-        "ans": "رقم الكلاستر (Cluster index) الذي تنتمي إليه نقطة التدريب x^(i)",
-        "explain_correct": "الرمز c^(i) بيخزن رقم (من 1 لـ K) بيعبر عن الكلاستر اللي النقطة رقم i تابعة ليه حالياً. ✅",
-        "explain_wrong": "c stands for Cluster index."
+        "options": [
+            "The coordinates of centroid i",
+            "The cluster index (from 1 to K) to which the training point x^(i) is currently assigned",
+            "The total number of clusters K",
+            "The cost function for data point i"
+        ],
+        "ans": "The cluster index (from 1 to K) to which the training point x^(i) is currently assigned",
+        "explain_correct": "The symbol c^(i) stores a number (from 1 to K) that represents the cluster to which point i is currently assigned. ✅",
+        "explain_wrong": "'c' stands for Cluster index."
     },
     {
-        "q": "ماذا يمثل الرمز μ_k في خوارزمية K-Means؟",
+        "q": "What does the symbol mu_k represent in the K-Means algorithm?",
         "type": "mcq",
-        "options": ["معدل التعلم للكلاستر k", "نقطة تدريب عشوائية", "موقع (إحداثيات) المركز الخاص بالكلاستر رقم k", "عدد النقاط داخل الكلاستر k"],
-        "ans": "موقع (إحداثيات) المركز الخاص بالكلاستر رقم k",
-        "explain_correct": "الرمز μ (ميو) بيعبر دايماً عن المركز (Centroid) الخاص بالكلاستر رقم k. ✅",
-        "explain_wrong": "μ تمثل الـ Cluster Centroid."
+        "options": [
+            "The learning rate for cluster k",
+            "A random training point",
+            "The location (coordinates) of the centroid for cluster k",
+            "The number of points inside cluster k"
+        ],
+        "ans": "The location (coordinates) of the centroid for cluster k",
+        "explain_correct": "The symbol mu always represents the Centroid of cluster number k. ✅",
+        "explain_wrong": "mu represents the Cluster Centroid."
     },
     {
-        "q": "ماذا يمثل الرمز μ_{c^(i)}؟",
+        "q": "What does the symbol mu_{c^(i)} represent?",
         "type": "mcq",
-        "options": ["إجمالي عدد المراكز", "موقع المركز (Centroid) الخاص بالكلاستر الذي تنتمي إليه النقطة x^(i)", "متوسط كل البيانات", "متوسط النقاط الخاطئة"],
-        "ans": "موقع المركز (Centroid) الخاص بالكلاستر الذي تنتمي إليه النقطة x^(i)",
-        "explain_correct": "ده دمج بين الرمزين! معناه: هاتلي إحداثيات المركز بتاع الكلاستر اللي النقطة i مربوطة بيه دلوقتي. ✅",
-        "explain_wrong": "هذا الرمز يُستخدم لحساب المسافة بين النقطة ومركزها الحالي."
+        "options": [
+            "The total number of centroids",
+            "The location (coordinates) of the centroid of the cluster to which point x^(i) is assigned",
+            "The mean of all data points",
+            "The mean of the misclassified points"
+        ],
+        "ans": "The location (coordinates) of the centroid of the cluster to which point x^(i) is assigned",
+        "explain_correct": "This is a combination of the two symbols! It means: get the coordinates of the centroid of the cluster that point i is currently attached to. ✅",
+        "explain_wrong": "This symbol is used to calculate the distance between a point and its current centroid."
     },
     {
-        "q": "دالة التكلفة J في K-Means تُعرف أحياناً باسم دالة التشوه (Distortion Function). ما هو هدف خوارزمية K-Means بالنسبة لهذه الدالة؟",
+        "q": "The cost function J in K-Means is sometimes called the Distortion Function. What is the goal of the K-Means algorithm regarding this function?",
         "type": "mcq",
-        "options": ["تعظيمها (Maximize)", "تثبيتها عند الصفر", "تقليلها لأدنى حد ممكن (Minimize)", "جعلها تساوي K"],
-        "ans": "تقليلها لأدنى حد ممكن (Minimize)",
-        "explain_correct": "خوارزمية K-Means هي عبارة عن Optimization algorithm هدفها دايماً تقليل مجموع مربعات المسافات (دالة التكلفة J) لأقل قيمة ممكنة. ✅",
-        "explain_wrong": "الهدف دائماً تقليل الخطأ/التشوه (Distortion)."
+        "options": [
+            "To maximize it",
+            "To keep it constant at zero",
+            "To minimize it as much as possible",
+            "To make it equal to K"
+        ],
+        "ans": "To minimize it as much as possible",
+        "explain_correct": "The K-Means algorithm is an optimization algorithm whose goal is always to reduce the sum of squared distances (Cost Function J) to the lowest possible value. ✅",
+        "explain_wrong": "The goal is always to minimize the error/Distortion."
     },
     {
-        "q": "كيف يتم حساب دالة التكلفة J في الـ K-Means؟",
+        "q": "How is the cost function J calculated in K-Means?",
         "type": "mcq",
-        "options": ["متوسط حاصل ضرب النقاط في المراكز", "مجموع مربعات المسافات بين كل نقطة x^(i) والمركز الخاص بها μ_{c^(i)}", "مجموع المسافات بين المراكز وبعضها", "مجموع النقاط مقسوماً على K"],
-        "ans": "مجموع مربعات المسافات بين كل نقطة x^(i) والمركز الخاص بها μ_{c^(i)}",
-        "explain_correct": "دالة التكلفة هي ببساطة: بنقيس المسافة بين كل نقطة والمركز بتاعها، نربعها، ونجمع كل ده لكل النقاط. ✅",
-        "explain_wrong": "التكلفة هي Squared Distances بين النقاط ومراكزها."
+        "options": [
+            "The average of the product of points and centroids",
+            "The average of the sum of squared distances between every point x^(i) and its assigned centroid mu_{c^(i)}",
+            "The sum of distances between the centroids themselves",
+            "The sum of the points divided by K"
+        ],
+        "ans": "The average of the sum of squared distances between every point x^(i) and its assigned centroid mu_{c^(i)}",
+        "explain_correct": "The cost function is simply: measuring the distance between each point and its centroid, squaring it, and summing it up for all points. ✅",
+        "explain_wrong": "The cost is the Squared Distances between points and their centroids."
     },
     {
-        "q": "أثناء تشغيل خوارزمية K-Means، هل يمكن لدالة التكلفة J أن تزداد قيمتها في أي تكرار (Iteration)؟",
+        "q": "During the execution of the K-Means algorithm, can the cost function J increase in any iteration?",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "False",
-        "explain_correct": "مستحيل! رياضياً، كل خطوة في K-Means (سواء تعيين النقاط أو تحريك المراكز) إما بتقلل التكلفة J أو بتخليها ثابته. لو زادت يبقى في عيب في الكود (Bug). ✅",
-        "explain_wrong": "دالة التكلفة J يجب أن تتناقص أو تثبت، ولا تزداد أبداً."
+        "explain_correct": "Impossible! Mathematically, every step in K-Means (whether assigning points or moving centroids) either decreases the cost J or keeps it constant. If it increases, there is a bug in the code. ✅",
+        "explain_wrong": "The cost function J must monotonically decrease or remain constant, it never increases."
     },
 
     # ─── Part 4: Random Initialization & Local Optima ───
     {
-        "q": "ما هي أفضل وأشهر طريقة لتهيئة (Initialize) المراكز في بداية خوارزمية K-Means؟",
+        "q": "What is the best and most recommended way to initialize the centroids at the beginning of the K-Means algorithm?",
         "type": "mcq",
-        "options": ["اختيار إحداثيات المراكز عند نقطة الأصل (0,0)", "اختيار K نقطة عشوائية من أمثلة التدريب (Training examples) وجعلها هي المراكز الابتدائية", "توزيع المراكز على أطراف البيانات", "جعل كل المراكز في نقطة واحدة"],
-        "ans": "اختيار K نقطة عشوائية من أمثلة التدريب (Training examples) وجعلها هي المراكز الابتدائية",
-        "explain_correct": "أحسن طريقة إننا نختار نقاط حقيقية من الداتا بتاعتنا بشكل عشوائي ونعتبرها هي المراكز المبدئية. ✅",
-        "explain_wrong": "التهيئة العشوائية من ضمن نقاط التدريب هي الطريقة الموصى بها."
+        "options": [
+            "Choosing the centroid coordinates at the origin (0,0)",
+            "Randomly picking K training examples and setting them as the initial centroids",
+            "Distributing the centroids on the extreme edges of the data",
+            "Placing all centroids at a single point"
+        ],
+        "ans": "Randomly picking K training examples and setting them as the initial centroids",
+        "explain_correct": "The best way is to randomly select actual data points from our dataset and consider them as the initial centroids. ✅",
+        "explain_wrong": "Random initialization from within the training points is the recommended method."
     },
     {
-        "q": "هل يمكن لخوارزمية K-Means أن تعلق في 'Local Optima' (حلول غير مثالية) بدلاً من الوصول لأفضل تقسيم (Global Optimum)؟",
+        "q": "Can the K-Means algorithm get stuck in 'Local Optima' (suboptimal solutions) instead of reaching the best clustering (Global Optimum)?",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "صح جداً! لأن الخوارزمية بتعتمد على أماكن البداية العشوائية، فممكن تبدأ بداية سيئة وتوصل لتقسيم مش أحسن حاجة وتعلق فيه (Local Optima). ✅",
-        "explain_wrong": "K-Means تعاني من مشكلة الـ Local Optima."
+        "explain_correct": "Absolutely correct! Because the algorithm depends on random starting locations, it might start poorly and converge to a suboptimal clustering, getting stuck there (Local Optima). ✅",
+        "explain_wrong": "K-Means does suffer from the Local Optima problem."
     },
     {
-        "q": "كيف نتغلب على مشكلة الـ Local Optima في خوارزمية K-Means؟",
+        "q": "How do we overcome the problem of Local Optima in the K-Means algorithm?",
         "type": "mcq",
-        "options": ["بزيادة عدد الكلاسترز K", "باستخدام معدل تعلم (α) كبير", "بتشغيل الخوارزمية عدة مرات (مثلاً 100 مرة) بتهيئة عشوائية مختلفة، ثم اختيار التقسيم صاحب أقل قيمة لدالة التكلفة J", "بتشغيل الخوارزمية مرة واحدة فقط والانتظار فترة أطول"],
-        "ans": "بتشغيل الخوارزمية عدة مرات (مثلاً 100 مرة) بتهيئة عشوائية مختلفة، ثم اختيار التقسيم صاحب أقل قيمة لدالة التكلفة J",
-        "explain_correct": "الحل العملي إننا نرن الخوارزمية كتير جداً (50 لـ 1000 مرة)، وفي كل مرة نحسب الـ Cost (J). وفي النهاية نختار التقسيم اللي جاب أقل Cost. ✅",
-        "explain_wrong": "تكرار التشغيل بـ Random Initialization مختلف هو الحل الأمثل."
+        "options": [
+            "By increasing the number of clusters K",
+            "By using a large learning rate",
+            "By running the algorithm multiple times (e.g., 50-100 times) with different random initializations, then picking the clustering with the lowest cost J",
+            "By running the algorithm only once and waiting longer"
+        ],
+        "ans": "By running the algorithm multiple times (e.g., 50-100 times) with different random initializations, then picking the clustering with the lowest cost J",
+        "explain_correct": "The practical solution is to run the algorithm many times (50 to 1000 times), calculate the Cost (J) each time, and ultimately select the clustering that resulted in the lowest Cost. ✅",
+        "explain_wrong": "Multiple Random Initializations is the optimal solution."
     },
     {
-        "q": "تشغيل خوارزمية K-Means عدة مرات (Multiple Random Initializations) يكون له تأثير إيجابي كبير جداً عندما يكون عدد الكلاسترز (K):",
+        "q": "Running K-Means multiple times (Multiple Random Initializations) has a highly positive impact mostly when the number of clusters (K) is:",
         "type": "mcq",
-        "options": ["كبيراً جداً (K > 100)", "صغيراً (مثلاً K من 2 إلى 10)", "يساوي عدد أمثلة التدريب", "سالباً"],
-        "ans": "صغيراً (مثلاً K من 2 إلى 10)",
-        "explain_correct": "لما يكون عدد الكلاسترز صغير (زي 2 لـ 10)، فرصة الوقوع في Local Optima بتبقى عالية، فهنا التكرار بيفرق جداً. أما لو K كبير، غالباً التكرار مش بيغير النتيجة كتير. ✅",
-        "explain_wrong": "التكرار يكون أكثر فعالية مع الأعداد الصغيرة من K."
+        "options": [
+            "Very large (K > 100)",
+            "Small (e.g., K from 2 to 10)",
+            "Equal to the number of training examples",
+            "Negative"
+        ],
+        "ans": "Small (e.g., K from 2 to 10)",
+        "explain_correct": "When the number of clusters is small (like 2 to 10), the chance of getting stuck in Local Optima is high, so running it multiple times makes a huge difference. If K is large, multiple initializations usually don't change the outcome much. ✅",
+        "explain_wrong": "Multiple initializations are most effective with small numbers of K."
     },
 
     # ─── Part 5: Choosing the Number of Clusters (K) ───
     {
-        "q": "ما هي الطريقة الرسومية الأشهر لاختيار العدد الأنسب للكلاسترز (K)؟",
+        "q": "What is the most famous graphical method for choosing the appropriate number of clusters (K)?",
         "type": "mcq",
-        "options": ["طريقة الكوع (Elbow Method)", "رسم الـ Gradient Descent", "رسم הـ Sigmoid curve", "طريقة One-vs-All"],
-        "ans": "طريقة الكوع (Elbow Method)",
-        "explain_correct": "في الـ Elbow Method، بنرسم الـ Cost (J) مع عدد الكلاسترز K، وبندور على النقطة اللي المنحنى بيكسر عندها زي الكوع. ✅",
-        "explain_wrong": "Elbow Method هي الطريقة القياسية لاختيار K."
+        "options": [
+            "The Elbow Method",
+            "Plotting Gradient Descent",
+            "Plotting the Sigmoid curve",
+            "The One-vs-All method"
+        ],
+        "ans": "The Elbow Method",
+        "explain_correct": "In the Elbow Method, we plot the Cost (J) against the number of clusters K, and we look for the point where the curve bends sharply like an elbow. ✅",
+        "explain_wrong": "The Elbow Method is the standard heuristic for choosing K."
     },
     {
-        "q": "في منحنى طريقة الـ Elbow، ماذا يمثل المحور الأفقي (X-axis) والمحور الرأسي (Y-axis)؟",
+        "q": "In the Elbow method curve, what do the horizontal axis (X-axis) and vertical axis (Y-axis) represent?",
         "type": "mcq",
-        "options": ["X: عدد التكرارات، Y: التكلفة J", "X: عدد الكلاسترز K، Y: التكلفة J (Distortion)", "X: التكلفة J، Y: معدل التعلم", "X: عدد البيانات، Y: عدد المراكز"],
-        "ans": "X: عدد الكلاسترز K، Y: التكلفة J (Distortion)",
-        "explain_correct": "بنغير K (المحور الأفقي) ونشوف تأثيرها على الـ Cost J (المحور الرأسي)، عشان نلاقي أحسن K موازنة بين تقليل الخطأ وعدد المجموعات. ✅",
-        "explain_wrong": "المحور الأفقي يمثل K، والرأسي يمثل J."
+        "options": [
+            "X: Number of iterations, Y: Cost J",
+            "X: Number of clusters K, Y: Cost J (Distortion)",
+            "X: Cost J, Y: Learning rate",
+            "X: Amount of data, Y: Number of centroids"
+        ],
+        "ans": "X: Number of clusters K, Y: Cost J (Distortion)",
+        "explain_correct": "We vary K (horizontal axis) and observe its effect on the Cost J (vertical axis) to find the best K that balances reducing error with the number of clusters. ✅",
+        "explain_wrong": "The horizontal axis represents K, and the vertical represents J."
     },
     {
-        "q": "ما هو العيب الرئيسي لطريقة الـ Elbow؟",
+        "q": "What is the main drawback of the Elbow method?",
         "type": "mcq",
-        "options": ["أنها دائماً تختار K=1", "أحياناً يكون المنحنى أملس (Smooth) وينزل بتدرج بدون وجود 'كوع' واضح، مما يجعل اختيار K صعباً", "أنها تتطلب بيانات خاضعة للإشراف (Supervised)", "أنها تزيد من قيمة دالة التكلفة"],
-        "ans": "أحياناً يكون المنحنى أملس (Smooth) وينزل بتدرج بدون وجود 'كوع' واضح، مما يجعل اختيار K صعباً",
-        "explain_correct": "مش دايماً المنحنى بيدي كوع واضح، أحياناً بينزل بالتدريج وساعتها الـ Elbow method مش بتسعفنا أوي. ✅",
-        "explain_wrong": "المنحنى لا يملك دائماً كوعاً واضحاً للتحديد."
+        "options": [
+            "It always chooses K=1",
+            "Sometimes the curve is smooth and decreases gradually without a clear 'elbow', making the choice of K highly ambiguous",
+            "It requires supervised data",
+            "It increases the value of the cost function"
+        ],
+        "ans": "Sometimes the curve is smooth and decreases gradually without a clear 'elbow', making the choice of K highly ambiguous",
+        "explain_correct": "The curve doesn't always provide a clear elbow; sometimes it decreases very gradually, and in those cases, the Elbow method isn't very helpful. ✅",
+        "explain_wrong": "The curve does not always have a clear, distinct elbow to identify."
     },
     {
-        "q": "أحياناً يتم اختيار عدد الكلاسترز (K) بناءً على الهدف اللاحق من النظام (Downstream Purpose)، حتى بدون استخدام طريقة الـ Elbow.",
+        "q": "Sometimes the number of clusters (K) is chosen based on the downstream purpose of the system, even without using the Elbow method.",
         "type": "tf",
         "options": ["True", "False"],
         "ans": "True",
-        "explain_correct": "صح جداً! مثلاً لو بتعمل مقاسات تيشرتات، ممكن تختار K=3 عشان تنتج (S, M, L) أو تختار K=5 عشان تنتج (XS, S, M, L, XL) بناءً على خطة المبيعات بتاعتك، بغض النظر عن الـ Elbow! ✅",
-        "explain_wrong": "الهدف التجاري أو العملي قد يحدد قيمة K."
+        "explain_correct": "Very true! For example, if you are sizing T-shirts, you might choose K=3 to produce (S, M, L) or K=5 to produce (XS, S, M, L, XL) based on your business plan, regardless of the Elbow curve! ✅",
+        "explain_wrong": "The business or practical goal often dictates the value of K."
     },
     {
-        "q": "إذا كان لدينا K=3، ونقطة التدريب x^(i) تم تعيينها للمركز الثاني. فما هي قيمة c^(i)؟",
+        "q": "If we have K=3, and the training point x^(i) is assigned to the second centroid. What is the value of c^(i)?",
         "type": "mcq",
         "options": ["1", "2", "3", "K"],
         "ans": "2",
-        "explain_correct": "بما أن النقطة تابعة للمركز الثاني، إذن الـ Cluster index الخاص بها c^(i) يساوي 2. ✅",
-        "explain_wrong": "الرمز c يعبر عن رقم المركز الذي تنتمي إليه النقطة."
+        "explain_correct": "Since the point is assigned to the second centroid, its Cluster index c^(i) equals 2. ✅",
+        "explain_wrong": "The symbol 'c' represents the index of the centroid to which the point belongs."
     }
 ]
